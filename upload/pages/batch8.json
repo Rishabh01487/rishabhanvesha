@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "### Page 1 (30/32)  \n**Header**:  \n- Top-left: `10:54 AM`  \n- Top-center: `Averon v4.0.0 — System Architecture Walkthrough`  \n- Bottom-left: `file:///D:/Averon/averon_system_architecture.html`  \n- Bottom-right: `30/32`  \n\n**Table**:  \nColumns: `Method`, `Path`, `Auth`, `Description`  \nRows (all entries):  \n1. `GET` | `/api/withdraw/history` | ✅ | Withdrawal history  \n2. `GET` | `/api/withdraw/pending` | ✅ 👑 | Admin: pending withdrawals  \n3. `POST` | `/api/withdraw/process/:id` | ✅ 👑 | Admin: process withdrawal  \n4. `POST` | `/api/withdraw/complete/:id` | ✅ 👑 | Admin: mark completed  \n5. `POST` | `/api/withdraw/fail/:id` | ✅ 👑 | Admin: reject withdrawal  \n6. `GET` | `/api/assets` | 🔒 | List all assets  \n7. `GET` | `/api/assets/:id` | 🔒 | Asset detail  \n8. `POST` | `/api/assets/create` | ✅ | Create new asset  \n9. `POST` | `/api/assets/:id/documents` | ✅ 📄 | Upload documents  \n10. `POST` | `/api/assets/:id/analyze` | ✅ | Trigger AI analysis  \n11. `POST` | `/api/assets/:id/confirm` | ✅ | Tokenize asset  \n12. `POST` | `/api/assets/:id/tokens/buy` | ✅ 💰 | Buy asset tokens  \n13. `GET` | `/api/market/orderbook` | — | Order book + trades  \n14. `POST` | `/api/market/order` | ✅ 💰 | Place buy/sell order  \n15. `DELETE` | `/api/market/order/:id` | ✅ | Cancel order  \n16. `GET` | `/api/portfolio` | ✅ | Full user portfolio  \n17. `GET` | `/api/blockchain/info` | — | Chain statistics  \n18. `GET` | `/api/blockchain/blocks` | — | Recent blocks  \n\n\n### Page 2 (31/32)  \n**Header**:  \n- Top-left: `10:54 AM`  \n- Top-center: `Averon v4.0.0 — System Architecture Walkthrough`  \n- Bottom-left: `file:///D:/Averon/averon_system_architecture.html`  \n- Bottom-right: `31/32`  \n\n**Table**:  \nColumns: `Method`, `Path`, `Auth`, `Description`  \nRows (all entries):  \n1. `GET` | `/api/blockchain/block/:idx` | — | Block by index  \n2. `GET` | `/api/blockchain/tx/:hash` | — | Transaction by hash  \n3. `GET` | `/api/blockchain/validate` | — | Chain validity  \n4. `GET` | `/api/blockchain/address/:addr` | — | Address balance + history  \n5. `GET` | `/api/admin/stats` | ✅ 👑 | Full admin dashboard  \n6. `POST` | `/api/admin/freeze/:userId` | ✅ 👑 | Freeze account  \n7. `POST` | `/api/admin/unfreeze/:userId` | ✅ 👑 | Unfreeze account  \n8. `POST` | `/api/admin/config` | ✅ 👑 | Update system config  \n9. `GET` | `/api/economy` | — | Economy metrics  \n10. `GET` | `/api/economy/price-history` | — | Price time series  \n11. `GET` | `/health` | — | Health check  \n\n**Legend** (left of table):  \n- ✅ = Auth required  \n- 💰 = Financial rate limit  \n- 👑 = Admin only  \n- 📄 = File upload  \n- 🔒 = Optional auth  \n\n**Section**:  \n- Title: `14. Initialization Sequence`  \n- Steps:  \n  1. Load .env (dotenv)  \n  2. Check cluster mode (production + primary → fork workers and exit)  \n\n\n### Page 3 (32/32)  \n**Header**:  \n- Top-left: `10:54 AM`  \n- Top-center: `Averon v4.0.0 — System Architecture Walkthrough`  \n- Bottom-left: `file:///D:/Averon/averon_system_architecture.html`  \n- Bottom-right: `32/32`  \n\n**Initialization Sequence (continued)**:  \n3. Set up global error boundaries (uncaughtException, unhandledRejection)  \n4. Initialize Express app with middleware stack  \n5. Initialize SQLite WASM database  \n   - Create 25+ tables (IF NOT EXISTS)  \n   - Seed economy defaults and system_config  \n   - Start auto-persist timer (every 3s)  \n6. Initialize blockchain  \n   - Load chain.json or create genesis block  \n7. Initialize wallet manager  \n   - Load wallets.json, ensure SYSTEM and PLATFORM_FEE wallets  \n8. Initialize all services (escrow, asset, trading, fee, price, compliance, KYC, payment)  \n9. Start background timers  \n   - Price fluctuation (every 15s)  \n   - Asset deadline check (every 60s)  \n   - Session cleanup (every 1h)  \n10. Create HTTP server + WebSocket server  \n11. Listen on PORT (default 4200)  \n12. Register graceful shutdown handlers (SIGTERM, SIGINT)  \n    - Broadcast shutdown via WebSocket  \n    - Clear all timers  \n    - Persist database  \n    - Close HTTP server  \n    - Force exit after 10s timeout  \n\n**Footer Text**:  \n- Left-aligned: `This document covers every module, every flow, every table, and every integration point in Averon v4.0.0.`  \n\n**Navigation Bar**:  \n- Horizontal gray bar with left/right arrow buttons (for document navigation).",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1783531309,
+  "id": "202607090121237c8fbe6c67034e01",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202607090121237c8fbe6c67034e01",
+  "usage": {
+    "completion_tokens": 1299,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 7577,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 8876
+  }
+}

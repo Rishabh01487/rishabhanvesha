@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 900px; height: 520px; font-family: 'Segoe UI', system-ui, sans-serif; background: #fff; padding: 20px; }
+  h3 { font-size: 13px; color: #333; margin-bottom: 12px; text-align: center; }
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .state-row { display: flex; align-items: center; gap: 6px; }
+  .state { padding: 7px 16px; border-radius: 20px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .normal { background: #e3f2fd; color: #1565c0; border: 1.5px solid #90caf9; }
+  .success { background: #e8f5e9; color: #2e7d32; border: 1.5px solid #a5d6a7; }
+  .warning { background: #fff8e1; color: #f57f17; border: 1.5px solid #ffe082; }
+  .danger { background: #fce4ec; color: #c62828; border: 1.5px solid #ef9a9a; }
+  .terminal { background: #eceff1; color: #546e7a; border: 1.5px solid #b0bec5; }
+  .arrow { color: #999; font-size: 14px; }
+  .branch { display: flex; gap: 20px; align-items: center; }
+  .branch-label { font-size: 9px; color: #888; font-style: italic; }
+</style>
+</head>
+<body>
+<h3>Asset Tokenization Lifecycle - 14-State Finite State Machine</h3>
+<div class="flow">
+  <div class="state-row"><div class="state normal">draft</div><div class="arrow">&#8595;</div></div>
+  <div class="state-row"><div class="state normal">documents_uploaded</div><div class="arrow">&#8595;</div></div>
+  <div class="state-row">
+    <div class="state warning">ai_analyzing</div>
+    <div class="arrow">&#8595;</div>
+  </div>
+  <div class="branch">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div class="branch-label">pass</div>
+      <div class="state success">verified</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state normal">compliance_review</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state success">active</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state normal">funding</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state success">funded</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state normal">payout_pending</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state terminal">completed</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div class="branch-label">fail</div>
+      <div class="state danger">rejected</div>
+    </div>
+  </div>
+  <div style="margin-top:8px; display:flex; gap:40px; align-items:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div class="branch-label">deadline expires</div>
+      <div class="state danger">expired</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state warning">refunding</div>
+      <div class="arrow">&#8595;</div>
+      <div class="state terminal">closed</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

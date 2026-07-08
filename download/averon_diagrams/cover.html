@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 794px 1123px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 794px; height: 1123px; background: #f1f1ef; font-family: 'Inter', sans-serif; }
+
+  /* Layer 0 - Background */
+  .cover-page { position: absolute; inset: 0; background: #f1f1ef; z-index: 0; }
+
+  /* Layer 1 - Background decorative */
+  .cover-bg { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+  .grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(97,87,57,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(97,87,57,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .accent-block {
+    position: absolute; right: 10px; top: 200px; width: 300px; height: 300px;
+    background: rgba(150,119,28,0.06); border-radius: 50%;
+  }
+  .accent-block-2 {
+    position: absolute; left: 10px; bottom: 100px; width: 200px; height: 200px;
+    background: rgba(59,151,182,0.05); border-radius: 50%;
+  }
+
+  /* Layer 2 - Structure */
+  .cover-structure { position: absolute; inset: 0; z-index: 2; }
+  .anchor-line {
+    position: absolute; left: 100px; top: 112px; width: 5px; height: 899px;
+    background: #615739;
+  }
+
+  /* Layer 3 - Content */
+  .cover-content { position: absolute; inset: 0; z-index: 3; padding: 0 0 0 130px; }
+
+  .kicker {
+    position: absolute; top: 130px; left: 130px;
+    font-size: 13px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase;
+    color: #86847c; opacity: 0.7;
+  }
+
+  .hero-title {
+    position: absolute; top: 260px; left: 130px; width: 580px;
+    font-size: 48px; font-weight: 800; line-height: 1.15;
+    color: #1c1b19;
+  }
+
+  .summary {
+    position: absolute; top: 500px; left: 130px; width: 520px;
+    font-size: 15px; font-weight: 300; line-height: 1.6; color: #1c1b19; opacity: 0.75;
+  }
+
+  .meta {
+    position: absolute; top: 780px; left: 130px;
+    font-size: 14px; font-weight: 400; color: #86847c;
+  }
+  .meta span { display: block; margin-bottom: 4px; }
+
+  .footer-text {
+    position: absolute; bottom: 50px; left: 130px;
+    font-size: 11px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #86847c; opacity: 0.5;
+  }
+
+  .version-badge {
+    position: absolute; top: 130px; right: 60px;
+    padding: 6px 16px; background: #615739; border-radius: 4px;
+    font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="cover-page"></div>
+<div class="cover-bg">
+  <div class="grid-lines"></div>
+  <div class="accent-block"></div>
+  <div class="accent-block-2"></div>
+</div>
+<div class="cover-structure">
+  <div class="anchor-line"></div>
+</div>
+<div class="cover-content">
+  <div class="kicker">System Architecture Walkthrough</div>
+  <div class="hero-title">Averon v4.0.0</div>
+  <div class="summary">Enterprise Blockchain Asset Tokenization Platform with AI Analysis. A comprehensive technical reference covering blockchain layer, service architecture, database schema, security model, and deployment infrastructure.</div>
+  <div class="meta">
+    <span>Real-World Asset (RWA) Tokenization</span>
+    <span>Custom Proof-of-Work Blockchain</span>
+    <span>Google Gemini AI Integration</span>
+  </div>
+  <div class="footer-text">Full System Architecture Document</div>
+  <div class="version-badge">v4.0.0</div>
+</div>
+</body>
+</html>

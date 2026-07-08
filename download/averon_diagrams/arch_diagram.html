@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 900px; height: 620px; font-family: 'Segoe UI', system-ui, sans-serif; background: #fff; }
+  .container { position: relative; width: 100%; height: 100%; padding: 20px; }
+  
+  .layer { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; border-radius: 6px; margin-bottom: 6px; align-items: center; }
+  .layer-label { font-size: 11px; font-weight: 700; width: 100px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .box { padding: 6px 12px; border-radius: 4px; font-size: 10px; font-weight: 600; text-align: center; white-space: nowrap; }
+  
+  .client-layer { background: #f0f4f8; border-left: 3px solid #3b97b6; }
+  .client-layer .box { background: #e1edf7; color: #1a4a6e; border: 1px solid #b3d4ea; }
+  
+  .server-layer { background: #f5f0e8; border-left: 3px solid #96771c; }
+  .server-layer .box { background: #f0e8d0; color: #5a4410; border: 1px solid #d4c49a; }
+  
+  .service-layer { background: #eef5ee; border-left: 3px solid #418959; }
+  .service-layer .box { background: #dff0df; color: #2d5a30; border: 1px solid #a8d4a8; font-size: 9px; }
+  
+  .blockchain-layer { background: #f5eeee; border-left: 3px solid #974840; }
+  .blockchain-layer .box { background: #f0dfdf; color: #5e2c28; border: 1px solid #d4a8a8; }
+  
+  .data-layer { background: #f0edf5; border-left: 3px solid #6b5b95; }
+  .data-layer .box { background: #e4ddf0; color: #3d3360; border: 1px solid #b8a8d4; }
+  
+  .realtime { position: absolute; right: 20px; top: 20px; width: 160px; background: #fff8e1; border: 2px solid #ffc107; border-radius: 8px; padding: 12px; }
+  .realtime h4 { font-size: 11px; color: #6d4c00; margin-bottom: 8px; text-align: center; }
+  .realtime .box { background: #fff3cd; color: #664d03; border: 1px solid #ffe082; font-size: 9px; display: block; margin-bottom: 4px; }
+  
+  .arrow-down { text-align: center; color: #999; font-size: 16px; margin: 2px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="layer client-layer">
+    <div class="layer-label" style="color:#1a4a6e;">Client</div>
+    <div class="box">Frontend SPA (HTML/CSS/JS)</div>
+    <div class="box">Admin Panel (React)</div>
+    <div class="box">WebSocket Client</div>
+  </div>
+  <div class="arrow-down">&#8595;</div>
+  <div class="layer server-layer">
+    <div class="layer-label" style="color:#5a4410;">Server</div>
+    <div class="box">Express.js Server (Node.js)</div>
+  </div>
+  <div class="arrow-down">&#8595;</div>
+  <div class="layer service-layer">
+    <div class="layer-label" style="color:#2d5a30;">Services</div>
+    <div class="box">AI Pipeline</div>
+    <div class="box">Asset Service</div>
+    <div class="box">Trading Engine</div>
+    <div class="box">Payment Service</div>
+    <div class="box">Escrow Service</div>
+    <div class="box">KYC Service</div>
+    <div class="box">Settlement Service</div>
+    <div class="box">Price Service</div>
+    <div class="box">Fee Service</div>
+    <div class="box">Compliance</div>
+  </div>
+  <div class="arrow-down">&#8595;</div>
+  <div class="layer blockchain-layer">
+    <div class="layer-label" style="color:#5e2c28;">Blockchain</div>
+    <div class="box">Blockchain Engine</div>
+    <div class="box">Block Pool (Mining)</div>
+    <div class="box">Consensus (Difficulty)</div>
+    <div class="box">Wallet Manager</div>
+  </div>
+  <div class="arrow-down">&#8595;</div>
+  <div class="layer data-layer">
+    <div class="layer-label" style="color:#3d3360;">Data</div>
+    <div class="box">Transactions (ECDSA)</div>
+    <div class="box">Blocks (Merkle Root)</div>
+    <div class="box">Chain State (UTXO)</div>
+    <div class="box">Wallets (Keys)</div>
+  </div>
+  
+  <div class="realtime">
+    <h4>Real-Time Layer</h4>
+    <div class="box">Event Bus (Pub/Sub)</div>
+    <div class="box">WebSocket Server</div>
+  </div>
+</div>
+</body>
+</html>
