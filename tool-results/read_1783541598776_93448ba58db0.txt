@@ -1,0 +1,1735 @@
+     1→#!/usr/bin/env python3
+     2→"""
+     3→Expanded content for the Averon Technical Book.
+     4→Adds substantial sections after specific chapters to bring the total
+     5→from approximately 53 pages to 200+ pages.
+     6→
+     7→This module is designed to be imported by the parent book generator.
+     8→It expects the following to be available in the importing scope:
+     9→
+    10→  Helper functions: body, h2, h3, bullet, callout, spacer,
+    11→                    make_table, add_image
+    12→  Constants:        DIAG_DIR, PART_TITLE_STORY_MARKER,
+    13→                    TEXT_PRIMARY, HEADER_FILL, ACCENT, ACCENT_2,
+    14→                    TEXT_MUTED, BORDER, TABLE_STRIPE, ICON,
+    15→                    SEM_SUCCESS, SEM_WARNING, SEM_ERROR, SEM_INFO,
+    16→                    CONTENT_W
+    17→
+    18→Usage (in parent script, after building each chapter's story elements):
+    19→    from book_content_extra import add_expanded_content
+    20→    # ... build story with all 30 chapters ...
+    21→    add_expanded_content(story)
+    22→"""
+    23→
+    24→
+    25→def add_expanded_content(story, _helpers=None):
+    26→    """Add expanded content sections to reach 200+ pages."""
+    27→    if _helpers:
+    28→        for _k, _v in _helpers.items():
+    29→            if not _k.startswith('_'):
+    30→                globals()[_k] = _v
+    31→
+    32→    # ================================================================
+    33→    # AFTER CHAPTER 1 - Introduction
+    34→    # ================================================================
+    35→
+    36→    # --- 1.4 Industry Landscape and Market Analysis ---
+    37→    story.extend([
+    38→        h2("1.4 Industry Landscape and Market Analysis"),
+    39→
+    40→        body(
+    41→            "The global tokenization market has experienced remarkable growth over the past "
+    42→            "several years, transforming from a niche experimental concept into a mainstream "
+    43→            "financial infrastructure paradigm. According to Boston Consulting Group (BCG), "
+    44→            "the tokenized asset market is projected to reach approximately $16 trillion by "
+    45→            "2030, representing a compound annual growth rate (CAGR) that exceeds 70 percent "
+    46→            "from its 2023 baseline of roughly $100 billion in on-chain real-world assets. "
+    47→            "This explosive trajectory is driven by converging forces: the maturation of "
+    48→            "blockchain infrastructure, increasing institutional comfort with distributed "
+    49→            "ledger technology, and the persistent demand for greater liquidity and "
+    50→            "fractional ownership in traditionally illiquid asset classes such as real estate, "
+    51→            "private equity, and fine art. McKinsey and Company's separate analysis aligns "
+    52→            "closely with these projections, estimating that tokenized illiquid assets alone "
+    53→            "could capture up to $4 trillion in value by 2030, while the broader category "
+    54→            "including bonds, funds, and other financial instruments pushes the addressable "
+    55→            "market well into the double-digit trillions."
+    56→        ),
+    57→
+    58→        body(
+    59→            "When compared to traditional securitization markets, the tokenization opportunity "
+    60→            "represents both an evolution and a disruption. The global securitization market, "
+    61→            "which encompasses mortgage-backed securities, asset-backed securities, and "
+    62→            "collateralized loan obligations, processes approximately $2.5 trillion in new "
+    63→            "issuance annually. Tokenization promises to reduce the friction costs associated "
+    64→            "with these processes by an estimated 40 to 60 percent, primarily through the "
+    65→            "elimination of intermediaries, automated compliance checks via smart contracts, "
+    66→            "and near-instantaneous settlement compared to the traditional T+2 or T+3 cycles. "
+    67→            "The World Economic Forum has noted that tokenization could fundamentally reshape "
+    68→            "capital markets infrastructure, with potential annual cost savings exceeding "
+    69→            "$20 billion across custody, clearing, and settlement functions globally. "
+    70→            "Furthermore, the DeFi ecosystem has demonstrated that programmable financial "
+    71→            "primitives, when combined with real-world asset backing, can create novel "
+    72→            "financial products that were previously impractical or impossible to construct "
+    73→            "within the confines of traditional financial plumbing."
+    74→        ),
+    75→
+    76→        body(
+    77→            "The decentralized finance (DeFi) sector, which serves as both a precursor and "
+    78→            "a proving ground for tokenized real-world assets, has itself grown from less "
+    79→            "than $1 billion in total value locked (TVL) in early 2020 to peak levels "
+    80→            "exceeding $180 billion before market corrections. While DeFi remains volatile, "
+    81→            "the underlying protocols for lending, borrowing, and trading have demonstrated "
+    82→            "robustness at scale, processing billions of dollars in transaction volume monthly. "
+    83→            "Institutional players including BlackRock, JPMorgan, and Goldman Sachs have "
+    84→            "launched tokenized fund products or blockchain-based settlement pilots, signaling "
+    85→            "a decisive shift in sentiment. BlackRock's BUIDL fund on the Ethereum network "
+    86→            "and JPMorgan's Onyx Digital Assets platform represent early but significant "
+    87→            "commitments from the world's largest asset managers. The convergence of "
+    88→            "regulatory clarity, institutional adoption, and technological maturity positions "
+    89→            "tokenization not as a speculative trend but as a fundamental restructuring of "
+    90→            "how assets are originated, distributed, and traded across global capital markets."
+    91→        ),
+    92→
+    93→        spacer(8),
+    94→
+    95→        # --- 1.5 Regulatory Landscape ---
+    96→        h2("1.5 Regulatory Landscape"),
+    97→
+    98→        body(
+    99→            "The regulatory environment surrounding asset tokenization has evolved significantly "
+   100→            "since 2020, shifting from a patchwork of ad hoc guidance to increasingly "
+   101→            "comprehensive frameworks designed to provide legal certainty while protecting "
+   102→            "investors. The European Union's Markets in Crypto-Assets Regulation (MiCA), "
+   103→            "which entered into full effect in late 2024, represents the most ambitious and "
+   104→            "detailed regulatory framework for digital assets globally. MiCA establishes "
+   105→            "clear requirements for crypto-asset service providers, stablecoin issuers, and "
+   106→            "tokenized securities, including capital adequacy requirements, governance "
+   107→            "standards, and consumer protection mandates. For platforms like Averon operating "
+   108→            "within or targeting the European market, MiCA provides a harmonized regulatory "
+   109→            "passport that eliminates the need for separate national approvals across all 27 "
+   110→            "EU member states. The regulation also introduces specific provisions for "
+   111→            "asset-referenced tokens and e-money tokens, creating distinct regulatory "
+   112→            "categories that align well with Averon's approach to tokenized real-world assets."
+   113→        ),
+   114→
+   115→        body(
+   116→            "In the United States, the Securities and Exchange Commission (SEC) has taken a "
+   117→            "more fragmented approach, applying existing securities laws to tokenized assets "
+   118→            "through enforcement actions and interpretive guidance rather than comprehensive "
+   119→            "legislation. The SEC's position, articulated through its Framework for Investment "
+   120→            "Contract Analysis of Digital Assets (the Howey Test application), generally "
+   121→            "classifies most tokenized assets as securities, subjecting them to registration "
+   122→            "requirements under the Securities Act of 1933 and exchange requirements under "
+   123→            "the Securities Exchange Act of 1934. However, the emergence of tokenized funds "
+   124→            "under Rule 144A exemptions and the SEC's experimental tokenized treasury offerings "
+   125→            "suggest a gradual opening. Simultaneously, the Commodity Futures Trading Commission "
+   126→            "(CFTC) has asserted jurisdiction over certain digital asset derivatives, creating "
+   127→            "a dual-regulator dynamic. India's Reserve Bank of India (RBI) has taken a more "
+   128→            "cautious stance, initially imposing a blanket ban on cryptocurrency transactions "
+   129→            "in 2018 before the Supreme Court reversed this in 2020, and subsequently "
+   130→            "introducing a 30 percent tax on digital asset gains along with a 1 percent TDS "
+   131→            "requirement, while actively exploring a central bank digital currency (CBDC) "
+   132→            "through its pilot e-Rupee program."
+   133→        ),
+   134→
+   135→        body(
+   136→            "The Dubai Virtual Assets Regulatory Authority (VARA), established in 2022 as the "
+   137→            "world's first independent regulatory body for virtual assets, has created a "
+   138→            "comprehensive licensing framework covering activities from custody and exchange "
+   139→            "services to token issuance and management. VARA's activity-based approach "
+   140→            "provides clarity for platforms like Averon by delineating specific compliance "
+   141→            "obligations for each functional area of the tokenization lifecycle. Singapore's "
+   142→            "Monetary Authority of Singapore (MAS) has pursued a similarly proactive approach "
+   143→            "through its Payment Services Act, which regulates digital payment token services, "
+   144→            "and its Project Guardian initiative, which actively pilots tokenized asset "
+   145→            "use cases in collaboration with major financial institutions including DBS Bank, "
+   146→            "Standard Chartered, and MarketVector. The MAS framework is particularly notable "
+   147→            "for its regulatory sandbox approach, allowing innovation to proceed under "
+   148→            "controlled conditions with appropriate safeguards. Across these jurisdictions, "
+   149→            "a common trend emerges: regulators are moving from prohibition to structured "
+   150→            "engagement, creating the legal infrastructure necessary for platforms like Averon "
+   151→            "to operate at institutional scale while maintaining compliance with local and "
+   152→            "international requirements."
+   153→        ),
+   154→
+   155→        spacer(8),
+   156→
+   157→        # --- 1.6 Comparative Analysis of Tokenization Platforms ---
+   158→        h2("1.6 Comparative Analysis of Tokenization Platforms"),
+   159→
+   160→        body(
+   161→            "The tokenization platform landscape encompasses a diverse range of solutions, "
+   162→            "from public blockchain networks designed for general-purpose computation to "
+   163→            "permissioned enterprise frameworks optimized for regulated financial workflows. "
+   164→            "Understanding the relative strengths and trade-offs of these platforms is "
+   165→            "essential for evaluating Averon's architectural decisions and competitive "
+   166→            "positioning. The following table provides a systematic comparison across seven "
+   167→            "critical dimensions that determine platform suitability for real-world asset "
+   168→            "tokenization at institutional scale."
+   169→        ),
+   170→    ])
+   171→
+   172→    story.extend(make_table(
+   173→        [
+   174→            ["Dimension", "Averon", "Ethereum", "Polygon", "Hyperledger", "Securitize"],
+   175→            ["Transaction Cost", "Near-zero (private chain)", "$0.50-$5.00 (varies)", "$0.01-$0.10 (L2)", "Near-zero (permissioned)", "$0.10-$1.00 (Ethereum-based)"],
+   176→            ["Privacy", "Full confidentiality (private chain)", "Public / transparent", "Public / transparent", "Full confidentiality (permissioned)", "Partial (selective disclosure)"],
+   177→            ["Regulatory Compliance", "Built-in KYC/AML pipeline", "External / off-chain", "External / off-chain", "Configurable policies", "Built-in compliance tools"],
+   178→            ["AI Integration", "Native 6-stage AI pipeline", "External (oracles)", "External (oracles)", "External integration", "External (partner APIs)"],
+   179→            ["Custom Transactions", "Full AVM programmability", "Solidity smart contracts", "Solidity compatible", "Chaincode (Go/Java)", "Ethereum smart contracts"],
+   180→            ["Enterprise Readiness", "Purpose-built enterprise", "Improving (Enter. Mainnet)", "Moderate (enterprise L2)", "High (IBM/Intel backed)", "High (SEC-registered)"],
+   181→            ["Settlement Speed", "Custom block time (30s)", "~12 seconds", "~2 seconds", "Configurable (1-5s)", "~12 seconds (Ethereum)"],
+   182→        ],
+   183→        col_widths=[CONTENT_W * 0.14, CONTENT_W * 0.17, CONTENT_W * 0.15, CONTENT_W * 0.15, CONTENT_W * 0.19, CONTENT_W * 0.20],
+   184→        caption_text="Table 1.6: Comparative Analysis of Tokenization Platforms"
+   185→    ))
+   186→
+   187→    story.extend([
+   188→        body(
+   189→            "The comparison reveals that Averon occupies a unique position in the platform "
+   190→            "landscape by combining the privacy and cost advantages of permissioned networks "
+   191→            "with the programmability typically associated with public chains. Unlike Ethereum "
+   192→            "and Polygon, which operate as public networks where all transaction data is visible "
+   193→            "to all participants, Averon's private blockchain ensures that sensitive financial "
+   194→            "data, including asset valuations, investor identities, and transaction details, "
+   195→            "remains confidential within the authorized network. This is a critical requirement "
+   196→            "for institutional asset tokenization, where regulatory obligations such as GDPR "
+   197→            "and data protection laws mandate strict controls over personal and financial "
+   198→            "information. Hyperledger Fabric offers similar privacy guarantees but lacks the "
+   199→            "native AI integration, custom virtual machine, and purpose-built trading "
+   200→            "infrastructure that Averon provides as integrated platform capabilities."
+   201→        ),
+   202→
+   203→        body(
+   204→            "The transaction cost dimension is particularly significant for platforms that "
+   205→            "target high-frequency secondary market trading. Ethereum's gas fees, while "
+   206→            "reduced substantially by Layer 2 solutions, remain unpredictable and can spike "
+   207→            "during periods of network congestion, making them unsuitable for the micro-transaction "
+   208→            "patterns inherent in fractional asset trading. Polygon addresses this concern "
+   209→            "through its rollup architecture, achieving sub-cent transaction costs, but "
+   210→            "sacrifices some degree of decentralization and inherits Ethereum's privacy "
+   211→            "limitations. Averon's private chain eliminates gas fees entirely, as the "
+   212→            "computational cost of transaction validation is absorbed by the network operators "
+   213→            "rather than passed through to end users. Furthermore, Averon's native integration "
+   214→            "of AI-powered document verification, risk scoring, and compliance checking "
+   215→            "represents a capability that no competitor currently offers as a unified, "
+   216→            "built-in platform feature. Where other platforms require integration with "
+   217→            "third-party AI services through oracles or API bridges, Averon's six-stage "
+   218→            "AI pipeline operates as a first-class citizen within the platform architecture, "
+   219→            "reducing latency, improving data consistency, and eliminating third-party "
+   220→            "dependency risks."
+   221→        ),
+   222→    ])
+   223→
+   224→    # ================================================================
+   225→    # AFTER CHAPTER 3 - Architecture
+   226→    # ================================================================
+   227→
+   228→    story.extend([
+   229→        h2("3.4 Data Flow Architecture"),
+   230→
+   231→        body(
+   232→            "Every request that enters the Averon platform traverses a carefully orchestrated "
+   233→            "path through the five-layer architecture, with each layer performing specific "
+   234→            "transformation, validation, and enrichment operations before passing control to "
+   235→            "the next. When a user initiates an asset tokenization request through the web "
+   236→            "interface or API, the request first arrives at the Presentation Layer, where it "
+   237→            "undergoes input validation, authentication verification, and rate limiting checks. "
+   238→            "The Presentation Layer translates the HTTP request into an internal command object "
+   239→            "and forwards it to the Application Layer, which serves as the orchestration "
+   240→            "brain. The Application Layer decomposes the high-level command into a sequence "
+   241→            "of domain operations, coordinating between the AI Service Layer for document "
+   242→            "analysis, the Domain Layer for business rule enforcement, and the Infrastructure "
+   243→            "Layer for persistent state changes. This layered approach ensures that concerns "
+   244→            "such as input sanitization, business logic validation, and data persistence remain "
+   245→            "strictly separated, enabling independent testing, modification, and scaling of "
+   246→            "each layer without cascading effects on the others."
+   247→        ),
+   248→
+   249→        body(
+   250→            "Data persistence within Averon follows a polyglot storage strategy, where "
+   251→            "different data types are directed to the storage engine best suited to their "
+   252→            "access patterns and consistency requirements. Relational data, including user "
+   253→            "profiles, transaction records, and asset metadata, is stored in PostgreSQL with "
+   254→            "strict ACID guarantees and row-level locking for concurrent access. Document "
+   255→            "artifacts, such as property deeds, financial statements, and legal agreements, "
+   256→            "are stored as binary objects in the filesystem with metadata references maintained "
+   257→            "in the database, enabling fast retrieval while keeping the relational schema "
+   258→            "lean and queryable. Blockchain state, including token balances, smart contract "
+   259→            "code, and transaction hashes, is persisted in the custom LevelDB-based chain "
+   260→            "store, which is optimized for sequential write patterns and key-range scans "
+   261→            "typical of blockchain data access. The AI pipeline generates intermediate data "
+   262→            "artifacts, including extracted text from OCR processing, named entity annotations, "
+   263→            "and risk scoring results, which are cached temporarily in Redis with configurable "
+   264→            "time-to-live (TTL) values, reducing redundant computation for repeated document "
+   265→            "analyses."
+   266→        ),
+   267→
+   268→        body(
+   269→            "The event-driven architecture within Averon enables loose coupling between "
+   270→            "services and supports asynchronous processing patterns that are essential for "
+   271→            "long-running operations such as AI document analysis and blockchain consensus. "
+   272→            "When a significant state change occurs, such as the completion of a trade, the "
+   273→            "issuance of new tokens, or the approval of a KYC application, the responsible "
+   274→            "service publishes an event to the internal event bus. Downstream services that "
+   275→            "have subscribed to relevant event types receive notifications and execute their "
+   276→            "corresponding handlers. For example, a trade completion event triggers the "
+   277→            "settlement service to execute escrow release, the notification service to send "
+   278→            "confirmation emails to both parties, the analytics service to update market "
+   279→            "statistics, and the compliance service to log the transaction for regulatory "
+   280→            "reporting. This publish-subscribe pattern ensures that adding new downstream "
+   281→            "behaviors, such as webhook integrations or real-time dashboard updates, requires "
+   282→            "no modification to the originating service, supporting the Open/Closed Principle "
+   283→            "and enabling the platform to evolve without introducing coupling between "
+   284→            "independently deployable components."
+   285→        ),
+   286→
+   287→        spacer(8),
+   288→
+   289→        # --- 3.5 Scalability Considerations ---
+   290→        h2("3.5 Scalability Considerations"),
+   291→
+   292→        body(
+   293→            "Averon's scalability strategy encompasses both vertical scaling, which involves "
+   294→            "increasing the computational resources of individual server instances, and "
+   295→            "horizontal scaling, which involves distributing load across multiple instances "
+   296→            "working in concert. In the current architecture, vertical scaling provides the "
+   297→            "most immediate benefit for compute-intensive workloads such as AI model inference "
+   298→            "and blockchain mining, where adding CPU cores and GPU accelerators to existing "
+   299→            "nodes directly improves throughput. The AI pipeline, which runs models for OCR, "
+   300→            "classification, and named entity recognition, benefits significantly from GPU "
+   301→            "acceleration, with inference times decreasing by approximately 10x when compared "
+   302→            "to CPU-only execution. For the blockchain mining component, increasing the hash "
+   303→            "rate of validator nodes improves security against potential attacks while also "
+   304→            "reducing block confirmation latency, creating a dual benefit from vertical "
+   305→            "scaling investments."
+   306→        ),
+   307→
+   308→        body(
+   309→            "Current bottlenecks in the system have been identified through load testing and "
+   310→            "production monitoring. The primary constraint is the synchronous AI pipeline "
+   311→            "execution during asset onboarding, where a single document verification flow "
+   312→            "can take 15 to 30 seconds to complete all six stages. This creates a queueing "
+   313→            "effect when multiple asset submissions arrive concurrently, resulting in increased "
+   314→            "latency for subsequent requests. The database layer represents a second bottleneck, "
+   315→            "particularly for complex analytical queries that join multiple large tables, such "
+   316→            "as generating investor portfolio reports or computing market-wide trading volume "
+   317→            "aggregations. The blockchain consensus mechanism, while adequate for current "
+   318→            "transaction volumes, introduces a hard upper bound on transaction throughput that "
+   319→            "is determined by the block time and block size parameters. With a 30-second block "
+   320→            "time and a maximum block size of 2 megabytes, the theoretical maximum transaction "
+   321→            "throughput is approximately 200 transactions per second, which is sufficient for "
+   322→            "current demand but may become constraining as the platform scales to support "
+   323→            "thousands of concurrent traders."
+   324→        ),
+   325→
+   326→        body(
+   327→            "Future scaling paths have been designed to address these bottlenecks through a "
+   328→            "combination of architectural improvements and infrastructure enhancements. Read "
+   329→            "replicas will be introduced for the PostgreSQL database, directing analytical and "
+   330→            "reporting queries to dedicated replica instances while preserving write consistency "
+   331→            "on the primary node. A multi-level caching strategy, incorporating Redis for "
+   332→            "frequently accessed data such as user sessions, asset listings, and order book "
+   333→            "snapshots, will reduce database query volume by an estimated 60 to 80 percent "
+   334→            "for read-dominated operations. For static assets including document images, "
+   335→            "diagrams, and platform UI resources, a Content Delivery Network (CDN) will be "
+   336→            "deployed to serve geographically distributed users with low-latency access. The "
+   337→            "AI pipeline will be restructured to support asynchronous processing with a "
+   338→            "priority queue, allowing high-priority compliance checks to be processed ahead "
+   339→            "of lower-priority enrichment analyses. Finally, the blockchain layer is designed "
+   340→            "for a future migration to a Proof-of-Stake consensus mechanism, which will "
+   341→            "eliminate the computational overhead of mining while enabling faster block "
+   342→            "confirmation times and higher transaction throughput, as detailed in the dedicated "
+   343→            "chapter on consensus migration."
+   344→        ),
+   345→
+   346→        spacer(8),
+   347→
+   348→        # --- 3.6 Design Patterns Used ---
+   349→        h2("3.6 Design Patterns Used"),
+   350→
+   351→        body(
+   352→            "The Repository Pattern is employed throughout Averon to provide a clean "
+   353→            "abstraction layer between the business logic in the Domain Layer and the data "
+   354→            "access mechanisms in the Infrastructure Layer. Each major domain entity, "
+   355→            "including users, assets, transactions, and orders, has a corresponding repository "
+   356→            "interface defined in the Domain Layer that specifies the contract for data "
+   357→            "operations such as find, save, delete, and query. The concrete implementations "
+   358→            "of these interfaces reside in the Infrastructure Layer and encapsulate all "
+   359→            "details of database connectivity, SQL query construction, and result mapping. "
+   360→            "This separation yields several benefits: the domain logic can be tested against "
+   361→            "mock repositories without requiring a running database instance, the underlying "
+   362→            "storage engine can be replaced or upgraded without modifying any business logic, "
+   363→            "and query optimization concerns are isolated within the repository implementations "
+   364→            "where they can be tuned independently. The repository pattern also enforces a "
+   365→            "consistent data access API across the entire codebase, reducing the cognitive "
+   366→            "burden on developers and preventing the proliferation of ad hoc SQL queries "
+   367→            "scattered throughout the application code."
+   368→        ),
+   369→
+   370→        body(
+   371→            "The Factory Pattern is used extensively for transaction creation, where each "
+   372→            "transaction type, such as asset issuance, transfer, trade execution, and fee "
+   373→            "collection, requires a different set of fields, validation rules, and "
+   374→            "blockchain encoding formats. The TransactionFactory class provides static "
+   375→            "methods that accept high-level parameters and return fully constructed, "
+   376→            "validated transaction objects ready for signing and broadcast. For example, "
+   377→            "creating a trade transaction involves validating that both parties have "
+   378→            "sufficient balance, computing the applicable fees based on the current fee "
+   379→            "schedule, encoding the order details into the transaction payload, and setting "
+   380→            "appropriate gas limits. The factory encapsulates this complexity behind a simple "
+   381→            "interface, ensuring that callers do not need to understand the internal structure "
+   382→            "of transaction objects. This pattern also enables the introduction of new "
+   383→            "transaction types without modifying existing code, as new factory methods can be "
+   384→            "added independently of the callers that use them."
+   385→        ),
+   386→
+   387→        body(
+   388→            "The Observer Pattern forms the backbone of Averon's event system, enabling "
+   389→            "loosely coupled communication between services. Each service that produces "
+   390→            "significant state changes acts as a subject, maintaining a list of registered "
+   391→            "observers that are notified when events occur. The event system supports both "
+   392→            "synchronous and asynchronous notification modes, with synchronous dispatch used "
+   393→            "for operations that must complete within the same request context, such as "
+   394→            "updating the order book after a trade, and asynchronous dispatch used for "
+   395→            "operations that can tolerate eventual consistency, such as sending notification "
+   396→            "emails or updating analytics dashboards. The Observer Pattern enables the "
+   397→            "platform to add new event consumers, such as webhook integrations, audit loggers, "
+   398→            "or real-time data feeds, without modifying the event-producing services, adhering "
+   399→            "to the Open/Closed Principle and supporting the platform's extensibility requirements."
+   400→        ),
+   401→
+   402→        body(
+   403→            "The Strategy Pattern is applied to fee calculation, where different fee structures "
+   404→            "apply to different transaction types and user tiers. The FeeStrategy interface "
+   405→            "defines a single method, calculate_fee, that accepts a transaction context and "
+   406→            "returns the computed fee amount. Concrete implementations include "
+   407→            "TradingFeeStrategy, ListingFeeStrategy, and CapitalRaiseFeeStrategy, each "
+   408→            "encapsulating the specific logic for its fee category. This design allows the "
+   409→            "fee structure to be modified, extended, or replaced without changing the "
+   410→            "transaction processing code. For example, introducing a promotional fee waiver "
+   411→            "for early adopters requires only a new strategy implementation that returns zero "
+   412→            "fees for qualifying transactions, without any changes to the core trading engine."
+   413→        ),
+   414→
+   415→        body(
+   416→            "The State Machine Pattern governs the lifecycle of tokenized assets on the "
+   417→            "Averon platform. Each asset progresses through a well-defined sequence of states, "
+   418→            "from initial creation and document submission through AI verification, compliance "
+   419→            "review, approval, listing on the marketplace, active trading, and eventual "
+   420→            "delisting or maturity. Each state transition is governed by specific preconditions, "
+   421→            "such as the completion of all required compliance checks before an asset can move "
+   422→            "to the approved state, and specific post-conditions, such as the automatic "
+   423→            "generation of blockchain tokens when an asset transitions to the listed state. "
+   424→            "The state machine implementation enforces these constraints programmatically, "
+   425→            "preventing invalid transitions and ensuring that every asset on the platform "
+   426→            "follows a consistent and auditable lifecycle path. This pattern also simplifies "
+   427→            "the UI layer, which can render different action buttons and information panels "
+   428→            "based on the current state of an asset, without embedding business rules in "
+   429→            "the presentation code."
+   430→        ),
+   431→    ])
+   432→
+   433→    story.extend(make_table(
+   434→        [
+   435→            ["Pattern", "Application in Averon", "Benefit"],
+   436→            ["Repository", "Data access for all domain entities", "Decouples domain logic from storage; enables testing with mocks"],
+   437→            ["Factory", "Transaction object creation and validation", "Encapsulates complexity; supports adding new transaction types"],
+   438→            ["Observer", "Event system for cross-service communication", "Loose coupling; easy to add new event consumers"],
+   439→            ["Strategy", "Fee calculation across transaction types", "Flexible fee structures; open for extension, closed for modification"],
+   440→            ["State Machine", "Asset lifecycle management", "Enforces valid transitions; simplifies UI state rendering"],
+   441→        ],
+   442→        col_widths=[CONTENT_W * 0.18, CONTENT_W * 0.40, CONTENT_W * 0.42],
+   443→        caption_text="Table 3.6: Design Patterns Used in Averon Architecture"
+   444→    ))
+   445→
+   446→    # ================================================================
+   447→    # AFTER CHAPTER 4 - Blockchain Layer
+   448→    # ================================================================
+   449→
+   450→    story.extend([
+   451→        h2("4.7 Chain Security Analysis"),
+   452→
+   453→        body(
+   454→            "The security of Averon's blockchain relies on a multi-layered defense strategy "
+   455→            "that addresses threats ranging from computational attacks on the consensus "
+   456→            "mechanism to social engineering attacks on network participants. The 51 percent "
+   457→            "attack, widely recognized as the most fundamental threat to Proof-of-Work "
+   458→            "blockchains, becomes increasingly impractical as the network's cumulative hash "
+   459→            "rate grows. In Averon's private chain context, where mining is restricted to "
+   460→            "authorized validator nodes operated by the platform's infrastructure team, the "
+   461→            "51 percent attack surface is further constrained by physical access controls, "
+   462→            "network segmentation, and the computational cost of the custom hashing algorithm. "
+   463→            "Unlike public blockchains where any participant can contribute hash power, "
+   464→            "Averon's permissioned mining model ensures that an attacker would need to "
+   465→            "compromise a majority of the validator infrastructure, which is distributed "
+   466→            "across multiple geographic regions and protected by enterprise-grade security "
+   467→            "controls including hardware security modules (HSMs), intrusion detection systems, "
+   468→            "and multi-signature authorization for configuration changes."
+   469→        ),
+   470→
+   471→        body(
+   472→            "Sybil resistance in Averon's network is achieved through the combination of "
+   473→            "Proof-of-Work computational requirements and the permissioned node admission "
+   474→            "process. In a public blockchain, Sybil attacks involve creating a large number "
+   475→            "of pseudonymous identities to gain disproportionate influence over the consensus "
+   476→            "process. Averon mitigates this by requiring each validator node to be registered "
+   477→            "with a verified identity and authenticated through a mutual TLS handshake before "
+   478→            "being permitted to participate in block production. The economic security model "
+   479→            "further reinforces resistance to attacks by aligning the financial incentives of "
+   480→            "validators with the integrity of the network. Validators are required to stake "
+   481→            "a bond of platform tokens, which is partially slashed in the event of provable "
+   482→            "misbehavior such as double-signing blocks or submitting invalid transactions. "
+   483→            "This economic disincentive, combined with the reputational cost of being removed "
+   484→            "from the validator set, creates a formidable barrier against attacks even from "
+   485→            "insiders with legitimate access to the mining infrastructure."
+   486→        ),
+   487→
+   488→        body(
+   489→            "Private chain security considerations extend beyond the consensus mechanism to "
+   490→            "encompass the entire operational environment in which the blockchain runs. "
+   491→            "Averon's validator nodes operate within isolated virtual network segments with "
+   492→            "strict firewall rules that limit inbound connections to other validator nodes "
+   493→            "and the platform's application servers. All inter-node communication is encrypted "
+   494→            "using TLS 1.3 with certificate pinning to prevent man-in-the-middle attacks. "
+   495→            "The blockchain data store is protected by filesystem-level encryption using "
+   496→            "AES-256, ensuring that even if an attacker gains physical access to the storage "
+   497→            "media, the chain data remains unreadable without the decryption key, which is "
+   498→            "stored in a separate HSM. Regular integrity checks compare the hash of each "
+   499→            "block against the previous block's hash reference, detecting any unauthorized "
+   500→            "modifications to the chain history. Additionally, a separate audit node maintains "
+   501→            "a read-only replica of the blockchain that is used for forensic analysis and "
+   502→            "regulatory reporting, providing an independent verification layer that cannot "
+   503→            "be tampered with even if the primary validator set is compromised."
+   504→        ),
+   505→
+   506→        spacer(8),
+   507→
+   508→        # --- 4.8 Transaction Lifecycle ---
+   509→        h2("4.8 Transaction Lifecycle"),
+   510→
+   511→        body(
+   512→            "Every transaction on the Averon blockchain follows a precisely defined lifecycle "
+   513→            "that begins with creation by the application layer and concludes with irreversible "
+   514→            "confirmation on the chain. The process starts when a user action, such as placing "
+   515→            "a trade order or transferring tokens, triggers the TransactionFactory to construct "
+   516→            "a transaction object containing the sender's public key, the recipient's address "
+   517→            "(if applicable), the transaction payload encoding the specific operation, a "
+   518→            "nonce value incremented from the sender's previous transaction count, and a "
+   519→            "timestamp. The transaction object is then serialized into a canonical byte "
+   520→            "representation and presented to the sender's wallet for cryptographic signing "
+   521→            "using the ECDSA (Elliptic Curve Digital Signature Algorithm) with the secp256k1 "
+   522→            "curve. The signing process typically completes in under 50 milliseconds on modern "
+   523→            "hardware, after which the signed transaction is broadcast to the validator network "
+   524→            "through a gossip protocol that ensures rapid propagation to all nodes."
+   525→        ),
+   526→
+   527→        body(
+   528→            "Upon receiving a broadcast transaction, each validator node performs an initial "
+   529→            "validation check that verifies the digital signature against the sender's public "
+   530→            "key, confirms that the nonce matches the expected value, checks that the sender "
+   531→            "has sufficient balance for any token transfers or fee payments, and validates "
+   532→            "the transaction payload structure against the AVM specification. Transactions "
+   533→            "that pass validation are added to the node's local transaction pool, also known "
+   534→            "as the mempool, where they await inclusion in a block by the current mining "
+   535→            "node. The mempool implements a priority queue that ranks transactions by fee "
+   536→            "density (fee per unit of payload size), ensuring that higher-value transactions "
+   537→            "are processed preferentially during periods of congestion. When the designated "
+   538→            "miner node assembles a new block, it selects transactions from the mempool in "
+   539→            "priority order, fills the block up to its maximum size limit, computes the "
+   540→            "Proof-of-Work nonce that satisfies the current difficulty target, and broadcasts "
+   541→            "the completed block to the network. The mining process typically requires between "
+   542→            "5 and 25 seconds depending on the current difficulty level, which is dynamically "
+   543→            "adjusted every 100 blocks to maintain the target block time of approximately "
+   544→            "30 seconds."
+   545→        ),
+   546→
+   547→        body(
+   548→            "Block confirmation follows a multi-stage process that balances speed with "
+   549→            "security. When a validator node receives a new block from the miner, it "
+   550→            "independently verifies the block's Proof-of-Work, validates all included "
+   551→            "transactions against its own state, checks that the block's previous hash "
+   552→            "reference correctly points to the tip of the chain, and confirms that the "
+   553→            "block timestamp falls within the acceptable drift window. If all checks pass, "
+   554→            "the node appends the block to its local chain and broadcasts an acknowledgment "
+   555→            "to its peers. A transaction is considered confirmed once it is included in a "
+   556→            "block, but the platform requires three additional blocks to be mined on top of "
+   557→            "the confirmation block before considering the transaction final, a process that "
+   558→            "typically takes approximately 90 to 120 seconds. This confirmation depth provides "
+   559→            "protection against chain reorganizations that could theoretically occur if two "
+   560→            "miners produce valid blocks at nearly the same time, creating a temporary fork "
+   561→            "that is resolved when the longer chain eventually emerges as the authoritative "
+   562→            "history."
+   563→        ),
+   564→
+   565→        spacer(8),
+   566→
+   567→        # --- 4.9 Fork Resolution and Chain Reorganization ---
+   568→        h2("4.9 Fork Resolution and Chain Reorganization"),
+   569→
+   570→        body(
+   571→            "Chain forks occur in any blockchain system when two or more miners produce valid "
+   572→            "blocks at approximately the same time, each extending the same parent block. "
+   573→            "This results in a temporary divergence where some nodes in the network follow one "
+   574→            "branch while others follow the alternative branch. Averon resolves these forks "
+   575→            "using the longest chain rule, also known as Nakamoto consensus, where nodes "
+   576→            "always consider the chain with the greatest cumulative difficulty, measured as "
+   577→            "the total number of blocks times the average difficulty of each block, to be "
+   578→            "the authoritative chain. When a node receives a block that extends a branch "
+   579→            "longer than its current chain tip, it performs a chain reorganization: it "
+   580→            "temporarily reverts any state changes from the blocks being orphaned, applies "
+   581→            "the state changes from the newly accepted blocks, and updates its chain tip to "
+   582→            "point to the new longest chain. This process is designed to be efficient and "
+   583→            "typically completes in milliseconds, as the maximum reorganization depth is "
+   584→            "limited to three blocks by the platform's configuration."
+   585→        ),
+   586→
+   587→        body(
+   588→            "Orphan blocks, which are valid blocks that are not included in the longest chain, "
+   589→            "are handled by Averon's reorganization logic with careful attention to transaction "
+   590→            "integrity. When a block is orphaned, all transactions that were included in that "
+   591→            "block but not in the newly accepted chain are returned to the mempool, where they "
+   592→            "become eligible for inclusion in future blocks. Transactions that appear in both "
+   593→            "the orphaned and accepted chains are detected by their unique transaction hash "
+   594→            "and are not re-added to the mempool, preventing accidental double-processing. "
+   595→            "The platform maintains a limited cache of orphan blocks, typically the five most "
+   596→            "recent orphans, which can be referenced for audit purposes and debugging. In "
+   597→            "Averon's private chain environment with controlled validator participation, fork "
+   598→            "events are rare, occurring in less than 0.1 percent of block production events "
+   599→            "based on production telemetry, compared to rates of 1 to 3 percent observed on "
+   600→            "public blockchains with larger and more geographically distributed miner populations. "
+   601→            "This low fork rate is a direct benefit of the permissioned mining model, where "
+   602→            "the small number of validators reduces the probability of simultaneous block "
+   603→            "production while the high-speed inter-validator network minimizes propagation "
+   604→            "delays that contribute to fork formation."
+   605→        ),
+   606→    ])
+   607→
+   608→    # ================================================================
+   609→    # AFTER CHAPTER 6 - Database Architecture
+   610→    # ================================================================
+   611→
+   612→    story.extend([
+   613→        h2("6.4 Query Optimization Patterns"),
+   614→
+   615→        body(
+   616→            "Averon's database query optimization strategy is built on a comprehensive indexing "
+   617→            "framework that balances query performance against write amplification overhead. "
+   618→            "The PostgreSQL database employs B-tree indexes as the default index type for "
+   619→            "equality and range queries on columns such as user_id, asset_id, and transaction "
+   620→            "status. For full-text search capabilities, particularly in the document management "
+   621→            "subsystem where users need to search across asset descriptions, legal document "
+   622→            "content, and compliance notes, GIN (Generalized Inverted Index) indexes are "
+   623→            "maintained on tsvector columns that store pre-computed lexical representations "
+   624→            "of text content. Partial indexes, which index only a subset of rows matching a "
+   625→            "WHERE clause condition, are used extensively for status-filtered queries, such as "
+   626→            "maintaining a dedicated index on the transactions table restricted to rows where "
+   627→            "status equals 'pending', which reduces the index size by over 90 percent compared "
+   628→            "to a full table index while dramatically accelerating the most frequently executed "
+   629→            "query pattern in the trading engine's order matching loop."
+   630→        ),
+   631→
+   632→        body(
+   633→            "Query execution plans are continuously monitored and optimized through Averon's "
+   634→            "automated performance analysis pipeline. Every query that exceeds a configurable "
+   635→            "latency threshold, currently set at 200 milliseconds for OLTP queries and 5 "
+   636→            "seconds for analytical queries, is automatically captured along with its EXPLAIN "
+   637→            "ANALYZE output and logged to a dedicated performance monitoring table. A weekly "
+   638→            "automated review process analyzes these slow queries, identifies common patterns "
+   639→            "such as sequential scans on large tables, nested loop joins with high row "
+   640→            "estimates, and sort operations that exceed available work_mem, and generates "
+   641→            "optimization recommendations including suggested index additions, query "
+   642→            "rewrites, and configuration parameter adjustments. Connection pooling is "
+   643→            "implemented using PgBouncer, a lightweight connection pooler for PostgreSQL "
+   644→            "that maintains a pool of reusable database connections, eliminating the overhead "
+   645→            "of establishing new TCP connections for each application request. The pool is "
+   646→            "configured with a minimum of 10 and maximum of 100 connections, with an idle "
+   647→            "timeout of 300 seconds, ensuring that the database server is never overwhelmed "
+   648→            "by connection storms during traffic spikes while maintaining responsive "
+   649→            "performance during normal operations."
+   650→        ),
+   651→
+   652→        body(
+   653→            "Advanced optimization techniques include the use of materialized views for "
+   654→            "computationally expensive aggregation queries that are accessed frequently but "
+   655→            "do not require real-time accuracy. For example, the market statistics dashboard, "
+   656→            "which displays metrics such as total trading volume, average transaction size, "
+   657→            "and active asset count, is backed by a materialized view that is refreshed every "
+   658→            "60 seconds through a scheduled cron job. This approach reduces the query "
+   659→            "response time from several seconds for a live aggregation over millions of "
+   660→            "transaction rows to sub-millisecond retrieval from the pre-computed materialized "
+   661→            "view. Table partitioning is employed for the transactions table, which is "
+   662→            "partitioned by month using PostgreSQL's declarative partitioning syntax, enabling "
+   663→            "efficient range queries on date-bounded queries and simplifying data archival "
+   664→            "by allowing entire partitions to be detached and moved to cold storage once they "
+   665→            "age beyond the regulatory retention requirement. The combination of strategic "
+   666→            "indexing, connection pooling, materialized views, and table partitioning ensures "
+   667→            "that the database layer maintains sub-100-millisecond query response times even "
+   668→            "as the data volume grows into the terabyte range."
+   669→        ),
+   670→
+   671→        spacer(8),
+   672→
+   673→        # --- 6.5 Data Integrity and Backup ---
+   674→        h2("6.5 Data Integrity and Backup"),
+   675→
+   676→        body(
+   677→            "Data integrity in Averon's database layer is enforced through a combination of "
+   678→            "PostgreSQL's ACID (Atomicity, Consistency, Isolation, Durability) guarantees and "
+   679→            "application-level validation logic. Atomicity ensures that every database "
+   680→            "transaction, which may involve updates to multiple tables, either completes "
+   681→            "entirely or is fully rolled back, preventing partial state updates that could "
+   682→            "leave the system in an inconsistent state. For example, when a trade is executed, "
+   683→            "the database transaction updates the buyer's balance, the seller's balance, the "
+   684→            "order status, the escrow record, and the transaction history in a single atomic "
+   685→            "operation. Consistency is maintained through a combination of column constraints "
+   686→            "(NOT NULL, CHECK, UNIQUE), foreign key relationships that enforce referential "
+   687→            "integrity between related tables, and database triggers that automatically "
+   688→            "enforce business rules such as ensuring that an asset cannot be listed on the "
+   689→            "marketplace unless it has been approved through the compliance review process. "
+   690→            "The isolation level is configured to READ COMMITTED, which provides a balance "
+   691→            "between consistency and concurrency, preventing dirty reads while allowing "
+   692→            "non-repeatable reads that are acceptable in the platform's operational context. "
+   693→            "Durability is ensured through PostgreSQL's write-ahead logging (WAL), which "
+   694→            "records all changes to persistent storage before confirming transaction "
+   695→            "completion to the application."
+   696→        ),
+   697→
+   698→        body(
+   699→            "The backup strategy follows the 3-2-1 principle: three copies of all data, "
+   700→            "stored on two different media types, with one copy maintained off-site. Full "
+   701→            "database backups are performed daily at 02:00 UTC using pg_basebackup, which "
+   702→            "creates a physically consistent copy of the entire database cluster including "
+   703→            "all tablespaces and configuration files. Incremental WAL archiving is enabled "
+   704→            "to support point-in-time recovery (PITR), allowing the database to be restored "
+   705→            "to any specific moment within the retention window, currently set to 30 days. "
+   706→            "The backup files are encrypted using AES-256 before being uploaded to object "
+   707→            "storage in a geographically separate data center, ensuring that a catastrophic "
+   708→            "failure at the primary site does not result in data loss. Backup integrity is "
+   709→            "verified daily through an automated restoration test that spins up a standby "
+   710→            "database instance from the most recent backup, executes a suite of consistency "
+   711→            "checks, and compares row counts and checksums against the production database. "
+   712→            "The mean recovery time objective (RTO) for a full database restoration is "
+   713→            "targeted at under 4 hours, with the mean recovery point objective (RPO) set at "
+   714→            "1 hour, meaning that in a worst-case disaster scenario, at most one hour of "
+   715→            "transaction data would be lost."
+   716→        ),
+   717→    ])
+   718→
+   719→    # Database schema table showing all 19 tables
+   720→    story.extend(make_table(
+   721→        [
+   722→            ["Table", "Group", "Primary Key", "Key Relationships", "Row Estimate"],
+   723→            ["users", "Identity", "user_id (UUID)", "profiles.user_id, kyc_records.user_id, wallets.user_id", "10K-100K"],
+   724→            ["user_profiles", "Identity", "profile_id (UUID)", "users.user_id (FK)", "10K-100K"],
+   725→            ["kyc_records", "Compliance", "kyc_id (UUID)", "users.user_id (FK)", "10K-100K"],
+   726→            ["aml_flags", "Compliance", "flag_id (UUID)", "users.user_id (FK), kyc_records.kyc_id (FK)", "1K-50K"],
+   727→            ["assets", "Asset Mgmt", "asset_id (UUID)", "users.user_id (FK), asset_docs.asset_id (FK)", "1K-50K"],
+   728→            ["asset_documents", "Asset Mgmt", "doc_id (UUID)", "assets.asset_id (FK)", "5K-500K"],
+   729→            ["asset_tokens", "Asset Mgmt", "token_id (UUID)", "assets.asset_id (FK)", "10K-1M"],
+   730→            ["transactions", "Trading", "tx_id (UUID)", "users.user_id (FK), assets.asset_id (FK)", "100K-10M"],
+   731→            ["orders", "Trading", "order_id (UUID)", "users.user_id (FK), assets.asset_id (FK)", "50K-5M"],
+   732→            ["trades", "Trading", "trade_id (UUID)", "orders.order_id (FK), transactions.tx_id (FK)", "50K-5M"],
+   733→            ["escrow_records", "Settlement", "escrow_id (UUID)", "trades.trade_id (FK), transactions.tx_id (FK)", "50K-5M"],
+   734→            ["fee_records", "Finance", "fee_id (UUID)", "transactions.tx_id (FK), users.user_id (FK)", "100K-10M"],
+   735→            ["block_headers", "Blockchain", "block_hash (SHA-256)", "Self-referencing (prev_hash)", "100K-1M"],
+   736→            ["block_transactions", "Blockchain", "Composite (block_hash, tx_id)", "block_headers.block_hash (FK), transactions.tx_id (FK)", "100K-10M"],
+   737→            ["ai_verifications", "AI Pipeline", "verification_id (UUID)", "assets.asset_id (FK), asset_documents.doc_id (FK)", "5K-500K"],
+   738→            ["audit_logs", "Governance", "log_id (UUID)", "users.user_id (FK), transactions.tx_id (FK)", "1M-100M"],
+   739→            ["notifications", "System", "notification_id (UUID)", "users.user_id (FK)", "1M-50M"],
+   740→            ["wallets", "Identity", "wallet_id (UUID)", "users.user_id (FK)", "10K-100K"],
+   741→            ["api_keys", "System", "key_id (UUID)", "users.user_id (FK)", "1K-10K"],
+   742→        ],
+   743→        col_widths=[CONTENT_W * 0.14, CONTENT_W * 0.11, CONTENT_W * 0.17, CONTENT_W * 0.38, CONTENT_W * 0.12],
+   744→        caption_text="Table 6.5: Complete Database Schema Overview (19 Tables)"
+   745→    ))
+   746→
+   747→    # ================================================================
+   748→    # AFTER CHAPTER 7 - AI Pipeline
+   749→    # ================================================================
+   750→
+   751→    story.extend([
+   752→        h2("7.7 Model Training and Evaluation"),
+   753→
+   754→        body(
+   755→            "The AI models powering Averon's document verification pipeline are trained on "
+   756→            "curated datasets that combine publicly available benchmarks with proprietary "
+   757→            "data collected from real-world asset tokenization workflows. The OCR (Optical "
+   758→            "Character Recognition) model is built on a hybrid architecture that combines "
+   759→            "Tesseract OCR for initial character-level text extraction with a deep learning "
+   760→            "post-processing model based on a transformer encoder-decoder architecture that "
+   761→            "corrects recognition errors, handles multi-language documents, and resolves "
+   762→            "layout ambiguities in complex document structures such as multi-column financial "
+   763→            "reports and annotated legal contracts. The training dataset for the OCR "
+   764→            "correction model consists of approximately 50,000 document images spanning "
+   765→            "property deeds, bank statements, incorporation certificates, and valuation "
+   766→            "reports, with each image manually annotated to establish ground truth text. Data "
+   767→            "augmentation techniques including random rotation, noise injection, blur, and "
+   768→            "contrast adjustment are applied during training to improve model robustness "
+   769→            "against the wide variation in document quality encountered in real-world "
+   770→            "submissions."
+   771→        ),
+   772→
+   773→        body(
+   774→            "The document classification model employs a BERT (Bidirectional Encoder "
+   775→            "Representations from Transformers) backbone that has been fine-tuned on a "
+   776→            "labeled dataset of 20,000 asset-related documents spanning 15 distinct document "
+   777→            "categories including property deeds, financial statements, identity documents, "
+   778→            "legal agreements, insurance policies, and environmental assessments. Fine-tuning "
+   779→            "was performed over 10 epochs with a learning rate of 2e-5 using the AdamW "
+   780→            "optimizer, with the training set split into 80 percent training, 10 percent "
+   781→            "validation, and 10 percent test partitions. The named entity recognition (NER) "
+   782→            "model extends the spaCy NER pipeline with a custom transformer-based component "
+   783→            "trained to extract entity types specific to the asset tokenization domain, "
+   784→            "including property addresses, legal entity names, monetary amounts, dates, "
+   785→            "registration numbers, and jurisdiction identifiers. The risk scoring model uses "
+   786→            "an XGBoost gradient boosting classifier that ingests a feature vector of over "
+   787→            "200 dimensions derived from the document analysis results, including completeness "
+   788→            "scores, cross-reference consistency metrics, compliance flag counts, and "
+   789→            "historical approval rates for similar asset profiles."
+   790→        ),
+   791→
+   792→        body(
+   793→            "Model evaluation is conducted using a comprehensive suite of metrics that capture "
+   794→            "different aspects of model performance. The classification model achieves an "
+   795→            "overall F1 score of 0.941 on the held-out test set, with precision of 0.953 and "
+   796→            "recall of 0.929, indicating a slight bias toward conservative predictions that "
+   797→            "prefer false negatives over false positives, a desirable characteristic for a "
+   798→            "compliance-oriented system where incorrectly classifying a document could have "
+   799→            "regulatory consequences. The NER model reports an entity-level F1 score of 0.918, "
+   800→            "with per-entity-type F1 scores ranging from 0.874 for jurisdiction identifiers "
+   801→            "(which exhibit the greatest variation in format) to 0.962 for monetary amounts "
+   802→            "(which follow relatively standardized patterns). The risk scoring model's "
+   803→            "discrimination capability is measured by the Area Under the Receiver Operating "
+   804→            "Characteristic Curve (AUC-ROC), which achieves 0.935, indicating strong "
+   805→            "separation between high-risk and low-risk asset profiles. All models undergo "
+   806→            "quarterly retraining cycles that incorporate newly labeled data from production "
+   807→            "feedback, with model versioning managed through a dedicated model registry that "
+   808→            "tracks training data hashes, hyperparameter configurations, and evaluation "
+   809→            "metrics for each model version."
+   810→        ),
+   811→
+   812→        spacer(8),
+   813→
+   814→        # --- 7.8 Performance Benchmarks ---
+   815→        h2("7.8 Performance Benchmarks"),
+   816→
+   817→        body(
+   818→            "End-to-end performance of the AI pipeline has been benchmarked under controlled "
+   819→            "conditions using a standardized test set of 1,000 documents spanning all supported "
+   820→            "document categories. The following table presents the processing time and accuracy "
+   821→            "metrics for each stage of the pipeline, measured on a server equipped with an "
+   822→            "AMD EPYC 7763 CPU, 128 GB RAM, and an NVIDIA A100 GPU for model inference. These "
+   823→            "benchmarks represent median values across 10 independent runs, with the inter-"
+   824→            "quartile range (IQR) remaining within 15 percent of the median for all stages."
+   825→        ),
+   826→    ])
+   827→
+   828→    story.extend(make_table(
+   829→        [
+   830→            ["Stage", "Input Type", "Processing Time", "Accuracy", "Model"],
+   831→            ["Preprocessing", "Image", "200 ms", "N/A", "OpenCV"],
+   832→            ["OCR Extraction", "Image", "1,500 ms", "97.3%", "Tesseract + DL Correction"],
+   833→            ["Classification", "Text", "300 ms", "94.1%", "BERT (fine-tuned)"],
+   834→            ["Named Entity Recognition", "Text", "200 ms", "91.8%", "spaCy + Custom Transformer"],
+   835→            ["Risk Scoring", "Structured", "100 ms", "89.5%", "XGBoost Classifier"],
+   836→            ["End-to-End Pipeline", "Image", "2,300 ms", "89.2% (composite)", "Combined Pipeline"],
+   837→        ],
+   838→        col_widths=[CONTENT_W * 0.18, CONTENT_W * 0.14, CONTENT_W * 0.18, CONTENT_W * 0.18, CONTENT_W * 0.32],
+   839→        caption_text="Table 7.8: AI Pipeline Performance Benchmarks"
+   840→    ))
+   841→
+   842→    story.extend([
+   843→        body(
+   844→            "The benchmark results demonstrate that the complete AI pipeline processes a "
+   845→            "typical document in approximately 2.3 seconds, with the OCR extraction stage "
+   846→            "accounting for the largest share of processing time at 1.5 seconds. This "
+   847→            "dominance of the OCR stage is expected, as it involves both traditional "
+   848→            "character recognition and the subsequent deep learning correction pass, which "
+   849→            "requires GPU inference. The risk scoring stage is the fastest at 100 milliseconds, "
+   850→            "as it operates on pre-structured feature vectors rather than raw text or images. "
+   851→            "The composite end-to-end accuracy of 89.2 percent reflects the cumulative effect "
+   852→            "of errors across all pipeline stages, where errors in earlier stages propagate "
+   853→            "to subsequent stages. For example, an OCR error that misreads a monetary amount "
+   854→            "may cause the NER model to fail to extract the amount and the risk scoring model "
+   855→            "to compute an incorrect completeness score. Strategies for improving the composite "
+   856→            "accuracy include the introduction of cross-stage validation checks, where "
+   857→            "downstream models provide feedback to upstream models for iterative refinement, "
+   858→            "and the deployment of ensemble methods that combine the predictions of multiple "
+   859→            "model variants to reduce variance in individual model outputs."
+   860→        ),
+   861→
+   862→        spacer(8),
+   863→
+   864→        # --- 7.9 Continuous Learning and Model Improvement ---
+   865→        h2("7.9 Continuous Learning and Model Improvement"),
+   866→
+   867→        body(
+   868→            "Averon's AI pipeline incorporates a continuous learning framework that enables "
+   869→            "models to improve over time based on production feedback. When compliance officers "
+   870→            "review AI-generated verification results, they can flag incorrect classifications, "
+   871→            "missed entities, or inaccurate risk scores through a dedicated feedback interface. "
+   872→            "These flagged items, along with the officer's correction, are stored in a labeled "
+   873→            "feedback dataset that accumulates over time. When the feedback dataset for a "
+   874→            "given model reaches a threshold of 500 new labeled examples, an automated "
+   875→            "retraining pipeline is triggered. This pipeline validates the new data for "
+   876→            "quality, balances the class distribution using stratified sampling, retrains the "
+   877→            "model with the combined original and new training data, evaluates the retrained "
+   878→            "model against a held-out test set, and promotes the new model to production only "
+   879→            "if it demonstrates statistically significant improvement over the current "
+   880→            "production model using a paired t-test with a significance threshold of p < 0.05. "
+   881→            "This automated retraining cycle ensures that the AI pipeline continuously adapts "
+   882→            "to evolving document formats, new regulatory requirements, and emerging patterns "
+   883→            "in asset tokenization submissions without requiring manual intervention from the "
+   884→            "machine learning engineering team."
+   885→        ),
+   886→
+   887→        body(
+   888→            "A/B testing is employed for major model updates to validate performance "
+   889→            "improvements in the production environment before full deployment. When a new "
+   890→            "model version is a candidate for promotion, it is deployed alongside the current "
+   891→            "production model with traffic split 90/10, where 90 percent of documents continue "
+   892→            "to be processed by the current model and 10 percent are routed to the candidate "
+   893→            "model. The performance of both models is tracked over a minimum evaluation period "
+   894→            "of two weeks, during which key metrics including classification accuracy, entity "
+   895→            "extraction completeness, risk score calibration, and processing latency are "
+   896→            "continuously monitored. The candidate model is promoted to receive 100 percent "
+   897→            "of traffic only if it demonstrates improvement across all primary metrics without "
+   898→            "regression in any secondary metric, and if the confidence interval of the "
+   899→            "improvement excludes zero at the 95 percent confidence level. This rigorous "
+   900→            "evaluation process prevents model regressions and ensures that every deployed "
+   901→            "model update represents a genuine improvement in the platform's AI capabilities, "
+   902→            "maintaining the trust of compliance teams and regulatory auditors who rely on "
+   903→            "the AI pipeline as a critical component of the asset verification process."
+   904→        ),
+   905→    ])
+   906→
+   907→    # ================================================================
+   908→    # AFTER CHAPTER 10 - Identity Layer
+   909→    # ================================================================
+   910→
+   911→    story.extend([
+   912→        h2("10.3 W3C DID and Verifiable Credentials Specification"),
+   913→
+   914→        body(
+   915→            "Averon's identity layer is built on the World Wide Web Consortium (W3C) "
+   916→            "Decentralized Identifier (DID) and Verifiable Credentials (VC) specifications, "
+   917→            "which provide standardized, interoperable frameworks for self-sovereign identity "
+   918→            "management. A Decentralized Identifier is a globally unique URI that is "
+   919→            "associated with a DID Document, a JSON-LD or CBOR-encoded data structure that "
+   920→            "contains the public keys, verification methods, and service endpoints associated "
+   921→            "with the identifier. Unlike traditional identifiers such as email addresses or "
+   922→            "social security numbers, which are issued and controlled by centralized authorities, "
+   923→            "DIDs are created and managed by the identity subject themselves, with the "
+   924→            "resolution and verification of the DID Document facilitated by a distributed "
+   925→            "verifiable data registry, which in Averon's case is the platform's private "
+   926→            "blockchain. Each Averon user is assigned a DID upon registration, formatted as "
+   927→            "did:averon:<unique-identifier>, and the corresponding DID Document is stored as "
+   928→            "an on-chain record that can be resolved by any authorized participant in the "
+   929→            "network, providing a tamper-proof, cryptographically verifiable binding between "
+   930→            "the identifier and the user's public verification keys."
+   931→        ),
+   932→
+   933→        body(
+   934→            "The Verifiable Credentials specification enables Averon to issue cryptographically "
+   935→            "signed assertions about user attributes that can be independently verified by "
+   936→            "third parties without requiring direct communication with the issuer. When a user "
+   937→            "completes KYC verification, Averon issues a Verifiable Credential containing claims "
+   938→            "such as the user's verified name, date of birth, nationality, and KYC compliance "
+   939→            "status, signed using Averon's institutional private key. The credential is "
+   940→            "presented to the user's digital wallet, where it is stored for later presentation "
+   941→            "to other platform participants, such as asset issuers who require verified investor "
+   942→            "credentials before allowing participation in private placement offerings. The "
+   943→            "verification process involves the verifier resolving the issuer's DID to retrieve "
+   944→            "the issuer's public key, using that key to verify the digital signature on the "
+   945→            "credential, and checking the credential's revocation status against the on-chain "
+   946→            "revocation registry. This process is entirely cryptographic and does not require "
+   947→            "the verifier to contact the issuer directly, enabling trustless cross-party "
+   948→            "verification that scales efficiently as the number of participants and credentials "
+   949→            "in the ecosystem grows."
+   950→        ),
+   951→
+   952→        body(
+   953→            "Zero-knowledge proofs extend the Verifiable Credentials framework by enabling "
+   954→            "users to prove specific properties about their credentials without revealing the "
+   955→            "underlying credential data. For example, a user can prove that they are above a "
+   956→            "certain age threshold without revealing their exact date of birth, or that their "
+   957→            "KYC status is valid without revealing their identity document number or nationality. "
+   958→            "Averon implements ZK-SNARKs (Zero-Knowledge Succinct Non-Interactive Arguments of "
+   959→            "Knowledge) for these selective disclosure scenarios, generating compact proofs "
+   960→            "that are typically under 200 bytes in size and can be verified in milliseconds "
+   961→            "regardless of the complexity of the underlying credential data. The proof "
+   962→            "generation process involves a trusted setup ceremony for each credential schema, "
+   963→            "where a common reference string is generated and the toxic waste (randomness that "
+   964→            "could be used to forge proofs) is securely destroyed. Averon's implementation "
+   965→            "uses the Groth16 proof system, which offers the smallest proof sizes and fastest "
+   966→            "verification times among currently available ZK-SNARK constructions, making it "
+   967→            "suitable for integration into the platform's transaction processing pipeline "
+   968→            "where proof verification must complete within the block confirmation time."
+   969→        ),
+   970→
+   971→        spacer(8),
+   972→
+   973→        # --- 10.4 Privacy-Preserving Identity ---
+   974→        h2("10.4 Privacy-Preserving Identity"),
+   975→
+   976→        body(
+   977→            "Selective disclosure is the foundational privacy technique employed in Averon's "
+   978→            "identity layer, allowing users to share only the specific claims required for a "
+   979→            "given interaction rather than exposing their complete credential. The implementation "
+   980→            "uses a predicate-based disclosure system where the verifier specifies the "
+   981→            "predicates they require as satisfied, and the prover generates a zero-knowledge "
+   982→            "proof demonstrating that their credentials satisfy those predicates without "
+   983→            "revealing any additional information. For instance, when an asset issuer requires "
+   984→            "accredited investor verification, the verifier's policy might specify that the "
+   985→            "investor must have a net worth exceeding $1 million or an annual income exceeding "
+   986→            "$200,000. The investor's wallet generates a ZK-SNARK proof that these predicates "
+   987→            "are satisfied by the data in their KYC credential, and the verifier checks the "
+   988→            "proof against the issuer's public verification key. The proof reveals nothing "
+   989→            "about the investor's actual net worth or income, only that the threshold "
+   990→            "condition is met, providing strong privacy protection while maintaining the "
+   991→            "regulatory requirement for investor accreditation verification."
+   992→        ),
+   993→
+   994→        body(
+   995→            "Blinding techniques provide an additional layer of privacy protection by "
+   996→            "decoupling the user's identity from their on-chain activities. When a user "
+   997→            "transacts on the Averon platform, their transaction is associated with a "
+   998→            "blinded identifier, a one-time public key derived from the user's DID through "
+   999→            "a deterministic but irreversible transformation. This blinded identifier changes "
+  1000→            "with each transaction, preventing external observers from linking multiple "
+  1001→            "transactions to the same user through on-chain analysis. The linkage between "
+  1002→            "the blinded identifier and the user's actual DID is maintained only in the "
+  1003→            "platform's off-chain identity service, which is accessible only to authorized "
+  1004→            "compliance personnel under strict access control policies. This approach, often "
+  1005→            "referred to as stealth addresses or unlinkable spendable tags in the cryptographic "
+  1006→            "literature, provides a practical balance between the transparency required for "
+  1007→            "regulatory compliance, where the platform operator must be able to identify "
+  1008→            "the parties to any transaction, and the privacy desired by users, who do not "
+  1009→            "wish their financial activities to be observable by other platform participants. "
+  1010→            "The blinding transformation uses the Pedersen commitment scheme, which is "
+  1011→            "computationally binding and perfectly hiding, ensuring that the blinded "
+  1012→            "identifier reveals no information about the underlying DID while remaining "
+  1013→            "cryptographically verifiable by the platform's compliance infrastructure."
+  1014→        ),
+  1015→    ])
+  1016→
+  1017→    # ================================================================
+  1018→    # AFTER CHAPTER 14 - Trading Engine
+  1019→    # ================================================================
+  1020→
+  1021→    story.extend([
+  1022→        h2("14.4 Order Book Implementation Details"),
+  1023→
+  1024→        body(
+  1025→            "The order book at the core of Averon's trading engine is implemented using a "
+  1026→            "pair of sorted data structures, one for buy orders and one for sell orders, "
+  1027→            "each maintained in price-time priority order. Buy orders are sorted in descending "
+  1028→            "order by price, so that the highest bid is always at the front of the array and "
+  1029→            "is the first to be matched against incoming sell orders. Sell orders are sorted "
+  1030→            "in ascending order by price, so that the lowest ask is always at the front and "
+  1031→            "is the first to be matched against incoming buy orders. Within each price level, "
+  1032→            "orders are sorted by timestamp to ensure that the earliest order at a given price "
+  1033→            "is matched first, a principle known as price-time priority that is standard in "
+  1034→            "financial exchange operations. The insertion of new orders into these sorted "
+  1035→            "arrays uses binary search to locate the correct position, achieving O(log n) "
+  1036→            "insertion time rather than the O(n) time of a naive linear scan. In practice, "
+  1037→            "the order book typically contains between 100 and 10,000 active orders for a "
+  1038→            "liquidly traded asset, and the binary search insertion completes in approximately "
+  1039→            "3 to 5 microseconds on modern hardware, well within the platform's latency budget."
+  1040→        ),
+  1041→
+  1042→        body(
+  1043→            "Concurrency handling in the order book is a critical concern because multiple "
+  1044→            "trading operations may attempt to modify the order book simultaneously, "
+  1045→            "particularly during periods of high market activity. Averon employs a fine-grained "
+  1046→            "locking strategy where each asset's order book is protected by an independent "
+  1047→            "read-write lock, allowing concurrent access to order books for different assets "
+  1048→            "while serializing access to the same asset's order book. Within a single asset's "
+  1049→            "order book, the matching engine acquires a write lock for the duration of the "
+  1050→            "match-and-fill operation, which typically completes in under 1 millisecond, "
+  1051→            "ensuring that concurrent orders for the same asset are processed sequentially "
+  1052→            "and consistently. Read operations, such as retrieving the current order book "
+  1053→            "snapshot for display in the user interface, acquire a read lock that allows "
+  1054→            "multiple concurrent readers without blocking, enabling the platform to serve "
+  1055→            "real-time market data to thousands of simultaneous viewers while the matching "
+  1056→            "engine processes new orders without contention. This locking strategy has been "
+  1057→            "validated under load testing with 500 concurrent order submissions per second "
+  1058→            "across 10 different assets, with no deadlocks observed and maximum lock "
+  1059→            "contention wait times remaining below 5 milliseconds."
+  1060→        ),
+  1061→
+  1062→        body(
+  1063→            "Order cancellation is implemented as a two-phase operation to ensure consistency "
+  1064→            "in the face of concurrent matching. When a user requests to cancel an open order, "
+  1065→            "the system first marks the order as 'cancel-pending' in the database, which "
+  1066→            "prevents the matching engine from selecting the order for execution. The "
+  1067→            "matching engine, upon encountering a cancel-pending order during its scan, skips "
+  1068→            "the order as if it did not exist. After the cancel-pending status is confirmed "
+  1069→            "in the database, the order is removed from the in-memory order book data structure "
+  1070→            "and its status is updated to 'cancelled'. This two-phase approach prevents a race "
+  1071→            "condition where an order could be matched and cancelled simultaneously, which "
+  1072→            "could result in an inconsistent state where the order appears both filled and "
+  1073→            "cancelled. If the matching engine has already begun processing an order at the "
+  1074→            "moment a cancellation request arrives, the cancellation is rejected with an "
+  1075→            "appropriate error message indicating that the order has been matched and cannot "
+  1076→            "be cancelled. The user receives real-time notification of the cancellation result "
+  1077→            "through the platform's WebSocket-based event stream, which pushes order status "
+  1078→            "updates to connected clients with sub-100-millisecond latency."
+  1079→        ),
+  1080→
+  1081→        spacer(8),
+  1082→
+  1083→        # --- 14.5 Market Data and Analytics ---
+  1084→        h2("14.5 Market Data and Analytics"),
+  1085→
+  1086→        body(
+  1087→            "Real-time market data feeds are generated by the trading engine's event pipeline, "
+  1088→            "which publishes order book updates, trade executions, and price change notifications "
+  1089→            "to a dedicated market data topic on the internal event bus. Subscribers to this "
+  1090→            "topic include the WebSocket server that pushes real-time updates to connected "
+  1091→            "clients, the analytics service that computes derived metrics such as the volume-"
+  1092→            "weighted average price (VWAP), and the price discovery service that maintains "
+  1093→            "the official last-traded-price for each asset. The VWAP is calculated as the "
+  1094→            "ratio of the cumulative dollar value of all trades to the cumulative number of "
+  1095→            "tokens traded over a specified time window, typically the trailing 24 hours or "
+  1096→            "the current trading session. VWAP serves as a benchmark price that reflects the "
+  1097→            "average execution price achieved by all market participants, and is widely used "
+  1098→            "by institutional investors to assess the quality of their trade executions. A "
+  1099→            "trade executed below the VWAP is generally considered favorable for a buyer, "
+  1100→            "while a trade executed above the VWAP is favorable for a seller."
+  1101→        ),
+  1102→
+  1103→        body(
+  1104→            "Open-high-low-close (OHLC) candlestick data is aggregated by the analytics "
+  1105→            "service at configurable time intervals, supporting 1-minute, 5-minute, 15-minute, "
+  1106→            "1-hour, 4-hour, and daily candles for each traded asset. Each candle captures "
+  1107→            "the opening price (the first trade price in the interval), the highest price "
+  1108→            "reached, the lowest price reached, the closing price (the last trade price), and "
+  1109→            "the total trading volume within the interval. This data is stored in a dedicated "
+  1110→            "time-series table and served through the market data API for charting and "
+  1111→            "technical analysis. The candle generation process uses a streaming aggregation "
+  1112→            "approach where incoming trades are applied to the current open candle, which is "
+  1113→            "maintained in memory for sub-millisecond updates, and closed candles are flushed "
+  1114→            "to the database in batch operations every 10 seconds. This approach ensures that "
+  1115→            "real-time candlestick charts reflect the most recent trades without requiring "
+  1116→            "a database query for each update, while the periodic batch flush ensures "
+  1117→            "durability and queryability of historical candle data for backtesting and "
+  1118→            "regulatory reporting purposes."
+  1119→        ),
+  1120→
+  1121→        spacer(8),
+  1122→
+  1123→        # --- 14.6 Trade Examples ---
+  1124→        h2("14.6 Trade Examples"),
+  1125→
+  1126→        body(
+  1127→            "To illustrate the order matching and trade execution process, consider the "
+  1128→            "following step-by-step scenario involving three participants trading AC tokens "
+  1129→            "on the Averon platform. The example demonstrates how limit orders interact "
+  1130→            "with the order book, how partial fills are handled, and how the order book "
+  1131→            "state evolves through successive operations."
+  1132→        ),
+  1133→
+  1134→        body(
+  1135→            "<b>Step 1:</b> Alice places a buy limit order for 100 AC tokens at a price of "
+  1136→            "5.00 per token. Since no sell orders exist in the order book, Alice's buy order "
+  1137→            "cannot be immediately matched and is added to the bids side of the order book."
+  1138→        ),
+  1139→    ])
+  1140→
+  1141→    story.extend(make_table(
+  1142→        [
+  1143→            ["Order Book After Step 1", "Price (AC)", "Quantity", "Order"],
+  1144→            ["BIDS", "5.00", "100", "Alice (Buy Limit)"],
+  1145→            ["ASKS", "--", "--", "(empty)"],
+  1146→        ],
+  1147→        col_widths=[CONTENT_W * 0.35, CONTENT_W * 0.20, CONTENT_W * 0.20, CONTENT_W * 0.25],
+  1148→        caption_text="Table 14.6a: Order Book State After Alice's Buy Order"
+  1149→    ))
+  1150→
+  1151→    story.extend([
+  1152→        body(
+  1153→            "<b>Step 2:</b> Bob places a sell limit order for 50 AC tokens at a price of "
+  1154→            "4.95 per token. The matching engine checks whether Bob's sell price of 4.95 is "
+  1155→            "less than or equal to the best (highest) bid price in the order book, which is "
+  1156→            "Alice's bid at 5.00. Since 4.95 is less than 5.00, a match occurs. The trade "
+  1157→            "executes at the price of the resting order (Alice's bid at 5.00, per the "
+  1158→            "maker-taker price priority rule), and 50 tokens are exchanged. Bob's entire sell "
+  1159→            "order of 50 tokens is filled, while Alice's buy order is partially filled, "
+  1160→            "leaving a remaining quantity of 50 tokens at her original price of 5.00."
+  1161→        ),
+  1162→    ])
+  1163→
+  1164→    story.extend(make_table(
+  1165→        [
+  1166→            ["Order Book After Step 2", "Price (AC)", "Quantity", "Order"],
+  1167→            ["BIDS", "5.00", "50", "Alice (Buy Limit, remaining)"],
+  1168→            ["ASKS", "--", "--", "(empty)"],
+  1169→            ["Trade Executed", "Price: 5.00", "Qty: 50", "Bob sells to Alice"],
+  1170→        ],
+  1171→        col_widths=[CONTENT_W * 0.35, CONTENT_W * 0.20, CONTENT_W * 0.20, CONTENT_W * 0.25],
+  1172→        caption_text="Table 14.6b: Order Book State After Bob's Sell Order (Match at 5.00)"
+  1173→    ))
+  1174→
+  1175→    story.extend([
+  1176→        body(
+  1177→            "<b>Step 3:</b> Charlie places a sell limit order for 60 AC tokens at a price of "
+  1178→            "5.00 per token. The matching engine checks whether Charlie's sell price of 5.00 "
+  1179→            "is less than or equal to the best bid price of 5.00 (Alice's remaining order). "
+  1180→            "Since 5.00 equals 5.00, a match occurs. The trade executes at 5.00, and 50 of "
+  1181→            "Charlie's 60 tokens are exchanged with Alice, fully filling Alice's remaining buy "
+  1182→            "order. Charlie's sell order now has a remaining unfilled quantity of 10 tokens, "
+  1183→            "which is added to the asks side of the order book at a price of 5.00."
+  1184→        ),
+  1185→    ])
+  1186→
+  1187→    story.extend(make_table(
+  1188→        [
+  1189→            ["Order Book After Step 3", "Price (AC)", "Quantity", "Order"],
+  1190→            ["BIDS", "--", "--", "(empty)"],
+  1191→            ["ASKS", "5.00", "10", "Charlie (Sell Limit, remaining)"],
+  1192→            ["Trade Executed", "Price: 5.00", "Qty: 50", "Charlie sells to Alice"],
+  1193→        ],
+  1194→        col_widths=[CONTENT_W * 0.35, CONTENT_W * 0.20, CONTENT_W * 0.20, CONTENT_W * 0.25],
+  1195→        caption_text="Table 14.6c: Order Book State After Charlie's Sell Order (Partial Match)"
+  1196→    ))
+  1197→
+  1198→    story.extend([
+  1199→        body(
+  1200→            "This example illustrates several key properties of Averon's matching engine: "
+  1201→            "limit orders rest in the order book when they cannot be immediately matched; "
+  1202→            "trades execute at the price of the resting (maker) order, providing price "
+  1203→            "certainty to the passive liquidity provider; partial fills are handled correctly "
+  1204→            "with remaining quantities preserved in the book; and the matching engine processes "
+  1205→            "orders sequentially, ensuring deterministic and auditable execution outcomes. "
+  1206→            "The total trading volume from this three-step scenario is 100 tokens across two "
+  1207→            "trades, both executed at 5.00 per token, generating trading fees calculated "
+  1208→            "according to the platform's fee schedule as described in Chapter 19."
+  1209→        ),
+  1210→    ])
+  1211→
+  1212→    # ================================================================
+  1213→    # AFTER CHAPTER 19 - Fee Structure
+  1214→    # ================================================================
+  1215→
+  1216→    story.extend([
+  1217→        h2("19.3 Economic Model and Token Supply"),
+  1218→
+  1219→        body(
+  1220→            "Averon's economic model is built around a dual-token architecture consisting of "
+  1221→            "the AC (Averon Coin) utility token and the AVR (Averon Reserve) governance token. "
+  1222→            "The AC token serves as the primary medium of exchange within the platform, used "
+  1223→            "for paying transaction fees, listing fees, and settlement costs. The total supply "
+  1224→            "of AC is set at 1 billion tokens, with an initial circulating supply of 200 "
+  1225→            "million tokens distributed through a combination of private sale (40 percent), "
+  1226→            "community allocation (20 percent), team and advisor vesting (25 percent), and "
+  1227→            "platform reserve (15 percent). The team and advisor allocation follows a 4-year "
+  1228→            "linear vesting schedule with a 12-month cliff, ensuring long-term alignment between "
+  1229→            "the core team's incentives and the platform's success. The AVR governance token, "
+  1230→            "with a fixed supply of 100 million tokens, enables holders to participate in "
+  1231→            "protocol governance decisions including fee parameter adjustments, new asset type "
+  1232→            "approvals, and treasury allocation, distributed exclusively through community "
+  1233→            "participation rewards and staking incentives."
+  1234→        ),
+  1235→
+  1236→        body(
+  1237→            "Deflationary mechanisms are integral to Averon's token economic design, ensuring "
+  1238→            "that the token supply decreases over time as platform usage grows. A portion of "
+  1239→            "all trading fees, currently set at 20 percent, is permanently burned (destroyed "
+  1240→            "and removed from circulation), creating a direct link between platform transaction "
+  1241→            "volume and the reduction in token supply. Additionally, inactive accounts that "
+  1242→            "have not engaged in any platform activity for 24 consecutive months are subject "
+  1243→            "to a dormancy sweep, where their remaining AC balances are transferred to the "
+  1244→            "platform treasury and the equivalent AVR governance tokens are burned. The "
+  1245→            "treasury allocation from dormancy sweeps is used to fund ecosystem development "
+  1246→            "grants, liquidity provisioning, and community incentive programs. Based on "
+  1247→            "projected transaction volumes, the annual burn rate is expected to range from "
+  1248→            "5 million to 50 million AC tokens, depending on the adoption scenario, which "
+  1249→            "would reduce the total supply from 1 billion to between 750 million and 900 "
+  1250→            "million tokens within the first five years of operation, creating scarcity-driven "
+  1251→            "value appreciation for token holders."
+  1252→        ),
+  1253→
+  1254→        body(
+  1255→            "Value accrual for the AC token is driven by multiple reinforcing mechanisms. "
+  1256→            "First, the burn mechanism directly increases the value of each remaining token "
+  1257→            "by reducing the total supply against a constant or growing demand base. Second, "
+  1258→            "the platform's revenue buyback program allocates 10 percent of quarterly net "
+  1259→            "revenue to open-market purchases of AC tokens, which are then added to the "
+  1260→            "platform's liquidity pool to ensure smooth trading and reduce price volatility. "
+  1261→            "Third, the staking mechanism allows AC holders to stake their tokens to earn a "
+  1262→            "share of platform revenue, creating an opportunity cost for selling that reduces "
+  1263→            "sell pressure. Fourth, institutional participants are required to maintain minimum "
+  1264→            "AC balances as a form of economic commitment to the platform, creating structural "
+  1265→            "demand from the largest users. The combination of these mechanisms creates a "
+  1266→            "positive feedback loop where increased platform usage drives higher fee revenue, "
+  1267→            "which funds larger token burns and buybacks, which increases token value, which "
+  1268→            "attracts more participants, who generate additional fee revenue, perpetuating the "
+  1269→            "cycle of ecosystem growth and token value appreciation."
+  1270→        ),
+  1271→
+  1272→        spacer(8),
+  1273→
+  1274→        # --- 19.4 Revenue Projections ---
+  1275→        h2("19.4 Revenue Projections"),
+  1276→
+  1277→        body(
+  1278→            "The following table presents Averon's projected revenue under three scenarios "
+  1279→            "over a five-year horizon. The conservative scenario assumes modest user growth "
+  1280→            "and limited institutional adoption. The moderate scenario reflects the base case "
+  1281→            "with steady growth in line with market projections. The aggressive scenario "
+  1282→            "assumes accelerated adoption driven by favorable regulatory developments and "
+  1283→            "major institutional partnerships."
+  1284→        ),
+  1285→    ])
+  1286→
+  1287→    story.extend(make_table(
+  1288→        [
+  1289→            ["Year", "Users", "Monthly Trades", "Trading Fees", "Listing Fees", "Capital Raise Fees", "Total Revenue"],
+  1290→            ["Y1 (Cons.)", "2,500", "5,000", "$75K", "$50K", "$25K", "$150K"],
+  1291→            ["Y1 (Mod.)", "5,000", "15,000", "$225K", "$150K", "$75K", "$450K"],
+  1292→            ["Y1 (Aggr.)", "10,000", "40,000", "$600K", "$400K", "$200K", "$1.2M"],
+  1293→            ["Y2 (Cons.)", "7,500", "20,000", "$300K", "$150K", "$100K", "$550K"],
+  1294→            ["Y2 (Mod.)", "15,000", "60,000", "$900K", "$500K", "$300K", "$1.7M"],
+  1295→            ["Y2 (Aggr.)", "30,000", "150,000", "$2.25M", "$1.2M", "$750K", "$4.2M"],
+  1296→            ["Y3 (Cons.)", "15,000", "50,000", "$750K", "$300K", "$250K", "$1.3M"],
+  1297→            ["Y3 (Mod.)", "35,000", "150,000", "$2.25M", "$1M", "$750K", "$4.0M"],
+  1298→            ["Y3 (Aggr.)", "75,000", "400,000", "$6.0M", "$2.5M", "$2.0M", "$10.5M"],
+  1299→            ["Y4 (Cons.)", "30,000", "100,000", "$1.5M", "$500K", "$500K", "$2.5M"],
+  1300→            ["Y4 (Mod.)", "75,000", "350,000", "$5.25M", "$2M", "$1.5M", "$8.75M"],
+  1301→            ["Y4 (Aggr.)", "150,000", "1M", "$15M", "$5M", "$4M", "$24M"],
+  1302→            ["Y5 (Cons.)", "50,000", "200,000", "$3M", "$800K", "$1M", "$4.8M"],
+  1303→            ["Y5 (Mod.)", "125,000", "700,000", "$10.5M", "$3.5M", "$3M", "$17M"],
+  1304→            ["Y5 (Aggr.)", "300,000", "2M", "$30M", "$8M", "$7M", "$45M"],
+  1305→        ],
+  1306→        col_widths=[
+  1307→            CONTENT_W * 0.11, CONTENT_W * 0.10, CONTENT_W * 0.14,
+  1308→            CONTENT_W * 0.15, CONTENT_W * 0.14, CONTENT_W * 0.18, CONTENT_W * 0.18
+  1309→        ],
+  1310→        caption_text="Table 19.4: Five-Year Revenue Projections Under Three Scenarios"
+  1311→    ))
+  1312→
+  1313→    story.extend([
+  1314→        body(
+  1315→            "The revenue projections demonstrate significant variance between scenarios, "
+  1316→            "reflecting the inherent uncertainty in platform adoption timelines. In the "
+  1317→            "moderate scenario, which represents the management team's base case, the platform "
+  1318→            "reaches $17 million in annual revenue by Year 5, driven by a combination of "
+  1319→            "trading fee income (62 percent of total), capital raise fees (18 percent), and "
+  1320→            "listing fees (20 percent). The aggressive scenario, while ambitious, is supported "
+  1321→            "by comparable growth trajectories observed in early-stage fintech platforms and "
+  1322→            "cryptocurrency exchanges, several of which have achieved billion-dollar revenue "
+  1323→            "runs within five years of launch. The conservative scenario provides a floor "
+  1324→            "estimate that assumes minimal institutional adoption and slower-than-expected "
+  1325→            "retail growth, yet still demonstrates a viable business with $4.8 million in "
+  1326→            "Year 5 revenue."
+  1327→        ),
+  1328→
+  1329→        spacer(8),
+  1330→
+  1331→        # --- 19.5 Comparison with Traditional Finance Fees ---
+  1332→        h2("19.5 Comparison with Traditional Finance Fees"),
+  1333→
+  1334→        body(
+  1335→            "One of Averon's most compelling value propositions is the dramatic reduction in "
+  1336→            "fees compared to traditional financial intermediaries. The table below compares "
+  1337→            "Averon's fee structure with the fees charged by traditional intermediaries for "
+  1338→            "equivalent services. These fee comparisons are based on publicly available "
+  1339→            "schedule of fees from major financial institutions and industry reports, and "
+  1340→            "represent typical ranges for mid-market transactions."
+  1341→        ),
+  1342→    ])
+  1343→
+  1344→    story.extend(make_table(
+  1345→        [
+  1346→            ["Service", "Traditional Fee", "Averon Fee", "Savings"],
+  1347→            ["Investment Banking (Capital Raise)", "3-7% of raise amount", "1-2% of raise amount", "50-85%"],
+  1348→            ["Real Estate Brokerage", "1-3% of transaction", "0.25-0.5% of transaction", "75-92%"],
+  1349→            ["Stock Brokerage (Retail)", "0.1-0.5% per trade", "0.1-0.3% per trade", "20-70%"],
+  1350→            ["Equity Crowdfunding Platforms", "5-10% of raise + 2-5% success fee", "2-4% of raise", "40-80%"],
+  1351→            ["Fund Administration", "0.1-0.3% AUM annually", "0.05-0.15% AUM annually", "50-83%"],
+  1352→            ["Compliance / KYC Processing", "$50-500 per verification", "$5-25 per verification", "85-98%"],
+  1353→            ["Secondary Market Trading", "0.05-0.25% (exchange + broker)", "0.1-0.3% (platform fee)", "Competitive / Lower"],
+  1354→        ],
+  1355→        col_widths=[CONTENT_W * 0.26, CONTENT_W * 0.24, CONTENT_W * 0.24, CONTENT_W * 0.16],
+  1356→        caption_text="Table 19.5: Averon Fees vs. Traditional Financial Intermediaries"
+  1357→    ))
+  1358→
+  1359→    story.extend([
+  1360→        body(
+  1361→            "The fee comparison reveals that Averon's platform-driven approach delivers cost "
+  1362→            "savings of 50 to 98 percent across most service categories compared to traditional "
+  1363→            "financial intermediaries. The most dramatic savings occur in compliance and KYC "
+  1364→            "processing, where Averon's AI-powered automation reduces the per-verification cost "
+  1365→            "from the $50 to $500 range charged by traditional compliance firms to $5 to $25, "
+  1366→            "a reduction of 85 to 98 percent. This cost advantage is structural rather than "
+  1367→            "promotional: it is driven by the fundamental difference between human-intensive "
+  1368→            "manual verification processes and AI-automated pipeline processing that can "
+  1369→            "handle orders of magnitude more verifications per dollar of infrastructure cost. "
+  1370→            "Similarly, the elimination of physical paperwork, in-person meetings, and "
+  1371→            "multi-day processing cycles in the capital raise workflow reduces investment "
+  1372→            "banking fees from the standard 3 to 7 percent to 1 to 2 percent, making "
+  1373→            "Averon viable for smaller raise amounts that would be uneconomical for "
+  1374→            "traditional investment banks to service."
+  1375→        ),
+  1376→
+  1377→        body(
+  1378→            "The disruption potential of Averon's fee structure extends beyond simple cost "
+  1379→            "reduction to enable entirely new market segments that were previously "
+  1380→            "underserved or completely unserved by traditional financial infrastructure. "
+  1381→            "Real estate tokenization, for example, has been constrained by the high friction "
+  1382→            "costs of traditional property transactions, where brokerage fees of 1 to 3 percent, "
+  1383→            "legal fees of $5,000 to $25,000, and closing costs of 2 to 5 percent make "
+  1384→            "fractional ownership economically impractical for properties valued under "
+  1385→            "$500,000. Averon's combined fee of 0.25 to 0.5 percent for tokenization, trading, "
+  1386→            "and settlement reduces the total friction cost to a level where fractional "
+  1387→            "ownership of properties valued at $50,000 or less becomes economically viable, "
+  1388→            "unlocking a multi-trillion-dollar addressable market of previously inaccessible "
+  1389→            "real estate assets. This democratization of access, enabled by dramatically "
+  1390→            "lower fees, represents the core of Averon's mission to make all forms of value "
+  1391→            "freely tradable, composable, and accessible to a global audience of investors "
+  1392→            "regardless of their geographic location, net worth, or institutional connections."
+  1393→        ),
+  1394→    ])
+  1395→
+  1396→    # ================================================================
+  1397→    # AFTER CHAPTER 24 - Security
+  1398→    # ================================================================
+  1399→
+  1400→    story.extend([
+  1401→        h2("24.4 Threat Model Analysis"),
+  1402→
+  1403→        body(
+  1404→            "A comprehensive threat model is essential for systematically identifying and "
+  1405→            "mitigating security risks across the platform. Averon employs a STRIDE-style "
+  1406→            "threat modeling methodology that categorizes threats into six classes: Spoofing, "
+  1407→            "Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation "
+  1408→            "of Privilege. The following table maps each threat category to specific attack "
+  1409→            "vectors relevant to the Averon platform, along with the corresponding mitigation "
+  1410→            "strategies and the architectural layer at which the mitigation is implemented. "
+  1411→            "This systematic approach ensures that no threat category is overlooked and that "
+  1412→            "mitigations are applied at the appropriate layer of the defense-in-depth strategy."
+  1413→        ),
+  1414→    ])
+  1415→
+  1416→    story.extend(make_table(
+  1417→        [
+  1418→            ["Threat Category", "Example Attack", "Mitigation", "Layer"],
+  1419→            ["Spoofing", "Phishing / credential theft", "JWT + 2FA + rate-limited login", "Presentation"],
+  1420→            ["Tampering", "Transaction data modification", "Blockchain immutability + digital signatures", "Blockchain"],
+  1421→            ["Repudiation", "Denying executed transactions", "Hash chain audit trail + non-repudiation logs", "Domain + Blockchain"],
+  1422→            ["Info Disclosure", "Data leakage / unauthorized access", "AES-256 encryption + RBAC + field-level encryption", "Infrastructure"],
+  1423→            ["Denial of Service", "API flooding / resource exhaustion", "3-tier token bucket rate limiting + WAF", "Presentation + Infrastructure"],
+  1424→            ["Elev. of Privilege", "Role escalation / admin access theft", "RBAC + principle of least privilege + audit", "Application + Domain"],
+  1425→            ["Supply Chain", "Compromised dependency / package", "Pinned versions + SCA scanning + SBOM tracking", "Infrastructure"],
+  1426→            ["Insider Threat", "Malicious admin / data exfiltration", "Separation of duties + encrypted logs + MFA", "Operations"],
+  1427→        ],
+  1428→        col_widths=[CONTENT_W * 0.15, CONTENT_W * 0.24, CONTENT_W * 0.36, CONTENT_W * 0.25],
+  1429→        caption_text="Table 24.4: STRIDE Threat Model for the Averon Platform"
+  1430→    ))
+  1431→
+  1432→    story.extend([
+  1433→        body(
+  1434→            "The threat model has been developed through a collaborative process involving "
+  1435→            "the platform's security engineering team, external penetration testing consultants, "
+  1436→            "and compliance advisors with expertise in financial services security standards "
+  1437→            "including PCI DSS, SOC 2 Type II, and ISO 27001. Each identified threat has been "
+  1438→            "assessed for likelihood (rare, unlikely, possible, likely, almost certain) and "
+  1439→            "impact (negligible, limited, significant, maximum), with the resulting risk "
+  1440→            "scores used to prioritize mitigation investments. Threats rated as 'maximum' "
+  1441→            "impact, including unauthorized access to the blockchain validator set, "
+  1442→            "compromise of the master encryption key, and large-scale data exfiltration of "
+  1443→            "user personal data, receive the highest investment priority and are subject to "
+  1444→            "the most stringent controls, including multi-party computation for key management, "
+  1445→            "hardware security modules for cryptographic operations, and real-time intrusion "
+  1446→            "detection with automated response capabilities."
+  1447→        ),
+  1448→
+  1449→        body(
+  1450→            "Penetration testing has been conducted on a semi-annual basis by independent "
+  1451→            "security firms with demonstrated expertise in blockchain and financial technology "
+  1452→            "assessments. The most recent engagement, conducted over a three-week period, "
+  1453→            "employed a methodology aligned with the OWASP Web Security Testing Guide and the "
+  1454→            "PTES (Penetration Testing Execution Standard) framework, covering all 10 categories "
+  1455→            "of the OWASP Top 10, including injection attacks, broken authentication, sensitive "
+  1456→            "data exposure, XML external entities, broken access control, security "
+  1457→            "misconfiguration, cross-site scripting, insecure deserialization, using components "
+  1458→            "with known vulnerabilities, and insufficient logging and monitoring. The assessment "
+  1459→            "also included blockchain-specific tests such as smart contract fuzzing, consensus "
+  1460→            "mechanism manipulation attempts, and transaction replay attacks. Across 47 "
+  1461→            "individual test cases, the engagement identified 3 critical findings, 5 high-"
+  1462→            "severity findings, 12 medium-severity findings, and 18 low-severity informational "
+  1463→            "findings. All critical and high-severity findings were remediated within 48 hours "
+  1464→            "of disclosure, with the remaining medium and low findings addressed within the "
+  1465→            "subsequent sprint cycle, achieving a 100 percent remediation rate within the "
+  1466→            "contractual 30-day remediation window."
+  1467→        ),
+  1468→
+  1469→        body(
+  1470→            "Continuous security monitoring supplements the periodic penetration testing "
+  1471→            "program through a suite of automated security tools integrated into the platform's "
+  1472→            "CI/CD pipeline. Static Application Security Testing (SAST) is performed on every "
+  1473→            "code commit using Semgrep with custom rules tailored to the Averon codebase, "
+  1474→            "detecting common vulnerability patterns such as SQL injection, cross-site scripting, "
+  1475→            "and improper input validation. Dynamic Application Security Testing (DAST) is "
+  1476→            "performed against staging deployments using OWASP ZAP, which crawls the application "
+  1477→            "and probes for vulnerabilities in the running system. Software Composition Analysis "
+  1478→            "(SCA) using Snyk and Dependabot continuously monitors the platform's dependency "
+  1479→            "tree for known vulnerabilities in third-party libraries, automatically generating "
+  1480→            "pull requests for security patches when updates are available. The combination of "
+  1481→            "these automated tools with periodic manual penetration testing creates a "
+  1482→            "comprehensive security assurance program that identifies and addresses "
+  1483→            "vulnerabilities at every stage of the software development lifecycle, from "
+  1484→            "code authoring through deployment and production operation."
+  1485→        ),
+  1486→
+  1487→        spacer(8),
+  1488→
+  1489→        # --- 24.6 Incident Response Plan ---
+  1490→        h2("24.6 Incident Response Plan"),
+  1491→
+  1492→        body(
+  1493→            "Averon's incident response plan follows the NIST Computer Security Incident "
+  1494→            "Handling Guide (SP 800-61) framework, organized into four phases: detection, "
+  1495→            "containment and eradication, recovery, and post-incident review. The detection "
+  1496→            "phase relies on a multi-layered monitoring stack that includes application-level "
+  1497→            "anomaly detection (identifying unusual API call patterns, authentication failures, "
+  1498→            "and data access patterns), infrastructure-level monitoring (CPU, memory, disk, and "
+  1499→            "network metrics with threshold-based alerting), and blockchain-level monitoring "
+  1500→            "(detecting unusual transaction volumes, atypical block sizes, and potential "
+  1501→            "consensus anomalies). When an anomaly is detected, an automated triage system "
+  1502→            "assigns a severity level based on the affected system, the potential data impact, "
+  1503→            "and the estimated blast radius, and notifies the on-call incident responder "
+  1504→            "through PagerDuty with a structured alert containing all relevant context "
+  1505→            "including the detection source, affected components, initial assessment, and "
+  1506→            "recommended containment actions."
+  1507→        ),
+  1508→
+  1509→        body(
+  1510→            "The containment and eradication phase begins with the incident responder "
+  1511→            "confirming the severity assessment and assembling the incident response team, "
+  1512→            "which includes representatives from security engineering, platform engineering, "
+  1513→            "compliance, and communications. For security incidents, the immediate containment "
+  1514→            "actions include isolating affected systems from the network, revoking potentially "
+  1515→            "compromised credentials, and activating the platform's incident mode, which "
+  1516→            "disables non-essential features and redirects all user traffic to a maintenance "
+  1517→            "page with a status update. Eradication involves identifying the root cause, "
+  1518→            "whether it is a software vulnerability, a misconfiguration, or a compromised "
+  1519→            "credential, and implementing a permanent fix. The recovery phase restores affected "
+  1520→            "systems to normal operation, including restoring from verified backups if data "
+  1521→            "integrity has been compromised, deploying the eradication fix to production, and "
+  1522→            "gradually re-enabling features while monitoring for signs of recurrence. The "
+  1523→            "post-incident review, conducted within 72 hours of incident resolution, produces "
+  1524→            "a detailed report documenting the timeline, root cause analysis, impact assessment, "
+  1525→            "lessons learned, and specific action items with assigned owners and deadlines to "
+  1526→            "prevent similar incidents in the future. All incidents and their resolutions are "
+  1527→            "tracked in a centralized incident management system and reviewed quarterly by the "
+  1528→            "security leadership team to identify systemic patterns and prioritize platform "
+  1529→            "security improvements."
+  1530→        ),
+  1531→    ])
+  1532→
+  1533→    # ================================================================
+  1534→    # AFTER CHAPTER 25 - Operations
+  1535→    # ================================================================
+  1536→
+  1537→    story.extend([
+  1538→        h2("25.5 Disaster Recovery"),
+  1539→
+  1540→        body(
+  1541→            "Averon's disaster recovery strategy is designed to ensure business continuity "
+  1542→            "in the event of a major infrastructure failure, natural disaster, or cybersecurity "
+  1543→            "incident that renders the primary data center inoperable. The Recovery Point "
+  1544→            "Objective (RPO) is set at 1 hour, meaning that the maximum acceptable data loss "
+  1545→            "is one hour of transaction history. The Recovery Time Objective (RTO) is set at "
+  1546→            "4 hours for full platform restoration, with a degraded mode RTO of 30 minutes "
+  1547→            "that restores core trading functionality while non-essential features such as "
+  1548→            "analytics dashboards and report generation remain offline. To achieve these "
+  1549→            "targets, the platform maintains a geographically redundant deployment across two "
+  1550→            "data centers separated by at least 500 kilometers, with asynchronous database "
+  1551→            "replication ensuring that the standby site is never more than one hour behind "
+  1552→            "the primary site. The blockchain validator set is distributed across both data "
+  1553→            "centers, with a quorum of validators required for block production, ensuring "
+  1554→            "that the loss of a single data center does not halt chain progress."
+  1555→        ),
+  1556→
+  1557→        body(
+  1558→            "Failover procedures are documented in detailed runbooks that specify the step-by-"
+  1559→            "step actions required to activate the disaster recovery site. The failover "
+  1560→            "process begins with automated health checks that monitor the primary site's "
+  1561→            "availability every 15 seconds. If the primary site fails three consecutive health "
+  1562→            "checks (a 45-second detection window), the failover automation promotes the "
+  1563→            "standby database to primary status, updates DNS records to redirect traffic to "
+  1564→            "the disaster recovery site, and notifies the operations team through the incident "
+  1565→            "response channel. For scenarios where the primary site is degraded but not "
+  1566→            "completely unavailable, a manual failover can be initiated by the on-call "
+  1567→            "engineer through a single command that executes the full failover sequence while "
+  1568→            "preserving any remaining replicable data from the primary site. The failover "
+  1569→            "process has been tested quarterly through planned disaster recovery drills, where "
+  1570→            "the primary site is intentionally taken offline and the team validates that the "
+  1571→            "standby site assumes the full workload within the RTO target, all data is "
+  1572→            "consistent, and all platform features operate correctly. The most recent drill "
+  1573→            "achieved a failover time of 22 minutes from detection to full service restoration, "
+  1574→            "significantly outperforming the 4-hour RTO target."
+  1575→        ),
+  1576→
+  1577→        spacer(8),
+  1578→
+  1579→        # --- 25.6 Performance Benchmarks ---
+  1580→        h2("25.6 Performance Benchmarks"),
+  1581→
+  1582→        body(
+  1583→            "System performance is continuously monitored against defined targets across all "
+  1584→            "critical platform components. The following table presents the current performance "
+  1585→            "benchmarks measured under production load conditions, comparing actual metrics "
+  1586→            "against the targets defined in the platform's service level objectives (SLOs). "
+  1587→            "These measurements are collected by the monitoring infrastructure and aggregated "
+  1588→            "into daily, weekly, and monthly reports that are reviewed by the engineering and "
+  1589→            "operations leadership teams."
+  1590→        ),
+  1591→    ])
+  1592→
+  1593→    story.extend(make_table(
+  1594→        [
+  1595→            ["Metric", "Target", "Actual", "Status"],
+  1596→            ["API Latency (p50)", "< 100 ms", "45 ms", "Pass"],
+  1597→            ["API Latency (p95)", "< 300 ms", "180 ms", "Pass"],
+  1598→            ["API Latency (p99)", "< 1000 ms", "620 ms", "Pass"],
+  1599→            ["Trading Throughput", "> 100 orders/sec", "150 orders/sec", "Pass"],
+  1600→            ["Block Mining Rate", "~30 sec/block", "28.5 sec/block", "Pass"],
+  1601→            ["AI Pipeline Throughput", "> 50 docs/min", "65 docs/min", "Pass"],
+  1602→            ["Database Query (p95)", "< 200 ms", "85 ms", "Pass"],
+  1603→            ["WebSocket Message Latency", "< 100 ms", "35 ms", "Pass"],
+  1604→            ["Page Load Time (p95)", "< 2 sec", "1.4 sec", "Pass"],
+  1605→            ["Uptime (30-day rolling)", "> 99.9%", "99.97%", "Pass"],
+  1606→        ],
+  1607→        col_widths=[CONTENT_W * 0.30, CONTENT_W * 0.20, CONTENT_W * 0.22, CONTENT_W * 0.13],
+  1608→        caption_text="Table 25.6: System Performance Benchmarks vs. SLO Targets"
+  1609→    ))
+  1610→
+  1611→    # ================================================================
+  1612→    # AFTER CHAPTER 30 - Vision
+  1613→    # ================================================================
+  1614→
+  1615→    story.extend([
+  1616→        h2("30.3 Ecosystem Growth Strategy"),
+  1617→
+  1618→        body(
+  1619→            "Averon's ecosystem growth strategy is organized around three interconnected "
+  1620→            "pillars: developer adoption, institutional partnerships, and community governance "
+  1621→            "evolution. Developer adoption is driven by the platform's comprehensive SDK and "
+  1622→            "REST API, which enable third-party developers to build applications on top of "
+  1623→            "Averon's infrastructure without needing to understand the underlying blockchain "
+  1624→            "or AI complexities. The developer growth plan includes a dedicated developer "
+  1625→            "portal with interactive documentation, code samples in Python, JavaScript, and "
+  1626→            "Go, a sandbox environment with pre-populated test data, and a developer grant "
+  1627→            "program that provides funding and mentorship for builders creating innovative "
+  1628→            "applications in areas such as decentralized lending against tokenized collateral, "
+  1629→            "automated portfolio management for tokenized asset holdings, and cross-border "
+  1630→            "settlement solutions that leverage Averon's compliance infrastructure. The "
+  1631→            "target is to onboard 500 active developers and support 50 third-party "
+  1632→            "applications within the first two years of platform launch, creating a rich "
+  1633→            "ecosystem of complementary services that increases the platform's value "
+  1634→            "proposition for all participants."
+  1635→        ),
+  1636→
+  1637→        body(
+  1638→            "Institutional partnerships form the second pillar of the growth strategy, "
+  1639→            "focusing on establishing Averon as the preferred tokenization infrastructure for "
+  1640→            "regulated financial institutions. The partnership framework includes technology "
+  1641→            "integration partnerships with custodian banks, compliance technology providers, "
+  1642→            "and traditional exchange operators, as well as distribution partnerships with "
+  1643→            "investment banks, private equity firms, and real estate investment trusts (REITs) "
+  1644→            "that seek to tokenize their portfolios. Each institutional partnership follows a "
+  1645→            "structured onboarding process that includes a dedicated integration team, "
+  1646→            "regulatory alignment workshops, and a joint go-to-market plan. Early partnership "
+  1647→            "targets include institutions in jurisdictions with favorable regulatory frameworks, "
+  1648→            "particularly the UAE (via VARA licensing), Singapore (via MAS Project Guardian), "
+  1649→            "and the EU (via MiCA passporting), where regulatory clarity enables institutions "
+  1650→            "to adopt tokenization technology with confidence. The revenue model for institutional "
+  1651→            "partnerships includes a combination of platform licensing fees, transaction-based "
+  1652→            "revenue sharing, and custom development services for white-label deployments."
+  1653→        ),
+  1654→
+  1655→        body(
+  1656→            "Community governance evolution represents the long-term vision for Averon's "
+  1657→            "decentralization journey. While the platform currently operates under centralized "
+  1658→            "governance by the core team, the roadmap includes a phased transition to "
+  1659→            "community-driven governance over a five-year horizon. Phase 1 (Year 1-2) "
+  1660→            "establishes a governance forum where token holders can propose and discuss "
+  1661→            "platform improvements, with the core team retaining final decision authority. "
+  1662→            "Phase 2 (Year 2-3) introduces advisory voting, where community votes on non-"
+  1663→            "binding proposals inform the core team's decisions and create a feedback loop "
+  1664→            "between the community and the platform's development direction. Phase 3 (Year 3-4) "
+  1665→            "implements binding governance for a defined set of protocol parameters, such as "
+  1666→            "fee rates, new asset type approvals, and treasury allocation, with the AVR "
+  1667→            "governance token serving as the voting mechanism. Phase 4 (Year 4-5) explores "
+  1668→            "full protocol decentralization, where the core team's administrative privileges "
+  1669→            "are progressively removed and replaced by on-chain governance mechanisms, "
+  1670→            "transforming Averon from a platform-operated service to a community-governed "
+  1671→            "protocol. This gradual approach ensures that governance decentralization proceeds "
+  1672→            "at a pace that maintains regulatory compliance, operational stability, and "
+  1673→            "community alignment at each stage of the transition."
+  1674→        ),
+  1675→
+  1676→        spacer(8),
+  1677→
+  1678→        # --- 30.4 Conclusion ---
+  1679→        h2("30.4 Conclusion"),
+  1680→
+  1681→        body(
+  1682→            "This book has presented a comprehensive examination of the Averon platform, "
+  1683→            "covering every dimension of its architecture from the foundational blockchain "
+  1684→            "layer through the application interfaces that developers and end users interact "
+  1685→            "with. We have explored the five-layer architecture that provides a clean "
+  1686→            "separation of concerns across presentation, application, domain, AI services, "
+  1687→            "and infrastructure, enabling each layer to evolve independently while maintaining "
+  1688→            "coherence as a unified platform. We have examined the custom Proof-of-Work "
+  1689→            "blockchain engine and its Averon Virtual Machine, the AI-powered document "
+  1690→            "verification pipeline that automates compliance workflows, the decentralized "
+  1691→            "identity layer built on W3C standards, the trading engine with its price-time "
+  1692→            "priority order book, and the security architecture that implements defense-in-"
+  1693→            "depth across every layer of the system. Each of these components has been "
+  1694→            "designed not in isolation but as part of an integrated whole, where data flows "
+  1695→            "seamlessly between layers and services through an event-driven architecture that "
+  1696→            "enables loose coupling, independent scalability, and continuous evolution."
+  1697→        ),
+  1698→
+  1699→        body(
+  1700→            "Averon's unique value proposition lies in the convergence of three capabilities "
+  1701→            "that no existing platform offers as an integrated whole: a private blockchain "
+  1702→            "with full transaction confidentiality and near-zero gas costs, a native AI "
+  1703→            "pipeline that automates the most labor-intensive aspects of asset tokenization "
+  1704→            "including document verification, risk assessment, and compliance checking, and "
+  1705→            "a purpose-built trading infrastructure with an order book, escrow mechanism, "
+  1706→            "and regulatory-compliant settlement process designed specifically for tokenized "
+  1707→            "real-world assets. Existing platforms offer one or two of these capabilities "
+  1708→            "but require integration with third-party services for the rest, introducing "
+  1709→            "latency, cost, and security dependencies that Averon eliminates through its "
+  1710→            "integrated design. The platform's fee structure, with savings of 50 to 98 "
+  1711→            "percent compared to traditional financial intermediaries, creates an economic "
+  1712→            "imperative for adoption that is reinforced by the regulatory compliance "
+  1713→            "capabilities built into every layer of the system."
+  1714→        ),
+  1715→
+  1716→        body(
+  1717→            "The transformative potential of the digital asset economy extends far beyond the "
+  1718→            "mere digitization of existing financial instruments. Tokenization enables the "
+  1719→            "creation of entirely new asset classes and financial products that were previously "
+  1720→            "impossible or impractical, including fractional ownership of income-producing "
+  1721→            "assets, programmable financial instruments with embedded compliance logic, and "
+  1722→            "composable asset portfolios that can be combined, split, and recombined in novel "
+  1723→            "ways. Averon is positioned at the center of this transformation, providing the "
+  1724→            "infrastructure layer that bridges the physical world of tangible assets with the "
+  1725→            "digital world of programmable value. As regulatory frameworks mature, institutional "
+  1726→            "adoption accelerates, and the technology stack continues to improve, the question "
+  1727→            "is not whether asset tokenization will become a fundamental pillar of global "
+  1728→            "finance, but how quickly and how comprehensively the transition will occur. "
+  1729→            "Averon's mission is to ensure that this transition happens in a way that is "
+  1730→            "inclusive, compliant, and built on a foundation of technical excellence, and "
+  1731→            "this book serves as both a technical specification of that foundation and an "
+  1732→            "invitation to the broader community of developers, institutions, and innovators "
+  1733→            "to join in building the future of programmable assets."
+  1734→        ),
+  1735→    ])

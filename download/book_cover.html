@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=794, height=1123">
+<title>AVERON - Complete Platform Description</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 794px;
+    height: 1123px;
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+  }
+
+  /* Layer 1: Geometric accents */
+  .layer-1 {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .accent-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    height: 55%;
+    background: #415b69;
+    clip-path: polygon(35% 0%, 100% 0%, 100% 72%, 0% 72%);
+  }
+
+  .accent-line-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #3593c1;
+  }
+
+  /* Layer 2: Divider line */
+  .layer-2 {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .divider-line {
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    width: 60%;
+    height: 1px;
+    background: #c1cdd3;
+  }
+
+  /* Layer 3: Text content */
+  .layer-3 {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .kicker {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #707679;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .hero-title {
+    position: absolute;
+    top: 28%;
+    left: 10%;
+    font-size: 72px;
+    font-weight: 900;
+    color: #1d1f20;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .subtitle {
+    position: absolute;
+    top: 42%;
+    left: 10%;
+    font-size: 22px;
+    font-weight: 400;
+    color: #415b69;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .summary {
+    position: absolute;
+    top: 55%;
+    left: 10%;
+    max-width: 55%;
+    font-size: 13px;
+    font-weight: 400;
+    color: #707679;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+
+  .author {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1f20;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .author-role {
+    position: absolute;
+    top: 74%;
+    left: 10%;
+    font-size: 12px;
+    font-weight: 400;
+    color: #707679;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer {
+    position: absolute;
+    top: 92%;
+    left: 10%;
+    font-size: 10px;
+    font-weight: 400;
+    color: #c1cdd3;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Layer 1: Geometric accent elements -->
+  <div class="layer-1">
+    <div class="accent-block"></div>
+    <div class="accent-line-bottom"></div>
+  </div>
+
+  <!-- Layer 2: Divider line -->
+  <div class="layer-2">
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Layer 3: Text content -->
+  <div class="layer-3">
+    <div class="kicker">COMPLETE PLATFORM DESCRIPTION</div>
+    <h1 class="hero-title">AVERON</h1>
+    <div class="subtitle">Digital Asset Infrastructure Platform</div>
+    <p class="summary">A comprehensive technical reference combining blockchain, artificial intelligence, decentralized identity, compliance systems, smart contracts, and financial infrastructure for tokenized real-world assets.</p>
+    <div class="author">Rishabh Gupta</div>
+    <div class="author-role">Founder &amp; Chief Architect</div>
+    <div class="footer">Averon Technologies Private Limited</div>
+  </div>
+
+</body>
+</html>
