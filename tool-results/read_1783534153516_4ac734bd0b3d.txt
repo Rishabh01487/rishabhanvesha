@@ -1,0 +1,502 @@
+     1→     1→# Brief: Academic Production
+     2→     2→
+     3→     3→Scholarly documents via LaTeX/Tectonic: academic papers, theses, dissertations, mathematical manuscripts, IEEE/ACM submissions, academic CVs.
+     4→     4→
+     5→     5→```
+     6→     6→Academic request
+     7→     7→  ├─ Paper / thesis / journal          → §Standard Paper Workflow
+     8→     8→  │     Embed as needed during Phase 3:
+     9→     9→  │     ├─ Heavy math (>3 equations)   → use §Scenario A preamble + environments
+    10→    10→  │     ├─ Vector diagrams             → §Scenario B (simple→TikZ, complex→Playwright+CSS)
+    11→    11→  │     └─ Algorithm pseudocode        → use §Scenario C template
+    12→    12→  │
+    13→    13→  └─ Standalone diagram for other brief → §Scenario B Path B (Playwright+CSS → PNG)
+    14→    14→  │
+    15→    15→  └─ Resume / CV
+    16→    16→        ├─ Creative / tech / startup   → §Template A (AltaCV dual-column)
+    17→    17→        └─ Academic position / PhD     → §Template B (Academic CV)
+    18→    18→```
+    19→    19→
+    20→    20→**No typesetting assets needed** - LaTeX templates handle their own design system. The `palette.md` color system does not apply to LaTeX documents.
+    21→    21→
+    22→    22→---
+    23→    23→
+    24→    24→## §Standard Paper Workflow
+    25→    25→
+    26→    26→Six phases. Rules and guardrails are embedded in each phase where they apply.
+    27→    27→
+    28→    28→### Phase 1 - BRIEF
+    29→    29→
+    30→    30→Confirm with the user:
+    31→    31→- Document type (journal article, thesis chapter, conference paper, technical report)
+    32→    32→- Template requirement (IEEE, ACM, custom class, or plain `article`)
+    33→    33→- Bibliography format (natbib superscript, numeric brackets, biblatex)
+    34→    34→- Expected length → if >5 pages or 3+ complex elements (wide tables, block equations, TikZ), split into `\input{}` modules (~500 lines each)
+    35→    35→
+    36→    36→**Recognising the document's personality:**
+    37→    37→
+    38→    38→| Personality | Examples | Key concern |
+    39→    39→|-------------|----------|-------------|
+    40→    40→| Scholarly | Journal articles, conference proceedings | Academic conventions, bibliography accuracy |
+    41→    41→| Utilitarian | Technical reports, manuals, specs | Information density + scannability |
+    42→    42→| Persuasive | Proposals, pitch documents | Professional polish + 1-2 visual high-points |
+    43→    43→| Expressive | Portfolios, brand guidebooks | Bold typographic choices |
+    44→    44→
+    45→    45→### Phase 2 - SETUP
+    46→    46→
+    47→    47→**Title Page (Cover) Rules:**
+    48→    48→- **Academic route covers are generated via HTML/Playwright**, using Templates 03-04 and 06 from `typesetting/cover.md`. Templates 03-04 replicate LaTeX title page aesthetics (dark backgrounds, serif titles, symmetric layouts) in HTML/CSS. **Template 06 (Institutional)** is for thesis proposals, dissertations, and formal institutional submissions (white bg + black border frame).
+    49→    49→- **Pipeline:** Generate body PDF via Tectonic (no title page in `.tex`) → Generate cover HTML (Template 03/04/05/06) → Playwright `page.pdf()` → Merge cover as page 0 via pypdf
+    50→    50→- **Template selection:** For thesis proposals (开题报告), dissertations (毕业论文), and institutional submissions → **default to Template 06**. For research papers, preprints, journal submissions → Templates 03-04.
+    51→    51→- **NEVER use `\maketitle`** - it produces ugly default output with cramped spacing
+    52→    52→- **NEVER use `\begin{titlepage}...\end{titlepage}`** - the cover is generated separately via HTML/Playwright
+    53→    53→- **NEVER use LaTeX TikZ overlay for full-page covers** - TikZ `current page` coordinates are unreliable with `margin=0pt`, causing backgrounds to not fill the page (right/bottom white edges). HTML/CSS full-bleed is pixel-exact.
+    54→    54→- Title page is OPTIONAL - skip it for short documents (≤ 2 pages), letters, memos, or when content scanning is priority
+    55→    55→- **`\tableofcontents` must be the FIRST page** of the body PDF (after merge, it becomes page 2). If no TOC, content starts on page 1 of the body PDF
+    56→    56→
+    57→    57→
+    58→    58→**Cover Generation Pipeline (Academic route):**
+    59→    59→```
+    60→    60→1. Write .tex WITHOUT any title page
+    61→    61→2. Run poster_validate.py check-tex on .tex file - fix table overflow / image width ERRORs
+    62→    62→3. Compile with tectonic → body.pdf
+    63→    63→4. Write cover HTML using Template 03/04/05/06 from typesetting/cover.md (Template 06 for thesis proposals/dissertations)
+    64→    64→5. Run poster_validate.py check-html on cover HTML - fix any ERRORs
+    65→    65→6. Run cover_validate.js on cover HTML - fix any text-line overlaps
+    66→    66→7. Render cover HTML → PDF via Playwright (`html2poster.js`) — **NOT `html2pdf-next.js`** (which converts absolute→static and destroys cover layout)
+    67→    67→8. Merge: insert cover as page 0 of body PDF via pypdf
+    68→    68→```
+    69→    69→
+    70→    70→**Cover HTML → PDF rendering:**
+    71→    71→```bash
+    72→    72→# ALWAYS use html2poster.js for cover rendering (NOT html2pdf-next.js)
+    73→    73→# Cover pages use position:absolute layout — html2pdf-next.js pre-render hooks
+    74→    74→# convert absolute→static and destroy the layout. html2poster.js preserves it.
+    75→    75→node "$PDF_SKILL_DIR/scripts/html2poster.js" cover.html --output cover.pdf --width 794px
+    76→    76→```
+    77→    77→
+    78→    78→Or from Python:
+    79→    79→```python
+    80→    80→import subprocess, os
+    81→    81→
+    82→    82→def render_cover(html_path, pdf_path):
+    83→    83→    """
+    84→    84→    Render HTML cover to PDF via html2poster.js.
+    85→    85→    
+    86→    86→    ⚠️ ALWAYS use html2poster.js for covers (NOT html2pdf-next.js).
+    87→    87→    Cover HTML uses position:absolute for layout. html2pdf-next.js pre-render
+    88→    88→    hooks convert absolute→static to prevent multi-page overlap, which
+    89→    89→    destroys cover layouts. html2poster.js preserves absolute positioning.
+    90→    90→    """
+    91→    91→    scripts_dir = os.path.join(PDF_SKILL_DIR, 'scripts')  # PDF_SKILL_DIR from SKILL.md § Script Path Setup
+    92→    92→    subprocess.run([
+    93→    93→        'node', os.path.join(scripts_dir, 'html2poster.js'),
+    94→    94→        html_path, '--output', pdf_path,
+    95→    95→        '--width', '794px',
+    96→    96→    ], check=True)
+    97→    97→```
+    98→    98→
+    99→    99→**Merge cover + body:**
+   100→   100→```python
+   101→   101→from pypdf import PdfReader, PdfWriter
+   102→   102→
+   103→   103→A4_W, A4_H = 595.28, 841.89  # A4 in points
+   104→   104→
+   105→   105→def normalize_page_to_a4(page):
+   106→   106→    """Scale a page to A4 if its dimensions don't match."""
+   107→   107→    box = page.mediabox
+   108→   108→    w, h = float(box.width), float(box.height)
+   109→   109→    if abs(w - A4_W) > 2 or abs(h - A4_H) > 2:
+   110→   110→        page.scale_to(A4_W, A4_H)
+   111→   111→    return page
+   112→   112→
+   113→   113→writer = PdfWriter()
+   114→   114→cover_page = normalize_page_to_a4(PdfReader('cover.pdf').pages[0])
+   115→   115→writer.add_page(cover_page)
+   116→   116→for page in PdfReader('body.pdf').pages:
+   117→   117→    writer.add_page(page)
+   118→   118→with open('final.pdf', 'wb') as f:
+   119→   119→    writer.write(f)
+   120→   120→```
+   121→   121→
+   122→   122→**→ MUST READ: `typesetting/cover.md` §PART 4.5 (Templates 03-04) before writing any cover HTML.**
+   123→   123→
+   124→   124→> **⚠️ Why HTML/Playwright covers?** LaTeX TikZ `remember picture, overlay` with `margin=0pt` frequently fails to fill the page (right/bottom edges show white). HTML/CSS with `@page { margin: 0 }` and full-bleed background is pixel-exact, with zero ambiguity. This also unifies all three routes (Report, Creative, Academic) under one cover system.
+   125→   125→
+   126→   126→Write the preamble. Start from this foundation and customise per document:
+   127→   127→
+   128→   128→```latex
+   129→   129→\documentclass{article}
+   130→   130→
+   131→   131→\usepackage{graphicx}
+   132→   132→\usepackage{xcolor}
+   133→   133→\usepackage{geometry}
+   134→   134→\usepackage{amsmath}          % Load before hyperref
+   135→   135→
+   136→   136→% hyperref - ALWAYS last among content packages
+   137→   137→\usepackage[
+   138→   138→    colorlinks=true,
+   139→   139→    linkcolor=blue,
+   140→   140→    citecolor=darkgray,
+   141→   141→    urlcolor=blue,
+   142→   142→    bookmarks=true,
+   143→   143→    bookmarksnumbered=true,
+   144→   144→    unicode=true
+   145→   145→]{hyperref}
+   146→   146→
+   147→   147→\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+   148→   148→% ⚠️ left and right MUST be equal - asymmetric margins cause off-center content
+   149→   149→
+   150→   150→\usepackage[numbers,super,sort&compress]{natbib}
+   151→   151→\bibliographystyle{unsrtnat}
+   152→   152→
+   153→   153→\usepackage{tcolorbox}
+   154→   154→\usepackage{colortbl}
+   155→   155→\usepackage{booktabs}
+   156→   156→\usepackage{enumitem}
+   157→   157→\usepackage{tabularx}          % Auto-width columns (X type) - prevents table overflow
+   158→   158→\usepackage{adjustbox}         % \adjustbox{max width=\columnwidth} for emergency table fitting
+   159→   159→```
+   160→   160→
+   161→   161→**Guardrails for SETUP:**
+   162→   162→- `hyperref` must load after virtually every other package - option clashes are the #1 preamble bug
+   163→   163→- When using a Scenario template (A/B/C) or Resume template, use that template's own preamble instead
+   164→   164→- `babel` and `polyglossia` are incompatible - load only one
+   165→   165→- CJK: `\usepackage{ctex}` - Tectonic auto-downloads fonts, zero manual setup
+   166→   166→- System fonts via `\setmainfont{}`: probe first with `fc-list :lang=XX`
+   167→   167→- ** Margin symmetry:** `\geometry{left=X, right=X}` - left and right MUST be equal. Asymmetric margins = off-center content = critical bug
+   168→   168→- ** Minimum margins with fancyhdr:** When using `fancyhdr` for headers/footers, `geometry` margins must leave enough room. **Minimum: `top >= 2.0cm`, `bottom >= 1.8cm`**. Also set `\setlength{\headheight}{14pt}` in the preamble. Margins smaller than this cause headers/footers to be pushed outside the page boundary (negative y-coordinates), making them invisible in print.
+   169→   169→- ** Quotation marks (English):** NEVER use straight quotes `"..."`。English text must use LaTeX curly quotes: ` ``left quote'' ` for double, `` `single' `` for single. Straight `"` in LaTeX means right double quote only.
+   170→   170→- ** Quotation marks (Chinese — CRITICAL):** Chinese quoted text like "北漂" MUST use Unicode smart quotes "…" (U+201C/U+201D) directly in the `.tex` source. **NEVER use ASCII `"` for Chinese quotes** — LaTeX interprets `"` as a right double quote (`"`), so `"北漂"` renders as `"北漂"` (two right quotes, no left quote). The correct LaTeX source is: `"北漂"` (literal Unicode characters). `\usepackage{csquotes}` is a safety net but does NOT fix raw ASCII `"` in Chinese text.
+   171→   171→  - **Scope:** This rule applies ONLY to Chinese-language body text. Do NOT replace `"` in English paragraphs (use ` ``...'' ` instead), `verbatim`/`lstlisting`/`minted` environments, `\texttt{}`/`\verb||`/`\url{}`/`\href{}{}` arguments, or BibTeX `.bib` field values.
+   172→   172→- ** Title page isolation:** Cover is generated via HTML/Playwright and merged as page 0 via pypdf - isolation is inherent in the merge pipeline. `\tableofcontents` should be the first page of the `.tex` body. Verify: does TOC start on the page immediately after the cover in the merged PDF?
+   173→   173→- ** TOC requires a cover page:** Unless the user explicitly requests no cover, if the document has `\tableofcontents`, it MUST have a cover page. Structure: Cover (page 1) → TOC (page 2) → Content (page 3+). Do not generate a TOC without a preceding cover page. This rule is consistent with `briefs/report.md`.
+   174→   174→
+   175→   175→**When no style is specified**, apply a measured, high-craft system:
+   176→   176→1. **Contrast** - clear figure-ground separation
+   177→   177→2. **Hierarchy** - size, weight, hue variation for reading order
+   178→   178→3. **White space** - ample margins and leading
+   179→   179→4. **Coherence** - one typeface family, one accent colour, one spacing rhythm
+   180→   180→
+   181→   181→Add enrichment proactively when content benefits:
+   182→   182→- Callout boxes, sidebars → `tcolorbox`
+   183→   183→- Theorem/definition/proof → `amsthm` + `tcolorbox`
+   184→   184→- Headers/footers → `fancyhdr`; chapter openers → `titlesec`
+   185→   185→
+   186→   186→### Phase 3 - BUILD
+   187→   187→
+   188→   188→Write LaTeX content: sections, equations, figures, tables, bibliography.
+   189→   189→
+   190→   190→**→ MUST READ: `typesetting/overflow.md`** for LaTeX-specific overflow patterns (tabularx, adjustbox, widowpenalty, etc.). Key rules:
+   191→   191→- Tables: always use `tabularx` or `tabular*` with `\columnwidth` constraint - never plain `tabular` for 5+ columns
+   192→   192→- Images: always `\includegraphics[max width=\columnwidth, max height=0.4\textheight]` or `adjustbox` - the `max height` prevents a single figure from occupying an entire page
+   193→   193→- Orphans/widows: set `\widowpenalty=10000` and `\clubpenalty=10000`
+   194→   194→- Long tables: use `longtable` with `\endhead` for header repetition on every page
+   195→   195→
+   196→   196→**Embedding components**: If the document needs heavy math, diagrams, or algorithms, refer to the Scenario sections below and embed their templates/environments into your `.tex` file. Scenarios are not separate tasks - they are building blocks for Phase 3.
+   197→   197→
+   198→   198→**Content density guidance (for textbooks, lecture notes, tutorials):**
+   199→   199→
+   200→   200→Documents meant for learning should maintain a healthy balance of prose and formal elements. A page full of equations with no explanation reads like a reference manual, not a textbook.
+   201→   201→
+   202→   202→Guidelines:
+   203→   203→- Every equation/equation group should be **preceded** by a sentence explaining what it represents and **followed** by a sentence interpreting the result or stating its significance
+   204→   204→- Every figure should have (a) a descriptive `\caption{}` and (b) at least one sentence in the surrounding text referencing it
+   205→   205→- Every theorem/definition should be followed by an intuitive explanation or worked example before proceeding to the next theorem
+   206→   206→- Avoid stacking 3+ formal elements (equations, figures, tables) with zero narrative text between them
+   207→   207→- For worked examples: state the problem, show the solution steps, then summarize the key takeaway
+   208→   208→
+   209→   209→**When high density is acceptable**: research papers (especially methods sections where equation groups naturally cluster), formula sheets, reference appendices, and conference papers with tight page limits. In these cases, prioritise completeness over readability padding.
+   210→   210→
+   211→   211→**Source hygiene - catch these model-generation slips:**
+   212→   212→- **Prohibited**: emoji glyphs (tofu), markdown `*asterisk*` formatting (compile errors)
+   213→   213→- **Use instead**: `\textbf{bold}`, `\emph{emphasis}`
+   214→   214→
+   215→   215→**Table placement - prevent header orphans:**
+   216→   216→- Short tables (≤15 rows): wrap in `\begin{table}[htbp]` - LaTeX keeps it together
+   217→   217→- Long tables (>15 rows): use `longtable` with repeated header:
+   218→   218→```latex
+   219→   219→\usepackage{longtable}
+   220→   220→\begin{longtable}{lll}
+   221→   221→\toprule
+   222→   222→Header 1 & Header 2 & Header 3 \\
+   223→   223→\midrule
+   224→   224→\endfirsthead
+   225→   225→\toprule
+   226→   226→Header 1 & Header 2 & Header 3 \\  % repeated on continuation pages
+   227→   227→\midrule
+   228→   228→\endhead
+   229→   229→\bottomrule
+   230→   230→\endfoot
+   231→   231→Row 1 & data & data \\
+   232→   232→Row 2 & data & data \\
+   233→   233→\end{longtable}
+   234→   234→```
+   235→   235→- **Never** let a table header sit alone at the bottom of a page with no data rows following it
+   236→   236→
+   237→   237→**Table width management - prevent column overflow (⚠️ CRITICAL):**
+   238→   238→
+   239→   239→Tables overflowing the column width is the most common LaTeX layout bug in dual-column papers. The table looks fine in single-column preview but clips in IEEE/ACM two-column format.
+   240→   240→
+   241→   241→**Prevention strategy (in priority order):**
+   242→   242→
+   243→   243→1. **Use `tabular*` or `tabularx` to constrain width** (RECOMMENDED):
+   244→   244→```latex
+   245→   245→% tabular* - fixed total width, stretches inter-column space
+   246→   246→\begin{table}[htbp]
+   247→   247→\centering
+   248→   248→\caption{Results.}\label{tab:results}
+   249→   249→\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}} l cccc}
+   250→   250→\toprule
+   251→   251→Method & P@10 & R@10 & NDCG@10 & MRR \\
+   252→   252→\midrule
+   253→   253→Ours   & \textbf{0.082} & \textbf{0.054} & \textbf{0.043} & \textbf{0.029} \\
+   254→   254→\bottomrule
+   255→   255→\end{tabular*}
+   256→   256→\end{table}
+   257→   257→
+   258→   258→% tabularx - fixed total width, X columns auto-stretch
+   259→   259→\usepackage{tabularx}
+   260→   260→\begin{tabularx}{\columnwidth}{l X X X X}
+   261→   261→...
+   262→   262→\end{tabularx}
+   263→   263→```
+   264→   264→
+   265→   265→2. **Reduce font size inside table** (common in conference papers):
+   266→   266→```latex
+   267→   267→\begin{table}[htbp]
+   268→   268→\centering
+   269→   269→\small            % or \footnotesize for very wide tables
+   270→   270→\caption{Comparison.}\label{tab:comp}
+   271→   271→\begin{tabular}{lcccccccc}
+   272→   272→...
+   273→   273→\end{tabular}
+   274→   274→\end{table}
+   275→   275→```
+   276→   276→
+   277→   277→3. **`\resizebox` as last resort** (scales the entire table to fit):
+   278→   278→```latex
+   279→   279→\begin{table}[htbp]
+   280→   280→\centering
+   281→   281→\caption{Full results.}\label{tab:full}
+   282→   282→\resizebox{\columnwidth}{!}{%
+   283→   283→\begin{tabular}{lcccccccc}
+   284→   284→\toprule
+   285→   285→...
+   286→   286→\bottomrule
+   287→   287→\end{tabular}
+   288→   288→}
+   289→   289→\end{table}
+   290→   290→```
+   291→   291→⚠️ `\resizebox` scales fonts too - verify the smallest text is still readable (≥ 6pt effective).
+   292→   292→
+   293→   293→4. **Span both columns** for genuinely wide tables (8+ data columns):
+   294→   294→```latex
+   295→   295→\begin{table*}[t]   % table* spans full width in twocolumn
+   296→   296→\centering
+   297→   297→\caption{Cross-dataset results.}\label{tab:cross}
+   298→   298→\begin{tabular}{lccccccccccc}
+   299→   299→...
+   300→   300→\end{tabular}
+   301→   301→\end{table*}
+   302→   302→```
+   303→   303→
+   304→   304→**Decision checklist before writing any table:**
+   305→   305→| Data columns | Single-column (`\columnwidth`) | Action |
+   306→   306→|-------------|-------------------------------|--------|
+   307→   307→| ≤ 4 | Fits comfortably | Normal `tabular` |
+   308→   308→| 5-6 | Tight fit | `\small` + `tabular*{\columnwidth}` |
+   309→   309→| 7-8 | Won't fit | `\footnotesize` + `tabular*`, or `\resizebox` |
+   310→   310→| ≥ 9 | Definitely won't fit | Use `table*` (full width), or split into two tables |
+   311→   311→
+   312→   312→**Never**: use a plain `tabular` with 8+ columns in a two-column paper without width constraint - it WILL overflow.
+   313→   313→
+   314→   314→**⚠️ CRITICAL: `\resizebox{\columnwidth}` NOT `\resizebox{\textwidth}` in two-column layouts!**
+   315→   315→In dual-column documents (`twocolumn`, `sigconf`, etc.), `\textwidth` = **full page width** (both columns), while `\columnwidth` = **single column width**. Using `\resizebox{\textwidth}` inside a `table` (single-column float) scales the table to the full page width, causing it to overflow the column boundary by ~50%. **Always use `\resizebox{\columnwidth}` for single-column floats.** Only use `\resizebox{\textwidth}` inside `table*` (full-width float).
+   316→   316→
+   317→   317→```latex
+   318→   318→% ❌ WRONG in two-column layout
+   319→   319→\begin{table}[t]
+   320→   320→  \resizebox{\textwidth}{!}{% <-- \textwidth = full page, table overflows column!
+   321→   321→    \begin{tabular}{lcccccccc} ... \end{tabular}}
+   322→   322→\end{table}
+   323→   323→
+   324→   324→% ✅ CORRECT for single-column float
+   325→   325→\begin{table}[t]
+   326→   326→  \resizebox{\columnwidth}{!}{% <-- \columnwidth = single column width
+   327→   327→    \begin{tabular}{lcccccccc} ... \end{tabular}}
+   328→   328→\end{table}
+   329→   329→
+   330→   330→% ✅ CORRECT for full-width float
+   331→   331→\begin{table*}[t]
+   332→   332→  \resizebox{\textwidth}{!}{% <-- \textwidth OK here because table* spans both columns
+   333→   333→    \begin{tabular}{lcccccccc} ... \end{tabular}}
+   334→   334→\end{table*}
+   335→   335→```
+   336→   336→
+   337→   337→---
+   338→   338→
+   339→   339→**Equation overflow prevention (⚠️ CRITICAL for dual-column papers):**
+   340→   340→
+   341→   341→Long equations are the **#2 overflow source** after tables in dual-column papers. Column width in ACM `sigconf` is ~241pt; in IEEE `twocolumn` ~252pt. Many standard math expressions exceed this.
+   342→   342→
+   343→   343→**Overflow patterns and fixes:**
+   344→   344→
+   345→   345→| Pattern | Problem | Fix |
+   346→   346→|---------|---------|-----|
+   347→   347→| Two equations side-by-side with `\quad` | Combined width > column | Split into `align` with one equation per line |
+   348→   348→| Deep fraction nesting (softmax, attention) | Denominator sum too wide | Use `\smash` + separate definition, or `split` |
+   349→   349→| Long subscripts/superscripts with `\text{}` | `\text{collab}`, `\text{social}` are wide | Use short math abbreviations: `c`, `s`, or define `\newcommand` |
+   350→   350→| `equation` with multiple terms separated by `\quad` | Horizontal overflow | Use `aligned` inside `equation`, or `align` |
+   351→   351→
+   352→   352→**Rule M1 — Never put two independent equations on one line in dual-column:**
+   353→   353→```latex
+   354→   354→% ❌ WRONG — two full equations on one line, guaranteed overflow in sigconf
+   355→   355→\begin{equation}
+   356→   356→\mathbf{e}_u^{(l+1)} = \sum_{i} \frac{1}{\sqrt{|N_R(u)|\cdot|N_R(i)|}} \mathbf{e}_i^{(l)}, \quad
+   357→   357→\mathbf{e}_i^{(l+1)} = \sum_{u} \frac{1}{\sqrt{|N_R(i)|\cdot|N_R(u)|}} \mathbf{e}_u^{(l)}
+   358→   358→\end{equation}
+   359→   359→
+   360→   360→% ✅ CORRECT — split into aligned or separate equations
+   361→   361→\begin{align}
+   362→   362→\mathbf{e}_u^{(l+1)} &= \sum_{i \in \mathcal{N}_R(u)} \frac{\mathbf{e}_i^{(l)}}{\sqrt{|\mathcal{N}_R(u)| \cdot |\mathcal{N}_R(i)|}}, \label{eq:collab_u} \\
+   363→   363→\mathbf{e}_i^{(l+1)} &= \sum_{u \in \mathcal{N}_R(i)} \frac{\mathbf{e}_u^{(l)}}{\sqrt{|\mathcal{N}_R(i)| \cdot |\mathcal{N}_R(u)|}}. \label{eq:collab_i}
+   364→   364→\end{align}
+   365→   365→```
+   366→   366→
+   367→   367→**Rule M2 — Wide fractions: use `split` or `multline`:**
+   368→   368→```latex
+   369→   369→% ❌ WRONG — softmax with long denominator
+   370→   370→\begin{equation}
+   371→   371→\alpha_{uv} = \frac{\exp(\text{LeakyReLU}(\mathbf{a}^{\top}[\mathbf{W}\mathbf{e}_u \| \mathbf{W}\mathbf{e}_v]))}{\sum_{k \in \mathcal{N}_S(u)} \exp(\text{LeakyReLU}(\mathbf{a}^{\top}[\mathbf{W}\mathbf{e}_u \| \mathbf{W}\mathbf{e}_k]))}
+   372→   372→\end{equation}
+   373→   373→
+   374→   374→% ✅ CORRECT — define numerator/denominator separately
+   375→   375→\begin{equation}
+   376→   376→\alpha_{uv} = \frac{\exp\bigl(f(\mathbf{e}_u, \mathbf{e}_v)\bigr)}{\sum_{k \in \mathcal{N}_S(u)} \exp\bigl(f(\mathbf{e}_u, \mathbf{e}_k)\bigr)},
+   377→   377→\end{equation}
+   378→   378→\text{where } f(\mathbf{e}_u, \mathbf{e}_v) = \text{LeakyReLU}\bigl(\mathbf{a}^{\top} [\mathbf{W}\mathbf{e}_u \| \mathbf{W}\mathbf{e}_v]\bigr).
+   379→   379→```
+   380→   380→
+   381→   381→**Rule M3 — Self-check: if `equation` body > 60 characters (excluding `\label`), it probably overflows dual-column:**
+   382→   382→This is a quick mental check. If the raw LaTeX math string is very long, it almost certainly won't fit in ~241pt. Use `align`, `split`, `multline`, or factor out sub-expressions.
+   383→   383→
+   384→   384→**Rule M4 — Contrastive loss / InfoNCE: always use `multline` or `split`:**
+   385→   385→Contrastive losses with `\frac{\exp(...)}{\sum \exp(...)}` inside `\log` are notoriously wide. Always break them across lines:
+   386→   386→```latex
+   387→   387→\begin{multline}
+   388→   388→\mathcal{L}_{\text{SSL}}^u = -\log \frac{\exp\bigl(\text{sim}(\mathbf{z}_u', \mathbf{z}_u'') / \tau\bigr)}
+   389→   389→{\sum_{v \neq u} \exp\bigl(\text{sim}(\mathbf{z}_u', \mathbf{z}_v'') / \tau\bigr)}.
+   390→   390→\end{multline}
+   391→   391→```
+   392→   392→
+   393→   393→---
+   394→   394→
+   395→   395→**Algorithm overflow prevention (dual-column papers):**
+   396→   396→
+   397→   397→Algorithm boxes with long `\KwInput` lines or verbose pseudocode frequently overflow column width.
+   398→   398→
+   399→   399→**Rule A1 — Always set `\SetAlFnt{\small}` and limit line width:**
+   400→   400→```latex
+   401→   401→\SetAlFnt{\small}           % Smaller font inside algorithm
+   402→   402→\SetAlCapFnt{\small}        % Smaller caption font
+   403→   403→\SetAlCapNameFnt{\small}    % Smaller "Algorithm N:" prefix
+   404→   404→```
+   405→   405→
+   406→   406→**Rule A2 — Break long Input/Output lines:**
+   407→   407→```latex
+   408→   408→% ❌ WRONG — all parameters on one line
+   409→   409→\KwInput{Interaction graph $\mathcal{G}_R$, social graph $\mathcal{G}_S$, embedding dimension $d$, number of GNN layers $L$, learning rate $\eta$, regularization $\lambda$, SSL weight $\gamma$, temperature $\tau$}
+   410→   410→
+   411→   411→% ✅ CORRECT — break into multiple lines
+   412→   412→\KwInput{Interaction graph $\mathcal{G}_R$, social graph $\mathcal{G}_S$\\\quad embedding dim $d$, GNN layers $L$, learning rate $\eta$\\\quad regularization $\lambda$, SSL weight $\gamma$, temperature $\tau$}
+   413→   413→```
+   414→   414→
+   415→   415→**Rule A3 — Use `algorithm*` for genuinely wide algorithms:**
+   416→   416→If the algorithm has many columns or very long lines that can't be shortened, use `\begin{algorithm*}` to span both columns.
+   417→   417→
+   418→   418→**Rule A4 — Abbreviate variable names in pseudocode:**
+   419→   419→Use compact notation: `emb` not `embedding`, `lr` not `learning\_rate`, `reg` not `regularization`. Define abbreviations in the Input line.
+   420→   420→
+   421→   421→---
+   422→   422→
+   423→   423→**Clickable navigation - every reference must be a live link:**
+   424→   424→
+   425→   425→Attach `\label{}` right after each numbered element, cite with `\ref{}`:
+   426→   426→
+   427→   427→```latex
+   428→   428→\section{Background}\label{sec:bg}
+   429→   429→\begin{figure}[htbp]
+   430→   430→    \includegraphics{...}
+   431→   431→    \caption{Overview}\label{fig:overview}
+   432→   432→\end{figure}
+   433→   433→\begin{equation}\label{eq:energy}
+   434→   434→    E = mc^2
+   435→   435→\end{equation}
+   436→   436→
+   437→   437→% All produce clickable hyperlinks:
+   438→   438→Section~\ref{sec:bg}...
+   439→   439→Figure~\ref{fig:overview}...
+   440→   440→Equation~\eqref{eq:energy}...    % \eqref auto-wraps in parentheses
+   441→   441→```
+   442→   442→
+   443→   443→**Label conventions**: `sec:`, `fig:`, `tab:`, `eq:`, `lst:` - use `~` (non-breaking space) before `\ref`.
+   444→   444→
+   445→   445→**Bibliography** (three approaches):
+   446→   446→
+   447→   447→```latex
+   448→   448→% Approach 1: natbib superscript (preferred academic)
+   449→   449→\usepackage[numbers,super,sort&compress]{natbib}
+   450→   450→This has been studied\cite{smith2023}.     % → studied^[1]
+   451→   451→\bibliography{refs}
+   452→   452→
+   453→   453→% Approach 2: natbib brackets
+   454→   454→\usepackage[numbers]{natbib}
+   455→   455→\cite{smith2023}   % [1]
+   456→   456→\citet{smith2023}  % Smith (2023)
+   457→   457→
+   458→   458→% Approach 3: biblatex
+   459→   459→\usepackage[backend=biber,style=numeric-comp]{biblatex}
+   460→   460→\addbibresource{refs.bib}
+   461→   461→\printbibliography
+   462→   462→```
+   463→   463→
+   464→   464→**PDF metadata** (add before `\end{document}`):
+   465→   465→```latex
+   466→   466→\hypersetup{
+   467→   467→    pdftitle={Document Title},
+   468→   468→    pdfauthor={Author Name},
+   469→   469→    pdfsubject={Topic},
+   470→   470→    pdfkeywords={keyword1, keyword2}
+   471→   471→}
+   472→   472→```
+   473→   473→
+   474→   474→**Table of Contents** (auto-clickable with hyperref):
+   475→   475→```latex
+   476→   476→\tableofcontents
+   477→   477→\listoffigures      % optional
+   478→   478→\listoftables       % optional
+   479→   479→```
+   480→   480→
+   481→   481→### Phase 4 - COMPILE
+   482→   482→
+   483→   483→```bash
+   484→   484→python3 "$PDF_SKILL_DIR/scripts/pdf.py" convert.latex main.tex --runs 2
+   485→   485→```
+   486→   486→
+   487→   487→Default: 2 passes (resolves cross-references). Use `--runs 3` when bibliography back-references are needed. Add `--keep-logs` for debugging.
+   488→   488→
+   489→   489→**NEVER invoke Tectonic directly** - always use the wrapper. It strips noise, surfaces errors, and reports PDF statistics.
+   490→   490→
+   491→   491→### Phase 5 - PREFLIGHT
+   492→   492→
+   493→   493→The wrapper classifies diagnostics into three tiers:
+   494→   494→
+   495→   495→| Tier | Impact | Action |
+   496→   496→|------|--------|--------|
+   497→   497→| Errors | Build aborts | Fix before anything else |
+   498→   498→| Layout defects | Overfull/underfull boxes, missing glyphs | Repair prior to delivery |
+   499→   499→| Advisories | Other warnings | Assess individually; fix when feasible |
+   500→   500→
+
+[showing lines 1-500 of 1077; use offset=501 with limit to continue reading]
