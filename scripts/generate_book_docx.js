@@ -172,6 +172,7 @@ const tocChildren = [
       { level: 1, format: "numericDot", text: "Chapter %1", alignment: AlignmentType.LEFT, style: { paragraph: { spacing: { before: 360, after: 120 } }, run: { size: 24, bold: true, font: "Times New Roman", color: c(P.primary) } } },
     ],
   }),
+];
 
 // Body content
 const bodyChildren = [];
