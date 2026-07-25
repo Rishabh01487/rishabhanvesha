@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://ijarcce.com/papers/blockchain-based-document-verification-and-authentication-system-using-ai",
+    "name": "Blockchain-Based Document Verification and Authentication System",
+    "snippet": "The system leverages blockchain technology combined with cryptographic mincing (SHA- 256) and smart contracts to produce a decentralized verification process.",
+    "host_name": "ijarcce.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ijfmr.com/papers/2025/2/43169.pdf",
+    "name": "[PDF] AI-Blockchain Driven Official Document Verification Framework",
+    "snippet": "This paper proposes an AI- Blockchain Driven Official Document Verification Framework. The framework integrates smart contracts, cryptographic hashing, and AI- ...",
+    "host_name": "www.ijfmr.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/389154499_Blockchain-Based_Decentralized_Document_Verification_and_Its_Applications",
+    "name": "Blockchain-Based Decentralized Document Verification and Its",
+    "snippet": "This paper advocates for a blockchain-based decentralized document verification framework that leverages the InterPlanetary File System (IPFS) and Ethereum ...",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/432121581/1-Paper",
+    "name": "Blockchain and Smart Contract For Digital Document Verification | PDF",
+    "snippet": "Free download as PDF File. Blockchain and Smart Contract For Digital Document Verification. A Digital Certificate using blockchain technology can address this ...",
+    "host_name": "www.scribd.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ijrti.org/papers/IJRTI2602067.pdf",
+    "name": "[PDF] AI-Integrated Blockchain System for Secure Certificate Verification - ijrti",
+    "snippet": "This paper examines various blockchain-based certificate authentication approaches and describes their working principles, advantages, and limitations,",
+    "host_name": "ijrti.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/iel7/6287639/8600701/08732934.pdf",
+    "name": "A Survey on Security Verification of Blockchain Smart Contracts",
+    "snippet": "20 papers focus on dealing with security assurance of blockchain smart contracts, and 33 papers focus on the correctness verification of  ...",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0267364924001018",
+    "name": "From smart legal contracts to contracts on blockchain: An empirical",
+    "snippet": "The objective is to provide an assessment of both the advantages and limitations associated with smart legal contracts.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ijcrt.org/papers/IJCRT2503367.pdf",
+    "name": "[PDF] Block-Chain Based Document Verification System Using IPFS",
+    "snippet": "The designed system combines the power of document verification and stores them tamper-proof, immutable, and verifiable using IPFS.",
+    "host_name": "www.ijcrt.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Blockchain-based-document-verification-system-Chaudhari-Lakshmisudha/e6dcf8c1d00858e96785fc1ef59bdb72fe0a71db",
+    "name": "Blockchain based document verification system - Semantic Scholar",
+    "snippet": "An answer for record confirmation that utilizes blockchain innovation is proposed that is essentially utilized by instructive foundations to store their ...",
+    "host_name": "www.semanticscholar.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2079-9292/11/14/2112",
+    "name": "Blockchain Smart Contract to Prevent Forgery of Degree Certificates",
+    "snippet": "In this paper, the AI-based Blockchain diploma is based on a reliability-based architecture, comparing the preregistered real diploma with the forged near ...",
+    "host_name": "www.mdpi.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

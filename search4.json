@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://pages.chain.link/hubfs/e/liquidity_without_borders.pdf",
+    "name": "Liquidity Without Borders",
+    "snippet": "This research found that effective and scaled cross-chain interoperability can drive the following benefits . Boost Market Liquidity: Connecting fragmented ... Read more 17 pages\nInteroperability's objective is to support the trading and transferring of digital assets (or tokens) from one blockchain to another without compromising the ...",
+    "host_name": "pages.chain.link",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2505.04934v1",
+    "name": "Enhancing Blockchain Cross-Chain Interoperability",
+    "snippet": "May 8, 2025 — Experts forecast that the global blockchain interoperability market will expand from $375.46 million in 2024 to $8.48 billion by the end of ...",
+    "host_name": "arxiv.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blockchain-observatory.ec.europa.eu/document/download/c289f656-052a-4a72-b213-26b307691844_en?filename=EUBOF_Interoperability%20Report-30112023.pdf",
+    "name": "The current state of interoperability between blockchain",
+    "snippet": "Cross-chain interoperability pertains to creating protocols, technologies, and standards that enable the transfer of digital assets between different ... Read more 33 pages",
+    "host_name": "blockchain-observatory.ec.europa.eu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/376489036_Enhancing_Blockchain_Interoperability_and_Intraoperability_Capabilities_in_Collaborative_Enterprise-A_Standardized_Architecture_Perspective",
+    "name": "Enhancing Blockchain Interoperability and Intraoperability",
+    "snippet": "Jan 4, 2024 — this study presents a standardized architecture aiming to effortlessly link blockchains with legacy systems supporting cross -DLT  ...",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eprint.iacr.org/2021/537.pdf",
+    "name": "SoK: Exploring Blockchains Interoperability",
+    "snippet": "2021 · Cited by 84 — This paper provides a systematic and comprehensive review of the current progress of blockchain that it extends the usability and collaboration ... 27 pages\nTo facilitate blockchain interoperability, a cross-blockchain “bridge” is required to enable communication from one chain to another and back,",
+    "host_name": "eprint.iacr.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ijnrd.org/papers/IJNRD2401341.pdf",
+    "name": "Cross-Chain Interoperability: Enhancing Blockchain",
+    "snippet": "We give an overview of the importance of cross - chain interoperability , approaches, mechanisms used in their implementation, and challenges to effective cross- ... Read more 5 pages",
+    "host_name": "www.ijnrd.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://chain.link/cross-chain",
+    "name": "Cross-Chain Interoperability Protocol (CCIP)",
+    "snippet": "CCIP enables digital asset transfers across blockchains with confidence. cross-chain protocol enabling seamless digital asset transfers across chains.",
+    "host_name": "chain.link",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/369243136_Blockchain_Meets_Metaverse_and_Digital_Asset_Management_A_Comprehensive_Survey",
+    "name": "(PDF) Blockchain Meets Metaverse and Digital Asset",
+    "snippet": "Jul 11, 2026 — Our goal in this paper is to provide a comprehensive survey that clarifies the role of blockchain in the metaverse including in-depth analysis of digital asset ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2601.02949",
+    "name": "Exploring Blockchain Interoperability: Frameworks, Use",
+    "snippet": "2026 · Cited by 2 — The paper [6] discusses two types of protocols that enable blockchain interoperability . The first is the cross - chain communication protocol (CCCP), which refers ... Read more",
+    "host_name": "arxiv.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2405959526000081",
+    "name": "A review on current state of art of a blockchain interoperability",
+    "snippet": "The paper categorizes research on blockchain interoperability into three major categories: chain-based, bridge-based, and DApp-based interoperability [16].",
+    "host_name": "www.sciencedirect.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

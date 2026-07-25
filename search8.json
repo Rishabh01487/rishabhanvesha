@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.researchgate.net/publication/386295262_Centralized_exchanges_vs_decentralized_exchanges_in_cryptocurrency_markets_A_systematic_literature_review",
+    "name": "(PDF) Centralized exchanges vs. decentralized",
+    "snippet": "PDF | Research on cryptocurrency exchanges, consisting of both centralized exchanges (CEXs) and decentralized exchanges (DEXs), has seen a significant.\nCompared with decentralized exchanges (DEXs), centralized exchanges (CEXs) offer higher liquidity, advanced trading features, and a more established track ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.bis.org/publ/work1227.pdf",
+    "name": "Decentralised dealers? examining liquidity provision in",
+    "snippet": "2024 — Our paper contributes to the rapidly developing literature on decentralised exchanges and decentralised finance more generally. 52 pages",
+    "host_name": "www.bis.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://kclpure.kcl.ac.uk/portal/files/135999972/2020_decentralised_exchange.pdf",
+    "name": "Facilitating the Decentralised Exchange of",
+    "snippet": "2020 · Cited by 15 — Abstract—This article discusses a protocol to facilitate decentralised exchanges on an order -driven market through a consortium of market services operators. ...\n2020 · Cited by 15 — This article outlines the ongoing work of validating the hypothesis that a protocol that allows for initialising decentral - ised exchanges via a consortium of ...",
+    "host_name": "kclpure.kcl.ac.uk",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.hashcodex.com/order-matching-in-decentralized-exchange-development",
+    "name": "Order Matching: A Key Factor in DEX Development",
+    "snippet": "Order matching in a decentralized exchange connects buy and sell orders automatically. The system checks the order book, executes trades if a match exists,",
+    "host_name": "www.hashcodex.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://skbi.smu.edu.sg/sites/skbi.smu.edu.sg/files/Research/price-discovery-on-decentralized-exchange.pdf",
+    "name": "Price Discovery on Decentralized Exchanges",
+    "snippet": "Decentralized exchanges (DEXs) are trading venues built on public blockchains . As of May 2024, the average trading volume on DEXs amounts to $88.66 billion, 65 pages",
+    "host_name": "skbi.smu.edu.sg",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iaqf.org/resources/Documents/ThalesianSeminars_AMM.pdf",
+    "name": "The Adoption of Blockchain-based Decentralized Exchanges",
+    "snippet": "Cited by 245 — Can the AMM incentivize liquidity providers to deposit? How does the design of the AMM affect trading activities and economic incentives of market participants?",
+    "host_name": "iaqf.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@gwrx2005/ai-enhanced-decentralized-peer-to-peer-order-book-trading-system-b7221b944d09",
+    "name": "AI-Enhanced Decentralized Peer-to-Peer Order Book",
+    "snippet": "This paper revisits the feasibility of a peer-to-peer (P2P) order book and automated trading architecture, and extends it by integrating ...",
+    "host_name": "medium.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rdi.berkeley.edu/berkeley-defi/assets/material/Updated%20Lecture%205%20Slides.pdf",
+    "name": "Decentralized Exchanges (DEX)",
+    "snippet": "Properties: ▫ Instant liquidity, irrespective of the trade size. ▫ Purchase of asset X increases price of X and decreases the price of Y. 67 pages",
+    "host_name": "rdi.berkeley.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/Decentralized-Exchanges-Parlour/8027409e9fb60acf125a349eef345af591e50294",
+    "name": "[PDF] Decentralized Exchanges",
+    "snippet": "Uniswap is one of the largest decentralized exchanges with a liquidity balance of over 3 billion USD and daily trading volume of over 700 million USD.",
+    "host_name": "www.semanticscholar.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@gwrx2005/blockchain-based-order-books-and-ai-integration-architecture-performance-and-intelligent-trading-115729f3f128",
+    "name": "Blockchain-Based Order Books and AI Integration",
+    "snippet": "This paper provides an analysis of blockchain -based order book designs and their integration with artificial intelligence (AI).",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

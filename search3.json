@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.researchgate.net/publication/380565931_A_Blockchain_Oracle_Interoperability_Technique_for_Permissioned_Blockchain",
+    "name": "(PDF) A Blockchain Oracle Interoperability Technique for",
+    "snippet": "Apr 29, 2026 — This study proposes a blockchain oracle interoperability technique designed specifically for permissioned blockchain platforms.\nApr 29, 2026 — This study proposes a blockchain oracle interoperability technique designed specifically for permissioned blockchain platforms. Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eprint.iacr.org/2022/603.pdf",
+    "name": "Distributed Blockchain Price Oracle",
+    "snippet": "2022 · Cited by 10 — In this paper, we focus on decentralized price oracle s, which are distributed systems that provide exchange rates of digital assets to smart contracts. 15 pages\n2022 · Cited by 10 — In this paper, we focus on decentralized price oracles , which are distributed systems that provide exchange rates of digital assets to smart contracts.",
+    "host_name": "eprint.iacr.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://aaltodoc.aalto.fi/bitstreams/59fd86b4-9c5c-416e-8f63-6aff02b10b74/download",
+    "name": "a Systematic Literature Review of Blockchain Oracles",
+    "snippet": "2023 · Cited by 2 — The goal of this review is to be the groundwork to encourage further research on the topic, as the security aspects of blockchain oracles are ...",
+    "host_name": "aaltodoc.aalto.fi",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://monami.hs-mittweida.de/files/14641/14641.pdf",
+    "name": "A Systematic Literature Review on Blockchain Oracles",
+    "snippet": "2023 · Cited by 3 — The objective of this paper is to identify the current state of research , content and challenges, as well as future re- search directions for blockchain oracles ... 9 pages",
+    "host_name": "monami.hs-mittweida.de",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iris.unito.it/retrieve/a10daefe-2e59-4a73-8888-479aa2829bb5/information-11-00509-with-cover.pdf",
+    "name": "Understanding the Blockchain Oracle Problem",
+    "snippet": "Cited by 311 — The start-up proposed a system of decentralized oracles , based on reputation, to reproduce the consensus mechanism of a blockchain . 20 pages",
+    "host_name": "iris.unito.it",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/353972691_The_Blockchain_Oracle_Problem_in_Decentralized_Finance-A_Multivocal_Approach",
+    "name": "The Blockchain Oracle Problem in Decentralized Finance",
+    "snippet": "Jul 9, 2021 — This study aims to shed light on the pattern that identifies the oracle problem in DeFi and outline the most promising ways to overcome the related weaknesses.",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/340662783_A_Study_of_Blockchain_Oracles",
+    "name": "(PDF) A Study of Blockchain Oracles",
+    "snippet": "Jul 14, 2020 — In this paper , we will study and describe the widely used blockchain oracles . Then, we elaborate on his potential role, technical architecture, and design ...",
+    "host_name": "www.researchgate.net",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/361472178_Blockchain_Oracles_State-of-The-Art_and_Research_Directions",
+    "name": "(PDF) Blockchain Oracles: State-of-The-Art and Research",
+    "snippet": "This paper aims to conduct a comprehensive and thorough literature review regarding blockchain interoperability, with special highlight on blockchain Oracles",
+    "host_name": "www.researchgate.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/346496334_Understanding_the_Blockchain_Oracle_Problem_A_Call_for_Action",
+    "name": "Understanding the Blockchain Oracle Problem: A Call for",
+    "snippet": "Oct 28, 2020 — This literature review of the latest papers in the field aims to give clarity to the blockchain oracle problem by discussing its effects in some ...",
+    "host_name": "www.researchgate.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://chain.link/education-hub/oracle-problem",
+    "name": "The Blockchain Oracle Problem",
+    "snippet": "Aug 22, 2025 — The blockchain oracle problem refers to the inability of blockchains to access external data, making them isolated networks, akin to a computer ...",
+    "host_name": "chain.link",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://ieeexplore.ieee.org/document/10323104",
+    "name": "PaVM: A Parallel Virtual Machine for Smart Contract",
+    "snippet": "2023 · Cited by 21 — In this paper, we propose PaVM , the first smart contract virtual machine that supports both inter-contract and intra-contract parallel execution. Read more",
+    "host_name": "ieeexplore.ieee.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/375777656_PaVM_A_Parallel_Virtual_Machine_for_Smart_Contract_Execution_and_Validation",
+    "name": "PaVM: A Parallel Virtual Machine for Smart Contract",
+    "snippet": "Jul 14, 2026 — In this paper , we propose PaVM, the first smart contract virtual machine that supports both inter-contract and intra-contract parallel execution ... Read more\nJul 14, 2026 — In this paper, we propose PaVM , the first smart contract virtual machine that supports both inter-contract and intra-contract parallel execution ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cs.toronto.edu/~fanl/papers/parallel-icse22.pdf",
+    "name": "Utilizing Parallelism in Smart Contracts on Decentralized",
+    "snippet": "2022 · Cited by 67 — The main reason is that the proposed parallel execution mechanisms cannot effectively deal with the conflicts inherent in many blockchain applications. In this ... Read more 12 pages",
+    "host_name": "www.cs.toronto.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://personal.ntu.edu.sg/yi_li/files/Qi2023SCP.pdf",
+    "name": "Smart Contract Parallel Execution with Fine-Grained State",
+    "snippet": "Cited by 26 — In this paper , we propose a novel execution scheduling framework, DMVCC, to further increase the parallelism in smart contract executions , via more fine- ... 12 pages\nCited by 26 — The experimental results show that DMVCC doubles the parallel speedup achievable to a 20× overall speedup, compared with the serial execution baseline, 12 pages",
+    "host_name": "personal.ntu.edu.sg",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://andersbrownworth.com/resume/pdf/2023-08-01-parsec-whitepaper.pdf",
+    "name": "PARSEC: Executing Smart Contracts in Parallel",
+    "snippet": "Cited by 2 — Abstract. This paper presents PARSEC , a high-performance dis- tributed platform for executing smart contracts at scale. Read more 13 pages",
+    "host_name": "andersbrownworth.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/pdf/2306.05007",
+    "name": "Parallel and Asynchronous Smart Contract Execution",
+    "snippet": "2023 · Cited by 52 — In this paper , we propose a novel paradigm for smart contract execution . . We show two ways of applying this paradigm to blockchains . A  ...",
+    "host_name": "arxiv.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.scribd.com/document/807386718/1-s2-0-S2452414X24001195-main",
+    "name": "Blockchain Smart Contract Execution Overview | PDF",
+    "snippet": "Free download as PDF File (.pdf), An overview of blockchain smart contract execution mechanism. Execution environment computers from joining parallelism ...",
+    "host_name": "www.scribd.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://jcse.kiise.org/files/V15N3-04.pdf",
+    "name": "Leverage Sidechains to Reduce the Workload of Smart",
+    "snippet": "2021 · Cited by 5 — In this paper , we propose a method for certain smart contracts to be executed in parallel through the usage of sidechains, a secondary ... Read more 9 pages",
+    "host_name": "jcse.kiise.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/325493806_Scalable_Blockchain_Based_Smart_Contract_Execution",
+    "name": "(PDF) Scalable Blockchain Based Smart Contract Execution",
+    "snippet": "This research paper aims to identify the recent areas of focus and provide a comprehensive perspective on blockchain applications and smart contracts ... Read more",
+    "host_name": "www.researchgate.net",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.acm.org/doi/10.1145/3710848.3710879",
+    "name": "A Programming Model for Smart Contracts on Parallel EVMs",
+    "snippet": "This research introduces a parallel programming model designed to overcome the limitations of traditional smart contract execution on parallel virtual machines. Read more",
+    "host_name": "dl.acm.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
