@@ -266,7 +266,7 @@ function BookReader({ onBack }: { onBack: () => void }) {
   const preloadPage = useCallback((pageNum: number) => {
     if (pageNum < 0 || pageNum >= TOTAL_PAGES || loadedImages.has(pageNum)) return;
     const img = new Image();
-    img.src = `/api/book-page?page=${pageNum}`;
+    img.src = `/book-pages/page_${String(pageNum).padStart(4, "0")}.jpg`;
     img.onload = () => {
       setLoadedImages((prev) => new Set([...prev, pageNum]));
     };
@@ -374,7 +374,7 @@ function BookReader({ onBack }: { onBack: () => void }) {
                 onClick={() => goToPage(currentPage - 1)}
               >
                 <img
-                  src={`/api/book-page?page=${currentPage - 1}`}
+                  src={`/book-pages/page_${String(currentPage - 1).padStart(4, "0")}.jpg`}
                   alt=""
                   className="max-h-[88vh] max-w-full object-contain rounded-sm shadow-2xl pointer-events-none"
                   draggable={false}
@@ -396,7 +396,7 @@ function BookReader({ onBack }: { onBack: () => void }) {
                 ref={(el) => {
                   if (el) imageRefs.current.set(currentPage, el);
                 }}
-                src={`/api/book-page?page=${currentPage}`}
+                src={`/book-pages/page_${String(currentPage).padStart(4, "0")}.jpg`}
                 alt=""
                 className="max-h-[85vh] max-w-full object-contain rounded-sm shadow-2xl pointer-events-none"
                 draggable={false}
@@ -420,7 +420,7 @@ function BookReader({ onBack }: { onBack: () => void }) {
                 onClick={() => goToPage(currentPage + 1)}
               >
                 <img
-                  src={`/api/book-page?page=${currentPage + 1}`}
+                  src={`/book-pages/page_${String(currentPage + 1).padStart(4, "0")}.jpg`}
                   alt=""
                   className="max-h-[88vh] max-w-full object-contain rounded-sm shadow-2xl pointer-events-none"
                   draggable={false}
