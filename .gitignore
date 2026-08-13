@@ -63,3 +63,9 @@ download/
 mini-services/
 examples/
 Caddyfile
+bun.lock
+tool-results/
+tests/
+components.json
+src/components/ui/
+src/hooks/
