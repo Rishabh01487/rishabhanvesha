@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Caveat } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AVERON — The Programmable Digital Asset Infrastructure",
     description:
-      "Read Averon: The Programmable Digital Asset Infrastructure by Rishabh Gupta. A technical reference for the Averon Protocol.",
+      "Read Averon: The Programmable Digital Asset Infrastructure by Rishabh Gupta.",
     type: "website",
   },
 };
@@ -43,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#050505] text-white`}
+        className={`${spaceGrotesk.variable} ${caveat.variable} antialiased bg-[#050505] text-white`}
       >
         {children}
       </body>
