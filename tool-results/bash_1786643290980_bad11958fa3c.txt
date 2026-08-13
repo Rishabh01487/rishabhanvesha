@@ -1,0 +1,480 @@
+ain d296502] feat: organic aurora blob animation + pickup line + author credit
+ 478 files changed, 12763 insertions(+), 201 deletions(-)
+ create mode 100755 .env
+ mode change 100644 => 100755 .gitignore
+ create mode 100644 .next/BUILD_ID
+ create mode 100644 .next/app-path-routes-manifest.json
+ create mode 100644 .next/build-manifest.json
+ create mode 100644 .next/build/chunks/[root-of-the-server]__05i36w1._.js
+ create mode 100644 .next/build/chunks/[root-of-the-server]__05i36w1._.js.map
+ create mode 100644 .next/build/chunks/[root-of-the-server]__1kki86f._.js
+ create mode 100644 .next/build/chunks/[root-of-the-server]__1kki86f._.js.map
+ create mode 100644 .next/build/chunks/[turbopack-node]_transforms_postcss_ts_1gfkiq9._.js
+ create mode 100644 .next/build/chunks/[turbopack-node]_transforms_postcss_ts_1gfkiq9._.js.map
+ create mode 100644 .next/build/chunks/[turbopack]_runtime.js
+ create mode 100644 .next/build/chunks/[turbopack]_runtime.js.map
+ create mode 100644 .next/build/chunks/node_modules_20v-8wl._.js
+ create mode 100644 .next/build/chunks/node_modules_20v-8wl._.js.map
+ create mode 100644 .next/build/chunks/pool_entry-[turbopack-node]_transforms_postcss_ts_0tp-k2v._.js
+ create mode 100644 .next/build/chunks/pool_entry-[turbopack-node]_transforms_postcss_ts_0tp-k2v._.js.map
+ create mode 100644 .next/build/package.json
+ create mode 100644 .next/cache/config.json
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000001.sst
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000002.sst
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000003.sst
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000004.sst
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000005.meta
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000006.meta
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000007.meta
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/00000008.meta
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/CURRENT
+ create mode 100644 .next/cache/turbopack/v16.3.0-d73f5622/LOG
+ create mode 100644 .next/diagnostics/build-diagnostics.json
+ create mode 100644 .next/diagnostics/framework.json
+ create mode 100644 .next/diagnostics/route-bundle-stats.json
+ create mode 100644 .next/export-marker.json
+ create mode 100644 .next/fallback-build-manifest.json
+ create mode 100644 .next/images-manifest.json
+ create mode 100644 .next/next-minimal-server.js.nft.json
+ create mode 100644 .next/next-server.js.nft.json
+ create mode 100644 .next/package.json
+ create mode 100644 .next/prerender-manifest.json
+ create mode 100644 .next/required-server-files.js
+ create mode 100644 .next/required-server-files.json
+ create mode 100644 .next/routes-manifest.json
+ create mode 100644 .next/server/app-paths-manifest.json
+ create mode 100644 .next/server/app/_global-error.html
+ create mode 100644 .next/server/app/_global-error.meta
+ create mode 100644 .next/server/app/_global-error.rsc
+ create mode 100644 .next/server/app/_global-error.segments/__PAGE__.segment.rsc
+ create mode 100644 .next/server/app/_global-error.segments/_full.segment.rsc
+ create mode 100644 .next/server/app/_global-error.segments/_tree.segment.rsc
+ create mode 100644 .next/server/app/_global-error/page.js
+ create mode 100644 .next/server/app/_global-error/page.js.map
+ create mode 100644 .next/server/app/_global-error/page.js.nft.json
+ create mode 100644 .next/server/app/_global-error/page/app-paths-manifest.json
+ create mode 100644 .next/server/app/_global-error/page/build-manifest.json
+ create mode 100644 .next/server/app/_global-error/page/next-font-manifest.json
+ create mode 100644 .next/server/app/_global-error/page/react-loadable-manifest.json
+ create mode 100644 .next/server/app/_global-error/page/server-reference-manifest.json
+ create mode 100644 .next/server/app/_global-error/page_client-reference-manifest.js
+ create mode 100644 .next/server/app/_not-found.html
+ create mode 100644 .next/server/app/_not-found.meta
+ create mode 100644 .next/server/app/_not-found.rsc
+ create mode 100644 .next/server/app/_not-found.segments/_full.segment.rsc
+ create mode 100644 .next/server/app/_not-found.segments/_not-found/__PAGE__.segment.rsc
+ create mode 100644 .next/server/app/_not-found.segments/_tree.segment.rsc
+ create mode 100644 .next/server/app/_not-found/page.js
+ create mode 100644 .next/server/app/_not-found/page.js.map
+ create mode 100644 .next/server/app/_not-found/page.js.nft.json
+ create mode 100644 .next/server/app/_not-found/page/app-paths-manifest.json
+ create mode 100644 .next/server/app/_not-found/page/build-manifest.json
+ create mode 100644 .next/server/app/_not-found/page/next-font-manifest.json
+ create mode 100644 .next/server/app/_not-found/page/react-loadable-manifest.json
+ create mode 100644 .next/server/app/_not-found/page/server-reference-manifest.json
+ create mode 100644 .next/server/app/_not-found/page_client-reference-manifest.js
+ create mode 100644 .next/server/app/index.html
+ create mode 100644 .next/server/app/index.meta
+ create mode 100644 .next/server/app/index.rsc
+ create mode 100644 .next/server/app/index.segments/__PAGE__.segment.rsc
+ create mode 100644 .next/server/app/index.segments/_full.segment.rsc
+ create mode 100644 .next/server/app/index.segments/_tree.segment.rsc
+ create mode 100644 .next/server/app/page.js
+ create mode 100644 .next/server/app/page.js.map
+ create mode 100644 .next/server/app/page.js.nft.json
+ create mode 100644 .next/server/app/page/app-paths-manifest.json
+ create mode 100644 .next/server/app/page/build-manifest.json
+ create mode 100644 .next/server/app/page/next-font-manifest.json
+ create mode 100644 .next/server/app/page/react-loadable-manifest.json
+ create mode 100644 .next/server/app/page/server-reference-manifest.json
+ create mode 100644 .next/server/app/page_client-reference-manifest.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0116v3x._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0116v3x._.js.map
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__07-cb6x._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__07-cb6x._.js.map
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0_wo2si._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0_wo2si._.js.map
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0bf0c1b._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0bf0c1b._.js.map
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0z5ob0b._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__0z5ob0b._.js.map
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__1x0ibcr._.js
+ create mode 100644 .next/server/chunks/ssr/[root-of-the-server]__1x0ibcr._.js.map
+ create mode 100644 .next/server/chunks/ssr/[turbopack]_runtime.js
+ create mode 100644 .next/server/chunks/ssr/[turbopack]_runtime.js.map
+ create mode 100644 .next/server/chunks/ssr/_1t88sw-._.js
+ create mode 100644 .next/server/chunks/ssr/_1t88sw-._.js.map
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app__global-error_page_actions_0zi5s8-.js
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app__global-error_page_actions_0zi5s8-.js.map
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app__not-found_page_actions_0pt47yr.js
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app__not-found_page_actions_0pt47yr.js.map
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app_page_actions_0hhsz1j.js
+ create mode 100644 .next/server/chunks/ssr/_next-internal_server_app_page_actions_0hhsz1j.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_01xbj_9._.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_01xbj_9._.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_0ts4ag-._.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_0ts4ag-._.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_1--45f-._.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_1--45f-._.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_18ie-du._.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_18ie-du._.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_0wpq8j3._.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_0wpq8j3._.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_forbidden_0symwr9.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_forbidden_0symwr9.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_global-error_0q-w892.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_global-error_0q-w892.js.map
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_unauthorized_0l_sp0x.js
+ create mode 100644 .next/server/chunks/ssr/node_modules_next_dist_client_components_builtin_unauthorized_0l_sp0x.js.map
+ create mode 100644 .next/server/chunks/ssr/src_app_page_tsx_1chiuah._.js
+ create mode 100644 .next/server/chunks/ssr/src_app_page_tsx_1chiuah._.js.map
+ create mode 100644 .next/server/functions-config-manifest.json
+ create mode 100644 .next/server/interception-route-rewrite-manifest.js
+ create mode 100644 .next/server/middleware-build-manifest.js
+ create mode 100644 .next/server/middleware-manifest.json
+ create mode 100644 .next/server/next-font-manifest.js
+ create mode 100644 .next/server/next-font-manifest.json
+ create mode 100644 .next/server/pages-manifest.json
+ create mode 100644 .next/server/pages/404.html
+ create mode 100644 .next/server/pages/500.html
+ create mode 100644 .next/server/prefetch-hints.json
+ create mode 100644 .next/server/server-reference-manifest.js
+ create mode 100644 .next/server/server-reference-manifest.json
+ create mode 100644 .next/static/FE53ZpovQj0_caquTS88m/_buildManifest.js
+ create mode 100644 .next/static/FE53ZpovQj0_caquTS88m/_clientMiddlewareManifest.js
+ create mode 100644 .next/static/FE53ZpovQj0_caquTS88m/_ssgManifest.js
+ create mode 100644 .next/static/chunks/0cz1d0mv5g_q7.js
+ create mode 100644 .next/static/chunks/12f6-2s_gopn8.js
+ create mode 100644 .next/static/chunks/1k2mne8dx8bo2.js
+ create mode 100644 .next/static/chunks/1q7p0fmp6f79j.css
+ create mode 100644 .next/static/chunks/2y4wans9ulj_u.js
+ create mode 100644 .next/static/chunks/3fntmmi971322.js
+ create mode 100644 .next/static/chunks/3l04zcqx63h3y.js
+ create mode 100644 .next/static/chunks/turbopack-1z1wrlvmpjo_a.js
+ create mode 100644 .next/static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2
+ create mode 100644 .next/static/media/11cc37d7380d16b4-s.27riv1g955cgo.woff2
+ create mode 100644 .next/static/media/28868e710e86be81-s.2eksvhm1z0jwa.woff2
+ create mode 100644 .next/static/media/32687112bd2dd8db-s.1gepa_7fcx9fm.woff2
+ create mode 100644 .next/static/media/86d70b7c76b6ec6e-s.43yn3v1dnm71_.woff2
+ create mode 100644 .next/static/media/a85fe84266768609-s.p.0h6ig86gwutp4.woff2
+ create mode 100644 .next/static/media/da4b870ab52b3094-s.2rv_b6cm3-gtx.woff2
+ create mode 100644 .next/trace
+ create mode 100644 .next/trace-build
+ create mode 100644 .next/turbopack
+ create mode 100644 .next/types/cache-life.d.ts
+ create mode 100644 .next/types/root-params.d.ts
+ create mode 100644 .next/types/routes.d.ts
+ create mode 100644 .next/types/validator.ts
+ mode change 100644 => 100755 .zscripts/dev.pid
+ mode change 100644 => 100755 Caddyfile
+ mode change 100644 => 100755 book_text.txt
+ create mode 100644 bun.lock
+ create mode 100644 compare.json
+ mode change 100644 => 100755 db/custom.db
+ mode change 100644 => 100755 eslint.config.mjs
+ mode change 100644 => 100755 examples/websocket/frontend.tsx
+ mode change 100644 => 100755 examples/websocket/server.ts
+ mode change 100644 => 100755 mini-services/.gitkeep
+ create mode 100644 new-landing.png
+ create mode 100644 next-env.d.ts
+ mode change 100644 => 100755 next.config.ts
+ mode change 100644 => 100755 package-lock.json
+ mode change 100644 => 100755 package.json
+ mode change 100644 => 100755 postcss.config.mjs
+ mode change 100644 => 100755 prisma/schema.prisma
+ mode change 100644 => 100755 public/book-pages/page_0000.jpg
+ mode change 100644 => 100755 public/book-pages/page_0001.jpg
+ mode change 100644 => 100755 public/book-pages/page_0002.jpg
+ mode change 100644 => 100755 public/book-pages/page_0003.jpg
+ mode change 100644 => 100755 public/book-pages/page_0004.jpg
+ mode change 100644 => 100755 public/book-pages/page_0005.jpg
+ mode change 100644 => 100755 public/book-pages/page_0006.jpg
+ mode change 100644 => 100755 public/book-pages/page_0007.jpg
+ mode change 100644 => 100755 public/book-pages/page_0008.jpg
+ mode change 100644 => 100755 public/book-pages/page_0009.jpg
+ mode change 100644 => 100755 public/book-pages/page_0010.jpg
+ mode change 100644 => 100755 public/book-pages/page_0011.jpg
+ mode change 100644 => 100755 public/book-pages/page_0012.jpg
+ mode change 100644 => 100755 public/book-pages/page_0013.jpg
+ mode change 100644 => 100755 public/book-pages/page_0014.jpg
+ mode change 100644 => 100755 public/book-pages/page_0015.jpg
+ mode change 100644 => 100755 public/book-pages/page_0016.jpg
+ mode change 100644 => 100755 public/book-pages/page_0017.jpg
+ mode change 100644 => 100755 public/book-pages/page_0018.jpg
+ mode change 100644 => 100755 public/book-pages/page_0019.jpg
+ mode change 100644 => 100755 public/book-pages/page_0020.jpg
+ mode change 100644 => 100755 public/book-pages/page_0021.jpg
+ mode change 100644 => 100755 public/book-pages/page_0022.jpg
+ mode change 100644 => 100755 public/book-pages/page_0023.jpg
+ mode change 100644 => 100755 public/book-pages/page_0024.jpg
+ mode change 100644 => 100755 public/book-pages/page_0025.jpg
+ mode change 100644 => 100755 public/book-pages/page_0026.jpg
+ mode change 100644 => 100755 public/book-pages/page_0027.jpg
+ mode change 100644 => 100755 public/book-pages/page_0028.jpg
+ mode change 100644 => 100755 public/book-pages/page_0029.jpg
+ mode change 100644 => 100755 public/book-pages/page_0030.jpg
+ mode change 100644 => 100755 public/book-pages/page_0031.jpg
+ mode change 100644 => 100755 public/book-pages/page_0032.jpg
+ mode change 100644 => 100755 public/book-pages/page_0033.jpg
+ mode change 100644 => 100755 public/book-pages/page_0034.jpg
+ mode change 100644 => 100755 public/book-pages/page_0035.jpg
+ mode change 100644 => 100755 public/book-pages/page_0036.jpg
+ mode change 100644 => 100755 public/book-pages/page_0037.jpg
+ mode change 100644 => 100755 public/book-pages/page_0038.jpg
+ mode change 100644 => 100755 public/book-pages/page_0039.jpg
+ mode change 100644 => 100755 public/book-pages/page_0040.jpg
+ mode change 100644 => 100755 public/book-pages/page_0041.jpg
+ mode change 100644 => 100755 public/book-pages/page_0042.jpg
+ mode change 100644 => 100755 public/book-pages/page_0043.jpg
+ mode change 100644 => 100755 public/book-pages/page_0044.jpg
+ mode change 100644 => 100755 public/book-pages/page_0045.jpg
+ mode change 100644 => 100755 public/book-pages/page_0046.jpg
+ mode change 100644 => 100755 public/book-pages/page_0047.jpg
+ mode change 100644 => 100755 public/book-pages/page_0048.jpg
+ mode change 100644 => 100755 public/book-pages/page_0049.jpg
+ mode change 100644 => 100755 public/book-pages/page_0050.jpg
+ mode change 100644 => 100755 public/book-pages/page_0051.jpg
+ mode change 100644 => 100755 public/book-pages/page_0052.jpg
+ mode change 100644 => 100755 public/book-pages/page_0053.jpg
+ mode change 100644 => 100755 public/book-pages/page_0054.jpg
+ mode change 100644 => 100755 public/book-pages/page_0055.jpg
+ mode change 100644 => 100755 public/book-pages/page_0056.jpg
+ mode change 100644 => 100755 public/book-pages/page_0057.jpg
+ mode change 100644 => 100755 public/book-pages/page_0058.jpg
+ mode change 100644 => 100755 public/book-pages/page_0059.jpg
+ mode change 100644 => 100755 public/book-pages/page_0060.jpg
+ mode change 100644 => 100755 public/book-pages/page_0061.jpg
+ mode change 100644 => 100755 public/book-pages/page_0062.jpg
+ mode change 100644 => 100755 public/book-pages/page_0063.jpg
+ mode change 100644 => 100755 public/book-pages/page_0064.jpg
+ mode change 100644 => 100755 public/book-pages/page_0065.jpg
+ mode change 100644 => 100755 public/book-pages/page_0066.jpg
+ mode change 100644 => 100755 public/book-pages/page_0067.jpg
+ mode change 100644 => 100755 public/book-pages/page_0068.jpg
+ mode change 100644 => 100755 public/book-pages/page_0069.jpg
+ mode change 100644 => 100755 public/book-pages/page_0070.jpg
+ mode change 100644 => 100755 public/book-pages/page_0071.jpg
+ mode change 100644 => 100755 public/book-pages/page_0072.jpg
+ mode change 100644 => 100755 public/book-pages/page_0073.jpg
+ mode change 100644 => 100755 public/book-pages/page_0074.jpg
+ mode change 100644 => 100755 public/book-pages/page_0075.jpg
+ mode change 100644 => 100755 public/book-pages/page_0076.jpg
+ mode change 100644 => 100755 public/book-pages/page_0077.jpg
+ mode change 100644 => 100755 public/book-pages/page_0078.jpg
+ mode change 100644 => 100755 public/book-pages/page_0079.jpg
+ mode change 100644 => 100755 public/book-pages/page_0080.jpg
+ mode change 100644 => 100755 public/book-pages/page_0081.jpg
+ mode change 100644 => 100755 public/book-pages/page_0082.jpg
+ mode change 100644 => 100755 public/book-pages/page_0083.jpg
+ mode change 100644 => 100755 public/book-pages/page_0084.jpg
+ mode change 100644 => 100755 public/book-pages/page_0085.jpg
+ mode change 100644 => 100755 public/book-pages/page_0086.jpg
+ mode change 100644 => 100755 public/book-pages/page_0087.jpg
+ mode change 100644 => 100755 public/book-pages/page_0088.jpg
+ mode change 100644 => 100755 public/book-pages/page_0089.jpg
+ mode change 100644 => 100755 public/book-pages/page_0090.jpg
+ mode change 100644 => 100755 public/book-pages/page_0091.jpg
+ mode change 100644 => 100755 public/book-pages/page_0092.jpg
+ mode change 100644 => 100755 public/book-pages/page_0093.jpg
+ mode change 100644 => 100755 public/book-pages/page_0094.jpg
+ mode change 100644 => 100755 public/book-pages/page_0095.jpg
+ mode change 100644 => 100755 public/book-pages/page_0096.jpg
+ mode change 100644 => 100755 public/book-pages/page_0097.jpg
+ mode change 100644 => 100755 public/book-pages/page_0098.jpg
+ mode change 100644 => 100755 public/book-pages/page_0099.jpg
+ mode change 100644 => 100755 public/book-pages/page_0100.jpg
+ mode change 100644 => 100755 public/book-pages/page_0101.jpg
+ mode change 100644 => 100755 public/book-pages/page_0102.jpg
+ mode change 100644 => 100755 public/book-pages/page_0103.jpg
+ mode change 100644 => 100755 public/book-pages/page_0104.jpg
+ mode change 100644 => 100755 public/book-pages/page_0105.jpg
+ mode change 100644 => 100755 public/book-pages/page_0106.jpg
+ mode change 100644 => 100755 public/book-pages/page_0107.jpg
+ mode change 100644 => 100755 public/book-pages/page_0108.jpg
+ mode change 100644 => 100755 public/book-pages/page_0109.jpg
+ mode change 100644 => 100755 public/book-pages/page_0110.jpg
+ mode change 100644 => 100755 public/book-pages/page_0111.jpg
+ mode change 100644 => 100755 public/book-pages/page_0112.jpg
+ mode change 100644 => 100755 public/book-pages/page_0113.jpg
+ mode change 100644 => 100755 public/book-pages/page_0114.jpg
+ mode change 100644 => 100755 public/book-pages/page_0115.jpg
+ mode change 100644 => 100755 public/book-pages/page_0116.jpg
+ mode change 100644 => 100755 public/book-pages/page_0117.jpg
+ mode change 100644 => 100755 public/book-pages/page_0118.jpg
+ mode change 100644 => 100755 public/book-pages/page_0119.jpg
+ mode change 100644 => 100755 public/book-pages/page_0120.jpg
+ mode change 100644 => 100755 public/book-pages/page_0121.jpg
+ mode change 100644 => 100755 public/book-pages/page_0122.jpg
+ mode change 100644 => 100755 public/book-pages/page_0123.jpg
+ mode change 100644 => 100755 public/book-pages/page_0124.jpg
+ mode change 100644 => 100755 public/book-pages/page_0125.jpg
+ mode change 100644 => 100755 public/book-pages/page_0126.jpg
+ mode change 100644 => 100755 public/book-pages/page_0127.jpg
+ mode change 100644 => 100755 public/book-pages/page_0128.jpg
+ mode change 100644 => 100755 public/book-pages/page_0129.jpg
+ mode change 100644 => 100755 public/book-pages/page_0130.jpg
+ mode change 100644 => 100755 public/book-pages/page_0131.jpg
+ mode change 100644 => 100755 public/book-pages/page_0132.jpg
+ mode change 100644 => 100755 public/book-pages/page_0133.jpg
+ mode change 100644 => 100755 public/book-pages/page_0134.jpg
+ mode change 100644 => 100755 public/book-pages/page_0135.jpg
+ mode change 100644 => 100755 public/book-pages/page_0136.jpg
+ mode change 100644 => 100755 public/book-pages/page_0137.jpg
+ mode change 100644 => 100755 public/book-pages/page_0138.jpg
+ mode change 100644 => 100755 public/book-pages/page_0139.jpg
+ mode change 100644 => 100755 public/book-pages/page_0140.jpg
+ mode change 100644 => 100755 public/book-pages/page_0141.jpg
+ mode change 100644 => 100755 public/book-pages/page_0142.jpg
+ mode change 100644 => 100755 public/book-pages/page_0143.jpg
+ mode change 100644 => 100755 public/book-pages/page_0144.jpg
+ mode change 100644 => 100755 public/book-pages/page_0145.jpg
+ mode change 100644 => 100755 public/book-pages/page_0146.jpg
+ mode change 100644 => 100755 public/book-pages/page_0147.jpg
+ mode change 100644 => 100755 public/book-pages/page_0148.jpg
+ mode change 100644 => 100755 public/book-pages/page_0149.jpg
+ mode change 100644 => 100755 public/book-pages/page_0150.jpg
+ mode change 100644 => 100755 public/book-pages/page_0151.jpg
+ mode change 100644 => 100755 public/book-pages/page_0152.jpg
+ mode change 100644 => 100755 public/book-pages/page_0153.jpg
+ mode change 100644 => 100755 public/book-pages/page_0154.jpg
+ mode change 100644 => 100755 public/book-pages/page_0155.jpg
+ mode change 100644 => 100755 public/book-pages/page_0156.jpg
+ mode change 100644 => 100755 public/book-pages/page_0157.jpg
+ mode change 100644 => 100755 public/book-pages/page_0158.jpg
+ mode change 100644 => 100755 public/book-pages/page_0159.jpg
+ mode change 100644 => 100755 public/book-pages/page_0160.jpg
+ mode change 100644 => 100755 public/book-pages/page_0161.jpg
+ mode change 100644 => 100755 public/book-pages/page_0162.jpg
+ mode change 100644 => 100755 public/book-pages/page_0163.jpg
+ mode change 100644 => 100755 public/book-pages/page_0164.jpg
+ mode change 100644 => 100755 public/book-pages/page_0165.jpg
+ mode change 100644 => 100755 public/book-pages/page_0166.jpg
+ mode change 100644 => 100755 public/book-pages/page_0167.jpg
+ mode change 100644 => 100755 public/book-pages/page_0168.jpg
+ mode change 100644 => 100755 public/book-pages/page_0169.jpg
+ mode change 100644 => 100755 public/book-pages/page_0170.jpg
+ mode change 100644 => 100755 public/book-pages/page_0171.jpg
+ mode change 100644 => 100755 public/book-pages/page_0172.jpg
+ mode change 100644 => 100755 public/book-pages/page_0173.jpg
+ mode change 100644 => 100755 public/book-pages/page_0174.jpg
+ mode change 100644 => 100755 public/book-pages/page_0175.jpg
+ mode change 100644 => 100755 public/book-pages/page_0176.jpg
+ mode change 100644 => 100755 public/book-pages/page_0177.jpg
+ mode change 100644 => 100755 public/book-pages/page_0178.jpg
+ mode change 100644 => 100755 public/book-pages/page_0179.jpg
+ mode change 100644 => 100755 public/book-pages/page_0180.jpg
+ mode change 100644 => 100755 public/book-pages/page_0181.jpg
+ mode change 100644 => 100755 public/book-pages/page_0182.jpg
+ mode change 100644 => 100755 public/book-pages/page_0183.jpg
+ mode change 100644 => 100755 public/book-pages/page_0184.jpg
+ mode change 100644 => 100755 public/book-pages/page_0185.jpg
+ mode change 100644 => 100755 public/book-pages/page_0186.jpg
+ mode change 100644 => 100755 public/book-pages/page_0187.jpg
+ mode change 100644 => 100755 public/book-pages/page_0188.jpg
+ mode change 100644 => 100755 public/book-pages/page_0189.jpg
+ mode change 100644 => 100755 public/book-pages/page_0190.jpg
+ mode change 100644 => 100755 public/book-pages/page_0191.jpg
+ mode change 100644 => 100755 public/book-pages/page_0192.jpg
+ mode change 100644 => 100755 public/book-pages/page_0193.jpg
+ mode change 100644 => 100755 public/book-pages/page_0194.jpg
+ mode change 100644 => 100755 public/book-pages/page_0195.jpg
+ mode change 100644 => 100755 public/book-pages/page_0196.jpg
+ mode change 100644 => 100755 public/book-pages/page_0197.jpg
+ mode change 100644 => 100755 public/book-pages/page_0198.jpg
+ mode change 100644 => 100755 public/book-pages/page_0199.jpg
+ mode change 100644 => 100755 public/book-pages/page_0200.jpg
+ mode change 100644 => 100755 public/book-pages/page_0201.jpg
+ mode change 100644 => 100755 public/book-pages/page_0202.jpg
+ mode change 100644 => 100755 public/book-pages/page_0203.jpg
+ mode change 100644 => 100755 public/book-pages/page_0204.jpg
+ mode change 100644 => 100755 public/book-pages/page_0205.jpg
+ mode change 100644 => 100755 public/book-pages/page_0206.jpg
+ mode change 100644 => 100755 public/book-pages/page_0207.jpg
+ mode change 100644 => 100755 public/book-pages/page_0208.jpg
+ mode change 100644 => 100755 public/book-pages/page_0209.jpg
+ mode change 100644 => 100755 public/book-pages/page_0210.jpg
+ mode change 100644 => 100755 public/book-pages/page_0211.jpg
+ mode change 100644 => 100755 public/book-pages/page_0212.jpg
+ mode change 100644 => 100755 public/book-pages/page_0213.jpg
+ mode change 100644 => 100755 public/book-pages/page_0214.jpg
+ mode change 100644 => 100755 public/book-pages/page_0215.jpg
+ mode change 100644 => 100755 public/book-pages/page_0216.jpg
+ mode change 100644 => 100755 public/book-pages/page_0217.jpg
+ mode change 100644 => 100755 public/book-pages/page_0218.jpg
+ mode change 100644 => 100755 public/book-pages/page_0219.jpg
+ mode change 100644 => 100755 public/book-pages/page_0220.jpg
+ mode change 100644 => 100755 public/book-pages/page_0221.jpg
+ mode change 100644 => 100755 public/book-pages/page_0222.jpg
+ mode change 100644 => 100755 public/book-pages/page_0223.jpg
+ mode change 100644 => 100755 public/book-pages/page_0224.jpg
+ mode change 100644 => 100755 public/book-pages/page_0225.jpg
+ mode change 100644 => 100755 public/book-pages/page_0226.jpg
+ mode change 100644 => 100755 public/book-pages/page_0227.jpg
+ mode change 100644 => 100755 public/book-pages/page_0228.jpg
+ mode change 100644 => 100755 public/book-pages/page_0229.jpg
+ mode change 100644 => 100755 public/book-pages/page_0230.jpg
+ mode change 100644 => 100755 public/book-pages/page_0231.jpg
+ mode change 100644 => 100755 public/book-pages/page_0232.jpg
+ mode change 100644 => 100755 public/book-pages/page_0233.jpg
+ mode change 100644 => 100755 public/book-pages/page_0234.jpg
+ mode change 100644 => 100755 public/book-pages/page_0235.jpg
+ mode change 100644 => 100755 public/book-pages/page_0236.jpg
+ mode change 100644 => 100755 public/book-pages/page_0237.jpg
+ mode change 100644 => 100755 public/book-pages/page_0238.jpg
+ mode change 100644 => 100755 public/book-pages/page_0239.jpg
+ mode change 100644 => 100755 public/book-pages/page_0240.jpg
+ mode change 100644 => 100755 public/book-pages/page_0241.jpg
+ mode change 100644 => 100755 public/book-pages/page_0242.jpg
+ mode change 100644 => 100755 public/book-pages/page_0243.jpg
+ mode change 100644 => 100755 public/book-pages/page_0244.jpg
+ mode change 100644 => 100755 public/book-pages/page_0245.jpg
+ mode change 100644 => 100755 public/book-pages/page_0246.jpg
+ mode change 100644 => 100755 public/book-pages/page_0247.jpg
+ mode change 100644 => 100755 public/book-pages/page_0248.jpg
+ mode change 100644 => 100755 public/book-pages/page_0249.jpg
+ mode change 100644 => 100755 public/book-pages/page_0250.jpg
+ mode change 100644 => 100755 public/book-pages/page_0251.jpg
+ mode change 100644 => 100755 public/book-pages/page_0252.jpg
+ mode change 100644 => 100755 public/book-pages/page_0253.jpg
+ mode change 100644 => 100755 public/book-pages/page_0254.jpg
+ mode change 100644 => 100755 public/book-pages/page_0255.jpg
+ mode change 100644 => 100755 public/book-pages/page_0256.jpg
+ mode change 100644 => 100755 public/book-pages/page_0257.jpg
+ mode change 100644 => 100755 public/book-pages/page_0258.jpg
+ mode change 100644 => 100755 public/book-pages/page_0259.jpg
+ mode change 100644 => 100755 public/book-pages/page_0260.jpg
+ mode change 100644 => 100755 public/book-pages/page_0261.jpg
+ mode change 100644 => 100755 public/book-pages/page_0262.jpg
+ mode change 100644 => 100755 public/book-pages/page_0263.jpg
+ mode change 100644 => 100755 public/book-pages/page_0264.jpg
+ mode change 100644 => 100755 public/book-pages/page_0265.jpg
+ mode change 100644 => 100755 public/book-pages/page_0266.jpg
+ mode change 100644 => 100755 public/book-pages/page_0267.jpg
+ mode change 100644 => 100755 public/book-pages/page_0268.jpg
+ mode change 100644 => 100755 public/book-pages/page_0269.jpg
+ mode change 100644 => 100755 public/book-pages/page_0270.jpg
+ mode change 100644 => 100755 public/book-pages/page_0271.jpg
+ mode change 100644 => 100755 public/book-pages/page_0272.jpg
+ mode change 100644 => 100755 public/book-pages/page_0273.jpg
+ mode change 100644 => 100755 public/book-pages/page_0274.jpg
+ mode change 100644 => 100755 public/book-pages/page_0275.jpg
+ mode change 100644 => 100755 public/book-pages/page_0276.jpg
+ mode change 100644 => 100755 public/book-pages/page_0277.jpg
+ mode change 100644 => 100755 public/book-pages/page_0278.jpg
+ mode change 100644 => 100755 public/logo.svg
+ mode change 100644 => 100755 public/robots.txt
+ create mode 100644 ref-analysis.json
+ create mode 100644 ref-screenshot.png
+ create mode 100644 ref-site.json
+ mode change 100644 => 100755 ref_site.json
+ mode change 100644 => 100755 screenshot-landing.png
+ mode change 100644 => 100755 screenshot-preview.png
+ mode change 100644 => 100755 screenshot-reader-chapter.png
+ mode change 100644 => 100755 screenshot-reader.png
+ mode change 100644 => 100755 src/app/globals.css
+ mode change 100644 => 100755 src/app/layout.tsx
+ mode change 100644 => 100755 src/app/page.tsx
+ mode change 100644 => 100755 src/lib/book-data.ts
+ mode change 100644 => 100755 tsconfig.json
+ mode change 100644 => 100755 vercel.json
+ mode change 100644 => 100755 worklog.md
