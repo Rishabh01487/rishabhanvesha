@@ -4,7 +4,52 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { bookMeta, parts, allChapters, TOTAL_PAGES } from "@/lib/book-data";
 
 /* ------------------------------------------------------------------ */
-/*  Colorful Aurora Canvas (like aditiuncut.com Three.js effect)        */
+/*  Simplex 2D noise (organic aurora movement)                        */
+/* ------------------------------------------------------------------ */
+function createNoise2D() {
+  const grad3 = [
+    [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
+    [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
+    [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1],
+  ];
+  const perm = new Uint8Array(512);
+  const p = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) p[i] = i;
+  for (let i = 255; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [p[i], p[j]] = [p[j], p[i]];
+  }
+  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+
+  const dot = (g: number[], x: number, y: number) => g[0] * x + g[1] * y;
+  const F2 = 0.5 * (Math.sqrt(3) - 1);
+  const G2 = (3 - Math.sqrt(3)) / 6;
+
+  return (xin: number, yin: number): number => {
+    const s = (xin + yin) * F2;
+    const i = Math.floor(xin + s);
+    const j = Math.floor(yin + s);
+    const t = (i + j) * G2;
+    const X0 = i - t, Y0 = j - t;
+    const x0 = xin - X0, y0 = yin - Y0;
+    const i1 = x0 > y0 ? 1 : 0;
+    const j1 = x0 > y0 ? 0 : 1;
+    const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+    const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+    const ii = i & 255, jj = j & 255;
+    let n0 = 0, n1 = 0, n2 = 0;
+    let t0 = 0.5 - x0 * x0 - y0 * y0;
+    if (t0 > 0) { t0 *= t0; n0 = t0 * t0 * dot(grad3[perm[ii + perm[jj]] % 12], x0, y0); }
+    let t1 = 0.5 - x1 * x1 - y1 * y1;
+    if (t1 > 0) { t1 *= t1; n1 = t1 * t1 * dot(grad3[perm[ii + i1 + perm[jj + j1]] % 12], x1, y1); }
+    let t2 = 0.5 - x2 * x2 - y2 * y2;
+    if (t2 > 0) { t2 *= t2; n2 = t2 * t2 * dot(grad3[perm[ii + 1 + perm[jj + 1]] % 12], x2, y2); }
+    return 70 * (n0 + n1 + n2);
+  };
+}
+
+/* ------------------------------------------------------------------ */
+/*  Organic Aurora Blob Canvas (matching aditiuncut.com)               */
 /* ------------------------------------------------------------------ */
 function AuroraCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,129 +63,59 @@ function AuroraCanvas() {
     let animId: number;
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
+    const noise = createNoise2D();
 
-    // Color palette: vibrant multi-color streams
-    const palette = [
-      [0, 255, 200],    // cyan-green
-      [120, 80, 255],   // violet
-      [255, 50, 150],   // hot pink
-      [50, 150, 255],   // blue
-      [200, 100, 255],  // purple
-      [255, 120, 50],   // coral/orange
-      [0, 200, 255],    // sky blue
-      [255, 80, 200],   // magenta
+    // Color palette: magenta/pink dominant, cyan/teal edges, hints of lime
+    const blobs: { cx: number; cy: number; r: number; g: number; b: number; size: number; speed: number; noiseOffX: number; noiseOffY: number }[] = [
+      { cx: 0.5, cy: 0.45, r: 255, g: 50, b: 120, size: 0.35, speed: 0.0003, noiseOffX: 0, noiseOffY: 100 },
+      { cx: 0.4, cy: 0.5, r: 0, g: 200, b: 255, size: 0.3, speed: 0.00025, noiseOffX: 50, noiseOffY: 50 },
+      { cx: 0.6, cy: 0.4, r: 160, g: 80, b: 255, size: 0.25, speed: 0.00035, noiseOffX: 100, noiseOffY: 0 },
+      { cx: 0.5, cy: 0.55, r: 80, g: 255, b: 150, size: 0.2, speed: 0.0004, noiseOffX: 150, noiseOffY: 150 },
+      { cx: 0.45, cy: 0.48, r: 255, g: 100, b: 200, size: 0.28, speed: 0.00028, noiseOffX: 200, noiseOffY: 100 },
     ];
 
-    // Flowing light streams
-    interface Stream {
-      points: { x: number; y: number; vx: number; vy: number }[];
-      color: number[];
-      width: number;
-      speed: number;
-      offset: number;
-      amplitude: number;
-      frequency: number;
-      phase: number;
-    }
-
-    const streams: Stream[] = [];
-    const STREAM_COUNT = 8;
-
-    for (let i = 0; i < STREAM_COUNT; i++) {
-      const pts: Stream["points"] = [];
-      const segments = 80;
-      for (let j = 0; j <= segments; j++) {
-        pts.push({
-          x: (j / segments) * w,
-          y: h * (0.2 + Math.random() * 0.6),
-          vx: 0,
-          vy: 0,
-        });
-      }
-      streams.push({
-        points: pts,
-        color: palette[i % palette.length],
-        width: 1 + Math.random() * 2.5,
-        speed: 0.3 + Math.random() * 0.5,
-        offset: Math.random() * Math.PI * 2,
-        amplitude: 60 + Math.random() * 120,
-        frequency: 0.002 + Math.random() * 0.003,
-        phase: Math.random() * Math.PI * 2,
-      });
-    }
-
-    let time = 0;
-
-    const draw = () => {
+    const draw = (timestamp: number) => {
       ctx!.clearRect(0, 0, w, h);
-      time += 0.008;
+      ctx!.filter = "blur(80px)";
 
-      for (const stream of streams) {
-        const pts = stream.points;
-        const segs = pts.length - 1;
+      for (const blob of blobs) {
+        const nx = noise(timestamp * blob.speed + blob.noiseOffX, 0) * 0.15;
+        const ny = noise(0, timestamp * blob.speed + blob.noiseOffY) * 0.1;
+        const x = (blob.cx + nx) * w;
+        const y = (blob.cy + ny) * h;
+        const radius = Math.max(10, blob.size * Math.min(w, h) * (0.8 + noise(timestamp * blob.speed * 0.5 + blob.noiseOffX, timestamp * blob.speed * 0.5 + blob.noiseOffY) * 0.3));
 
-        // Update wave positions
-        for (let i = 0; i <= segs; i++) {
-          const t = i / segs;
-          const baseY = h * 0.5;
-          const wave1 = Math.sin(t * Math.PI * 2 * stream.frequency * w + time * stream.speed + stream.offset) * stream.amplitude;
-          const wave2 = Math.sin(t * Math.PI * 3 * stream.frequency * w + time * stream.speed * 0.7 + stream.phase) * stream.amplitude * 0.4;
-          const wave3 = Math.cos(t * Math.PI * 1.5 * stream.frequency * w + time * stream.speed * 1.3) * stream.amplitude * 0.2;
+        const grad = ctx!.createRadialGradient(x, y, 0, x, y, radius);
+        grad.addColorStop(0, `rgba(${blob.r},${blob.g},${blob.b},0.35)`);
+        grad.addColorStop(0.4, `rgba(${blob.r},${blob.g},${blob.b},0.15)`);
+        grad.addColorStop(1, `rgba(${blob.r},${blob.g},${blob.b},0)`);
 
-          pts[i].x = t * w;
-          pts[i].y = baseY + wave1 + wave2 + wave3;
-        }
-
-        // Draw glowing stream with gradient
-        const [r, g, b] = stream.color;
-
-        // Outer glow
         ctx!.beginPath();
-        ctx!.moveTo(pts[0].x, pts[0].y);
-        for (let i = 1; i < pts.length - 1; i++) {
- const xc = (pts[i].x + pts[i + 1].x) / 2;
-          const yc = (pts[i].y + pts[i + 1].y) / 2;
-          ctx!.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
-        }
-        const grad = ctx!.createLinearGradient(0, 0, w, 0);
-        grad.addColorStop(0, `rgba(${r},${g},${b},0)`);
-        grad.addColorStop(0.2, `rgba(${r},${g},${b},0.08)`);
-        grad.addColorStop(0.5, `rgba(${r},${g},${b},0.15)`);
-        grad.addColorStop(0.8, `rgba(${r},${g},${b},0.08)`);
-        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx!.strokeStyle = grad;
-        ctx!.lineWidth = stream.width * 8;
-        ctx!.lineCap = "round";
-        ctx!.lineJoin = "round";
-        ctx!.filter = "blur(12px)";
-        ctx!.stroke();
-
-        // Inner bright core
-        ctx!.beginPath();
-        ctx!.moveTo(pts[0].x, pts[0].y);
-        for (let i = 1; i < pts.length - 1; i++) {
-          const xc = (pts[i].x + pts[i + 1].x) / 2;
-          const yc = (pts[i].y + pts[i + 1].y) / 2;
-          ctx!.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
-        }
-        const coreGrad = ctx!.createLinearGradient(0, 0, w, 0);
-        coreGrad.addColorStop(0, `rgba(${r},${g},${b},0)`);
-        coreGrad.addColorStop(0.3, `rgba(${r},${g},${b},0.4)`);
-        coreGrad.addColorStop(0.5, `rgba(${Math.min(255, r + 80)},${Math.min(255, g + 80)},${Math.min(255, b + 80)},0.6)`);
-        coreGrad.addColorStop(0.7, `rgba(${r},${g},${b},0.4)`);
-        coreGrad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx!.strokeStyle = coreGrad;
-        ctx!.lineWidth = stream.width * 1.5;
-        ctx!.filter = "blur(2px)";
-        ctx!.stroke();
-
-        ctx!.filter = "none";
+        ctx!.arc(x, y, radius, 0, Math.PI * 2);
+        ctx!.fillStyle = grad;
+        ctx!.fill();
       }
 
+      // White-hot center glow
+      const cnx = noise(timestamp * 0.0002, 50) * 0.08;
+      const cny = noise(50, timestamp * 0.0002) * 0.06;
+      const cx = (0.5 + cnx) * w;
+      const cy = (0.47 + cny) * h;
+      const cr = Math.max(10, Math.min(w, h) * 0.12);
+      const centerGrad = ctx!.createRadialGradient(cx, cy, 0, cx, cy, cr);
+      centerGrad.addColorStop(0, "rgba(255,255,255,0.12)");
+      centerGrad.addColorStop(0.5, "rgba(255,200,255,0.04)");
+      centerGrad.addColorStop(1, "rgba(255,200,255,0)");
+      ctx!.beginPath();
+      ctx!.arc(cx, cy, cr, 0, Math.PI * 2);
+      ctx!.fillStyle = centerGrad;
+      ctx!.fill();
+
+      ctx!.filter = "none";
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    animId = requestAnimationFrame(draw);
 
     const onResize = () => {
       w = canvas.width = window.innerWidth;
@@ -170,39 +145,39 @@ function LandingPage({ onOpen }: { onOpen: () => void }) {
   const ease = "cubic-bezier(0.16,1,0.3,1)";
 
   return (
-    <div className="relative w-full h-screen bg-[#050505] text-white overflow-hidden" style={{ fontFamily: "var(--font-space)" }}>
+    <div className="relative w-full h-screen bg-[#050505] text-white overflow-hidden">
       <AuroraCanvas />
 
       {/* Content */}
       <div className="relative z-10 w-full h-full pointer-events-none">
         <div className="flex flex-col items-center justify-center w-full h-full text-center px-6">
-          <div className="space-y-5 pointer-events-auto cursor-default z-20">
+          <div className="space-y-4 pointer-events-auto cursor-default z-20">
 
-            {/* Title */}
+            {/* Pickup line - main title */}
             {started && (
               <h1
-                className="text-4xl sm:text-5xl md:text-7xl font-light tracking-tight text-white drop-shadow-[0_0_30px_rgba(0,0,0,0.8)] select-none leading-[1.15]"
+                className="text-4xl md:text-6xl font-light tracking-tight text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] select-none leading-[1.1]"
                 style={{
                   opacity: 0,
                   animation: `fadeInUp 1s ${ease} 0.4s forwards`,
                 }}
               >
-                AVERON
+                Things I Learned
+                <br />
+                Tokenizing the World
               </h1>
             )}
 
-            {/* Subtitle */}
+            {/* Book name */}
             {started && (
               <h2
-                className="text-lg sm:text-xl md:text-2xl font-light tracking-tight text-white/90 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] leading-snug max-w-2xl mx-auto"
+                className="text-lg md:text-xl text-white/80 font-light tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(0,0,0,1)]"
                 style={{
                   opacity: 0,
                   animation: `fadeInUp 1s ${ease} 0.7s forwards`,
                 }}
               >
-                The Programmable Digital
-                <br />
-                Asset Infrastructure
+                AVERON — The Programmable Digital Asset Infrastructure
               </h2>
             )}
 
@@ -216,7 +191,7 @@ function LandingPage({ onOpen }: { onOpen: () => void }) {
                   animation: `fadeInUp 1s ${ease} 1s forwards`,
                 }}
               >
-                A book by Rishabh Gupta
+                a book by Rishabh Gupta
               </p>
             )}
 
@@ -225,10 +200,7 @@ function LandingPage({ onOpen }: { onOpen: () => void }) {
               <div className="pt-8" style={{ opacity: 0, animation: `fadeInUp 1s ${ease} 1.3s forwards` }}>
                 <button
                   onClick={onOpen}
-                  className="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full text-sm uppercase tracking-[0.2em] transition-all duration-500 backdrop-blur-sm text-white/90 hover:text-white cursor-pointer"
-                  style={{
-                    fontFamily: "var(--font-space)",
-                  }}
+                  className="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm uppercase tracking-[0.2em] transition-colors backdrop-blur-sm text-white/90 hover:text-white cursor-pointer"
                 >
                   Start Reading
                 </button>
@@ -268,7 +240,7 @@ function TableOfContents({ isOpen, onClose, onGoToPage }: { isOpen: boolean; onC
       {isOpen && <div className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm lg:hidden" onClick={onClose} />}
       <aside className={`fixed top-0 left-0 z-50 h-full w-80 bg-[#0a0a0a] border-r border-white/[0.06] transform transition-transform duration-300 ease-in-out overflow-hidden ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-5 border-b border-white/[0.06]">
-          <h2 className="text-xs tracking-[0.2em] uppercase text-white/50" style={{ fontFamily: "var(--font-space)" }}>Contents</h2>
+          <h2 className="text-xs tracking-[0.2em] uppercase text-white/50">Contents</h2>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white/50 hover:text-white">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
@@ -276,7 +248,7 @@ function TableOfContents({ isOpen, onClose, onGoToPage }: { isOpen: boolean; onC
         <div className="overflow-y-auto h-[calc(100%-60px)] py-2 px-2 custom-scrollbar">
           {parts.map((part, pi) => (
             <div key={pi} className="mb-4">
-              <div className="px-3 py-2 text-[10px] tracking-[0.25em] uppercase text-white/30 font-medium" style={{ fontFamily: "var(--font-space)" }}>
+              <div className="px-3 py-2 text-[10px] tracking-[0.25em] uppercase text-white/30 font-medium">
                 Part {pi + 1} {" - "} {part.title}
               </div>
               {part.chapters.map((ch, ci) => (
@@ -331,7 +303,7 @@ function BookReader({ onBack }: { onBack: () => void }) {
   const progress = ((currentPage + 1) / TOTAL_PAGES) * 100;
 
   return (
-    <div className="relative w-full h-screen bg-[#050505] text-white overflow-hidden select-none" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()} style={{ fontFamily: "var(--font-space)" }}>
+    <div className="relative w-full h-screen bg-[#050505] text-white overflow-hidden select-none" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}>
       <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 md:px-6 h-12 bg-[#050505]/90 backdrop-blur-md border-b border-white/[0.04]">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm">
