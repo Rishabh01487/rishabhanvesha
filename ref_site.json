@@ -1,0 +1,37 @@
+{
+  "code": 200,
+  "data": {
+    "description": "",
+    "external": {
+      "icon": {
+        "https://aditiuncut.com/favicon.svg": {
+          "type": "image/svg+xml"
+        }
+      },
+      "preconnect": {
+        "https://fonts.googleapis.com/": {},
+        "https://fonts.gstatic.com/": {
+          "crossorigin": ""
+        }
+      }
+    },
+    "html": "<html lang=\"en\"><head>\n    <meta charset=\"UTF-8\">\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Aditi Uncut</title>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin=\"\">\n    <link href=\"https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;display=swap\" rel=\"stylesheet\">\n    <script type=\"module\" crossorigin=\"\" src=\"/assets/index-BUkCPBJV.js\"></script>\n    <link rel=\"stylesheet\" crossorigin=\"\" href=\"/assets/index-Qma1Lyf1.css\">\n  </head>\n  <body>\n    <div id=\"root\"><div class=\"relative w-full h-screen bg-[#050505] text-white overflow-hidden font-sans\"><div class=\"relative w-full h-full min-h-[400px] overflow-hidden bg-background\"><canvas class=\"absolute inset-0 w-full h-full block\" style=\"touch-action: none;\"></canvas><div class=\"relative z-10 w-full h-full pointer-events-none\"><div class=\"flex flex-col items-center justify-center w-full h-full gap-6 text-center px-6\"><div class=\"space-y-4 pointer-events-auto cursor-default z-20\" style=\"opacity: 0; transform: translateY(16px);\"><h1 class=\"text-4xl md:text-6xl font-light tracking-tight text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] select-none\">Things I Learned<br>While Falling Apart</h1><p class=\"text-lg md:text-xl text-white/80 font-light tracking-widest uppercase drop-shadow-[0_0_10px_rgba(0,0,0,1)]\">A book by Aditi Sinha</p><div class=\"pt-8\"><button class=\"px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm uppercase tracking-widest transition-colors backdrop-blur-sm\">Open My Journal</button></div></div></div></div></div></div></div>\n  \n\n</body></html>",
+    "httpStatus": 200,
+    "httpStatusText": "OK",
+    "metadata": {
+      "lang": "en",
+      "viewport": "width=device-width, initial-scale=1.0"
+    },
+    "title": "Things I LearnedWhile Falling Apart",
+    "url": "https://aditiuncut.com/",
+    "usage": {
+      "tokens": 497
+    }
+  },
+  "meta": {
+    "usage": {
+      "tokens": 497
+    }
+  },
+  "status": 200
+}
